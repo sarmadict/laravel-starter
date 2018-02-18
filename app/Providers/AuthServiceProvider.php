@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Services\Auth\FlexibleUserProvider;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Laravel\Passport\Passport;
@@ -34,6 +36,10 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
+
+        Auth::provider('flexible_eloquent', function ($app, array $config) {
+            return new FlexibleUserProvider($app['hash'], $config['model']);
+        });
 
         Passport::routes();
     }
