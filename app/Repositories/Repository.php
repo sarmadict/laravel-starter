@@ -108,7 +108,7 @@ abstract class Repository
     }
 
     /**
-     *
+     * Update an existing model instance
      *
      * @param $item
      * @param $data
@@ -117,6 +117,38 @@ abstract class Repository
     public function update($item, $data)
     {
         return $item->update($data);
+    }
+
+    /**
+     * Create a new model when ignoring guarded attributes
+     *
+     * @param $data
+     * @return Model
+     */
+    public function forceCreate($data)
+    {
+        $item = $this->getModel()->newInstance();
+
+        $item->forceFill($data);
+
+        $item->save();
+
+        return $item;
+    }
+
+    /**
+     * Update an existing model model when ignoring guarded attributes
+     *
+     * @param $data
+     * @return Model
+     */
+    public function forceUpdate($item, $data)
+    {
+        $item->forceFill($data);
+
+        $item->save();
+
+        return $item;
     }
 
     /**
