@@ -162,6 +162,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        App\Services\Alert\AlertServiceProvider::class,
     ],
 
     /*
