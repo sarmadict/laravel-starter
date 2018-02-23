@@ -41,6 +41,6 @@ class AuthServiceProvider extends ServiceProvider
             return new FlexibleUserProvider($app['hash'], $config['model']);
         });
 
-        Passport::routes();
+        // Passport::routes();
     }
 }

@@ -152,6 +152,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Hekmatinasser\Verta\VertaServiceProvider::class,
 
         /*
          * Application Service Providers...
