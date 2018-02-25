@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'first_name', 'last_name', 'email', 'username', 'mobile_number', 'password',
     ];
 
     /**
@@ -27,4 +27,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Check if user account is approved or not
+     *
+     * @return bool
+     */
+    public function isApproved()
+    {
+        return !is_null($this->approved_at);
+    }
 }

@@ -81,17 +81,7 @@
             $(this).parents('.example').toggleClass('show-source');
         });
     });
-
-    /**
-     * Data tables fix header resize
-     */
-    $(window).on('resize', function ()
-    {
-        $.fn.dataTable.tables({
-            visible: true,
-            api    : true
-        }).columns.adjust();
-    })
+    
 
     /**
      * Watching media step changes

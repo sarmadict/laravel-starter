@@ -3,18 +3,22 @@
 Route::group([
     'namespace' => 'Accounts\Auth',
     'prefix' => 'auth',
-    'domain' => domain('accounts')],
+    'domain' => domain('accounts'),
+    'as' => 'accounts.auth.'],
     function () {
         Route::get('/login', 'LoginController@showLoginForm')
-            ->name('accounts.auth.login.show');
+            ->name('login.show');
 
         Route::post('/login', 'LoginController@login')
-            ->name('accounts.auth.login.login');
+            ->name('login.login');
 
         Route::get('/register', 'RegisterController@showRegistrationForm')
-            ->name('accounts.auth.register.show');
+            ->name('register.show');
 
         Route::post('/register', 'RegisterController@register')
-            ->name('accounts.auth.register.register');
+            ->name('register.register');
+
+        Route::any('/logout', 'RegisterController@logout')
+            ->name('login.logout');
     }
 );
