@@ -2,6 +2,7 @@
 
 namespace App\Services\Alert;
 
+use App\Services\Alert\Types\Severity;
 use Illuminate\Contracts\Support\Jsonable;
 use JsonSerializable;
 
@@ -9,60 +10,61 @@ class AlertMessage implements Jsonable, JsonSerializable
 {
     /**
      * Message title
-     * 
+     *
      * @var string
      */
     private $title;
 
     /**
      * Message description
-     * 
+     *
      * @var string
      */
     private $description;
-    
+
     /**
      * Message Severity
-     * 
+     *
      * @var string
      */
     private $severity;
 
     /**
      * Message Config
-     * 
+     *
      * @var array
      */
     private $config;
 
     /**
      * Message display type
-     * 
+     *
      * @var string
      */
     private $displayType = 'default';
-    
+
     /**
      * Create a new Alert message instance.
      *
-     * @param  string  $description
-     * @param  string  $title
-     * @param  string  $severity
-     * @param  array  $config
+     * @param  string $description
+     * @param  string $title
+     * @param  string $severity
+     * @param  string $displayType
+     * @param  array $config
      * @return void
      */
     public function __construct($description, $title = '', $severity = 'info', $displayType = 'default', $config = [])
     {
         $this->description = $description;
         $this->title = $title;
-        $this->severity = $severity;
+        $this->severity = strtolower($severity);
         $this->displayType = $displayType;
         $this->config = $config;
     }
 
     /**
      * Get Message Title
-     * 
+     *
      * @return string
      */
     public function getTitle()
@@ -72,7 +74,7 @@ class AlertMessage implements Jsonable, JsonSerializable
 
     /**
      * Set Message Title
-     * 
+     *
      * @param string $title
      * @return $this
      */
@@ -82,10 +84,10 @@ class AlertMessage implements Jsonable, JsonSerializable
 
         return $this;
     }
-    
+
     /**
      * Get Message Description
-     * 
+     *
      * @return string
      */
     public function getDescription()
@@ -95,7 +97,7 @@ class AlertMessage implements Jsonable, JsonSerializable
 
     /**
      * Set Message Description
-     * 
+     *
      * @param string $description
      * @return $this
      */
@@ -108,7 +110,7 @@ class AlertMessage implements Jsonable, JsonSerializable
 
     /**
      * Get Message Severity
-     * 
+     *
      * @return string
      */
     public function getSeverity()
@@ -118,27 +120,27 @@ class AlertMessage implements Jsonable, JsonSerializable
 
     /**
      * Set Message Severity
-     * 
+     *
      * @param string $severity
      * @return $this
      */
     public function setSeverity($severity)
     {
         $this->severity = $severity;
-        
+
         return $this;
     }
 
     /**
      * Get Alert display type
-     * 
+     *
      * @return string
      */
     public function getDisplayType()
     {
         return $this->displayType;
     }
-    
+
     /**
      * Set Alert display type
      *
@@ -148,28 +150,28 @@ class AlertMessage implements Jsonable, JsonSerializable
     public function setDisplayType($displayType)
     {
         $this->displayType = $displayType;
-        
+
         return $this;
     }
 
     /**
      * Get Message Config
-     * 
-     * @param  string  $key  Config name
+     *
+     * @param  string $key Config name
      * @return array
      */
     public function getConfig($key = null)
     {
-        if($key){
+        if ($key) {
             return isset($this->config[$key]) ? $this->config[$key] : null;
         }
-        
+
         return $this->config;
     }
-    
+
     /**
      * Set Message Config
-     * 
+     *
      * @param array $config
      * @return $this
      */
@@ -181,62 +183,60 @@ class AlertMessage implements Jsonable, JsonSerializable
     }
 
     /**
-     * Add new config for Message 
-     * 
-     * @param  string  $key
-     * @param  string  $value
+     * Add new config for Message
+     *
+     * @param  string $key
+     * @param  string $value
      * @return $this
      */
     public function addConfig($key, $value)
     {
         array_set($this->config, $key, $value);
-        
+
         return $this;
     }
 
     /**
      * Remove message config
-     * 
-     * @param  string  $key
+     *
+     * @param  string $key
      * @return $this
      */
     public function removeConfig($key = null)
     {
-        if(is_null($key)){
+        if (is_null($key)) {
             $this->setConfig([]);
-        }
-        else{
+        } else {
             array_forget($this->config, $key);
         }
-        
+
         return $this;
     }
 
     /**
-     * Set message as dismissable
-     * 
-     * @param bool $isDismissable
+     * Set message as dismissible
+     *
+     * @param bool $isDismissible
      * @return $this
      */
-    public function dismissable($isDismissable = true)
+    public function dismissible($isDismissible = true)
     {
-        $this->addConfig('dismissable', $isDismissable);
-        
+        $this->addConfig('dismissible', $isDismissible);
+
         return $this;
     }
 
     /**
      * Dynamically set properties or config
-     * 
+     *
      * @param string $name
      * @param mixed $value
      */
     public function __set($name, $value)
     {
-        if(property_exists($this, $name)){
+        if (property_exists($this, $name)) {
             $this->{$name} = $value;
-        }
-        else{
+        } else {
             $this->addConfig($name, $value);
         }
     }
@@ -249,10 +249,10 @@ class AlertMessage implements Jsonable, JsonSerializable
      */
     function __get($name)
     {
-        if(property_exists($this, $name)){
+        if (property_exists($this, $name)) {
             return $this->{$name};
         }
-        
+
         return $this->getConfig($name);
     }
 
@@ -285,12 +285,11 @@ class AlertMessage implements Jsonable, JsonSerializable
     /**
      * Convert the object to its JSON representation.
      *
-     * @param  int  $options
+     * @param  int $options
      * @return string
      */
     public function toJson($options = 0)
     {
         return json_encode($this->jsonSerialize(), $options);
     }
-
 }

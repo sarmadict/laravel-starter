@@ -2,11 +2,12 @@
 
 namespace App\Services\Alert;
 
+use Countable;
 use Illuminate\Support\Arr;
 use Illuminate\Contracts\Support\Jsonable;
 use JsonSerializable;
 
-class ViewAlertBag implements Jsonable, JsonSerializable
+class ViewAlertBag implements Jsonable, JsonSerializable, Countable
 {
     /**
      * The array of the view alert bags.
@@ -18,7 +19,7 @@ class ViewAlertBag implements Jsonable, JsonSerializable
     /**
      * Checks if a named MessageBag exists in the bags.
      *
-     * @param  string  $key
+     * @param  string $key
      * @return bool
      */
     public function hasBag($key = 'default')
@@ -29,19 +30,19 @@ class ViewAlertBag implements Jsonable, JsonSerializable
     /**
      * Get a MessageBag instance from the bags.
      *
-     * @param  string  $key
-     * @return \Illuminate\Contracts\Support\MessageBag
+     * @param  string $key
+     * @return AlertMessageBag
      */
     public function getBag($key)
     {
-        return Arr::get($this->bags, $key) ?: new AlertMessageBag;
+        return Arr::get($this->bags, $key) ?: new AlertMessageBag();
     }
 
     /**
      * Create a new MessageBag instance in the bags.
      *
-     * @param  string  $key
-     * @return \Illuminate\Contracts\Support\MessageBag
+     * @param  string $key
+     * @return mixed
      */
     public function createBag($key)
     {
@@ -61,8 +62,8 @@ class ViewAlertBag implements Jsonable, JsonSerializable
     /**
      * Add a new MessageBag instance to the bags.
      *
-     * @param  string  $key
-     * @param  \App\Services\Alert\AlertMessageBag  $bag
+     * @param  string $key
+     * @param  \App\Services\Alert\AlertMessageBag $bag
      * @return $this
      */
     public function put($key, $bag)
@@ -75,18 +76,18 @@ class ViewAlertBag implements Jsonable, JsonSerializable
     /**
      * Add a new message to the bags.
      *
-     * @param  string  $key
-     * @param  string  $severity
-     * @param  string  $message
+     * @param  string $key
+     * @param  string $severity
+     * @param  string $message
      * @return $this
      */
-    public function add($key, $severity, $message)
+    public function add($key, $message)
     {
-        if(!$this->hasBag($key)){
+        if (!$this->hasBag($key)) {
             $this->createBag($key);
         }
 
-        $this->bags[$key]->add($severity, $message);
+        $this->bags[$key]->add($message);
 
         return $this;
     }
@@ -104,8 +105,8 @@ class ViewAlertBag implements Jsonable, JsonSerializable
     /**
      * Dynamically call methods on the default bag.
      *
-     * @param  string  $method
-     * @param  array  $parameters
+     * @param  string $method
+     * @param  array $parameters
      * @return mixed
      */
     public function __call($method, $parameters)
@@ -116,7 +117,7 @@ class ViewAlertBag implements Jsonable, JsonSerializable
     /**
      * Dynamically access a view error bag.
      *
-     * @param  string  $key
+     * @param  string $key
      * @return \Illuminate\Contracts\Support\MessageBag
      */
     public function __get($key)
@@ -127,8 +128,8 @@ class ViewAlertBag implements Jsonable, JsonSerializable
     /**
      * Dynamically set a view alert bag.
      *
-     * @param  string  $key
-     * @param  \Illuminate\Contracts\Support\MessageBag  $value
+     * @param  string $key
+     * @param  \Illuminate\Contracts\Support\MessageBag $value
      * @return void
      */
     public function __set($key, $value)
@@ -139,7 +140,7 @@ class ViewAlertBag implements Jsonable, JsonSerializable
     /**
      * Convert the object to its JSON representation.
      *
-     * @param  int  $options
+     * @param  int $options
      * @return string
      */
     public function toJson($options = 0)

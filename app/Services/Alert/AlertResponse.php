@@ -2,6 +2,7 @@
 
 namespace App\Services\Alert;
 
+use App\Services\Alert\Types\Severity;
 use Illuminate\Session\Store as SessionStore;
 
 class AlertResponse
@@ -12,11 +13,11 @@ class AlertResponse
      * @var \Illuminate\Session\Store
      */
     protected $session;
-    
+
     /**
      * Create a new Alert instance.
      *
-     * @param  \Illuminate\Session\Store  $session
+     * @param  \Illuminate\Session\Store $session
      * @return void
      */
     public function __construct(SessionStore $session)
@@ -27,7 +28,7 @@ class AlertResponse
     /**
      * Set the session store implementation.
      *
-     * @param  \Illuminate\Session\Store  $session
+     * @param  \Illuminate\Session\Store $session
      * @return void
      */
     public function setSession(SessionStore $session)
@@ -47,12 +48,12 @@ class AlertResponse
 
     /**
      * Get allowed alert severity levels
-     * 
+     *
      * @return string[]
      */
     protected function getSeverityLevels()
     {
-        return ['success', 'debug', 'info', 'notice', 'warning', 'error', 'critical', 'alert', 'emergency'];
+        return Severity::keys();
     }
 
     /**
@@ -63,7 +64,7 @@ class AlertResponse
      */
     protected function parseAlert($provider)
     {
-        if($provider instanceof AlertMessage){
+        if ($provider instanceof AlertMessage) {
             return $provider;
         }
 
@@ -71,174 +72,131 @@ class AlertResponse
     }
 
     /**
+     * Add new message
+     *
+     * @param $message
+     * @param $severity
+     * @param $key
+     * @return $this
+     */
+    public function add($message, $severity, $key)
+    {
+        $alert = $this->parseAlert($message);
+
+        $alert->setSeverity(Severity::search($severity));
+
+        $this->getSession()->flash(
+            'alerts', $this->getSession()->get('alerts', new ViewAlertBag())->add($key, $alert)
+        );
+
+        return $this;
+    }
+
+    /**
      * Set a success alert
      *
-     * @param  string  $message
-     * @param  string  $key
+     * @param  string $message
+     * @param  string $key
      * @return $this
      */
     public function success($message, $key = 'default')
     {
-        $alert = $this->parseAlert($message);
-        $alert->setSeverity('success');
-
-        $this->getSession()->flash(
-            'alerts', $this->getSession()->get('alerts', new ViewAlertBag())->add($key, 'success', $alert)
-        );
-
-        return $this;
+        return $this->add($message, Severity::SUCCESS, $key);
     }
 
     /**
      * Set a debug alert
      *
-     * @param  string  $message
-     * @param  string  $key
+     * @param  string $message
+     * @param  string $key
      * @return $this
      */
     public function debug($message, $key = 'default')
     {
-        $alert = $this->parseAlert($message);
-        $alert->setSeverity('debug');
-
-        $this->getSession()->flash(
-            'alerts', $this->getSession()->get('alerts', new ViewAlertBag())->add($key, 'debug', $alert)
-        );
-
-        return $this;
+        return $this->add($message, Severity::DEBUG, $key);
     }
 
     /**
      * Set an info alert
      *
-     * @param  string  $message
-     * @param  string  $key
+     * @param  string $message
+     * @param  string $key
      * @return $this
      */
     public function info($message, $key = 'default')
     {
-        $alert = $this->parseAlert($message);
-        $alert->setSeverity('info');
-
-        $this->getSession()->flash(
-            'alerts', $this->getSession()->get('alerts', new ViewAlertBag())->add($key, 'info', $alert)
-        );
-
-        return $this;
+        return $this->add($message, Severity::INFO, $key);
     }
 
     /**
      * Set a notice alert
      *
-     * @param  string  $message
-     * @param  string  $key
+     * @param  string $message
+     * @param  string $key
      * @return $this
      */
     public function notice($message, $key = 'default')
     {
-        $alert = $this->parseAlert($message);
-        $alert->setSeverity('notice');
-
-        $this->getSession()->flash(
-            'alerts', $this->getSession()->get('alerts', new ViewAlertBag())->add($key, 'notice', $alert)
-        );
-
-        return $this;
+        return $this->add($message, Severity::NOTICE, $key);
     }
 
     /**
      * Set a warning alert
      *
-     * @param  string  $message
-     * @param  string  $key
+     * @param  string $message
+     * @param  string $key
      * @return $this
      */
     public function warning($message, $key = 'default')
     {
-        $alert = $this->parseAlert($message);
-        $alert->setSeverity('warning');
-
-        $this->getSession()->flash(
-            'alerts', $this->getSession()->get('alerts', new ViewAlertBag())->add($key, 'warning', $alert)
-        );
-
-        return $this;
+        return $this->add($message, Severity::WARNING, $key);
     }
 
     /**
      * Set an error alert
      *
-     * @param  string  $message
-     * @param  string  $key
+     * @param  string $message
+     * @param  string $key
      * @return $this
      */
     public function error($message, $key = 'default')
     {
-        $alert = $this->parseAlert($message);
-        $alert->setSeverity('error');
-
-        $this->getSession()->flash(
-            'alerts', $this->getSession()->get('alerts', new ViewAlertBag())->add($key, 'error', $alert)
-        );
-
-        return $this;
+        return $this->add($message, Severity::ERROR, $key);
     }
 
     /**
      * Set a critical alert
      *
-     * @param  string  $message
-     * @param  string  $key
+     * @param  string $message
+     * @param  string $key
      * @return $this
      */
     public function critical($message, $key = 'default')
     {
-        $alert = $this->parseAlert($message);
-        $alert->setSeverity('critical');
-
-        $this->getSession()->flash(
-            'alerts', $this->getSession()->get('alerts', new ViewAlertBag())->add($key, 'critical', $alert)
-        );
-
-        return $this;
+        return $this->add($message, Severity::CRITICAL, $key);
     }
 
     /**
      * Set an alert level alert
      *
-     * @param  string  $message
-     * @param  string  $key
+     * @param  string $message
+     * @param  string $key
      * @return $this
      */
     public function alert($message, $key = 'default')
     {
-        $alert = $this->parseAlert($message);
-        $alert->setSeverity('alert');
-
-        $this->getSession()->flash(
-            'alerts', $this->getSession()->get('alerts', new ViewAlertBag())->add($key, 'alert', $alert)
-        );
-
-        return $this;
+        return $this->add($message, Severity::ALERT, $key);
     }
 
     /**
      * Set an emergency alert
      *
-     * @param  string  $message
-     * @param  string  $key
+     * @param  string $message
+     * @param  string $key
      * @return $this
      */
     public function emergency($message, $key = 'default')
     {
-        $alert = $this->parseAlert($message);
-        $alert->setSeverity('emergency');
-
-        $this->getSession()->flash(
-            'alerts', $this->getSession()->get('alerts', new ViewAlertBag())->add($key, 'emergency', $alert)
-        );
-
-        return $this;
+        return $this->add($message, Severity::EMERGENCY, $key);
     }
-
 }

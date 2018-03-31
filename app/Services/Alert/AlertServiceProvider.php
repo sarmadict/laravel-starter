@@ -15,7 +15,7 @@ class AlertServiceProvider extends ServiceProvider
      */
     public function boot(SessionStore $session)
     {
-        view()->composer('*', function(View $view) use ($session){
+        view()->composer('*', function (View $view) use ($session) {
             $view->with('alerts', $session->get('alerts') ?: new ViewAlertBag);
         });
     }
@@ -27,7 +27,7 @@ class AlertServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('alert.response', function($app){
+        $this->app->bind('alert.response', function ($app) {
             return new AlertResponse($app['session.store']);
         });
     }
