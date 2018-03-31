@@ -18,7 +18,7 @@ Route::group([
         Route::post('/register', 'RegisterController@register')
             ->name('register.register');
 
-        Route::any('/logout', 'RegisterController@logout')
+        Route::any('/logout', 'LoginController@logout')
             ->name('login.logout');
     }
 );
