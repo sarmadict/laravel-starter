@@ -1,15 +1,7 @@
-@import "../modules/fuse-html/fuse-html.min.css";
+@import "media-queries";
 
-@import "../modules/fuse-icon-font/style.css";
+@import "styles";
 
-@import "../modules/css/main.css";
+@import "plugins";
 
 @import "rtl";
-
-.dir-ltr{
-    direction: ltr !important;
-}
-
-.dir-rtl{
-    direction: rtl !important;
-}

@@ -1,8 +1,13 @@
-//@import "variables"
+@import "variables";
 
-@import '~bootstrap/scss/bootstrap';
+@import '~bootstrap-sass/assets/stylesheets/bootstrap';
+
+@import '~bootstrap-rtl/dist/css/bootstrap-rtl';
 
 @import "~animate.css/animate.css";
 
 @import "~perfect-scrollbar/css/perfect-scrollbar.css";
 
+@import "~font-awesome/scss/font-awesome";
+
+@import "../modules/themify-icons/themify-icons.css";

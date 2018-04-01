@@ -6,6 +6,8 @@ if (token) {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
-require('../modules/js/main');
+let bootstrapper = require('./pages/main');
 
-require('../modules/fuse-html/fuse-html.min');
+$(document).ready(() => {
+    bootstrapper();
+});

@@ -1,41 +1,14 @@
-#register-v2, #login-v2 {
-    .form-wrapper {
-        text-align: right;
-        direction: rtl;
+/* ---------------------------------------------------------------------- 
+>>> TABLE OF CONTENT
+-------------------------------------------------------------------------
+RTL
 
-        .form-group {
-            text-align: right;
 
-            input, label {
-                transform-origin: right top;
-            }
-        }
+/* ---------------------------------------------------------------------- */
+/*
 
-        .form-check-label input[type=checkbox] ~ .checkbox-icon {
-            left: 0;
-            right: 0;
-        }
 
-        .form-check-label input[type=checkbox] ~ .checkbox-icon + span {
-            padding-right: 20px;
-            padding-left: 0;
-            text-align: right;
-        }
 
-        .form-check-label{
-            padding-right: 20px !important;
-            padding-left: 0 !important;
-        }
-
-        .form-check-label input[type=radio] ~ .radio-icon{
-            left: 0;
-            right: 0;
-        }
-
-        .form-check-label input[type=radio] ~ .radio-icon + span{
-            padding-right: 20px;
-            padding-left: 0;
-            text-align: right;
-        }
-    }
-}
+*/
+@import "variables";
+@import "partials/rtl";

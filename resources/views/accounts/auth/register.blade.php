@@ -4,143 +4,152 @@
 @section('page-contents')
     @include('accounts.auth.partials.alerts')
 
-    <main>
-        <div id="wrapper">
-            <div class="content-wrapper">
-                <div class="content custom-scrollbar">
-
-                    <div id="register-v2" class="row no-gutters">
-
-                        <div class="intro col-12 col-md light-fg">
-
-                            <div class="d-flex flex-column align-items-center align-items-md-start text-center text-md-left py-16 py-md-16 px-12">
-
-                            </div>
-                        </div>
-
-                        <div class="form-wrapper col-12 col-md-auto d-flex justify-content-center p-4 p-md-0">
-
-                            <div class="form-content md-elevation-8 h-100 bg-white text-auto py-16 py-md-16 px-12">
-
-                                <div class="title h5">@lang('accounts.auth.register.Create Account')</div>
-
-                                <div class="description mt-2">@lang('accounts.auth.register.Type your information below to create account')</div>
-
-                                <form action="{{ route('accounts.auth.register.register') }}" method="post" name="registerForm" novalidate class="mt-8">
-                                    @csrf
-
-                                    <div class="form-group mb-4">
-                                        <input type="text" name="first_name" class="form-control{{ $errors->has('first_name') ? ' is-invalid' : '' }}" id="registerFormInputFirstName" value="{{ old('first_name') }}"/>
-                                        <label for="registerFormInputFirstName">@lang('accounts.auth.register.First Name')</label>
-                                        @if($errors->has('first_name'))
-                                            @foreach($errors->get('first_name') as $error)
-                                                <span class="invalid-feedback">{{ $error }}</span>
-                                            @endforeach
-                                        @endif
-                                    </div>
-
-                                    <div class="form-group mb-4">
-                                        <input type="text" name="last_name" class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}" id="registerFormInputLastName"value="{{ old('last_name') }}"/>
-                                        <label for="registerFormInputLastName">@lang('accounts.auth.register.Last Name')</label>
-                                        @if($errors->has('last_name'))
-                                            @foreach($errors->get('last_name') as $error)
-                                                <span class="invalid-feedback">{{ $error }}</span>
-                                            @endforeach
-                                        @endif
-                                    </div>
-
-                                    <div class="form-group mb-4">
-                                        <div>@lang('accounts.auth.register.Gender')</div>
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" name="gender" id="gender-{{ \App\Types\Accounts\Gender::FEMALE }}" value="{{ \App\Types\Accounts\Gender::FEMALE }}" checked="">
-                                                <span class="radio-icon fuse-ripple-ready"></span>
-                                                <span>@lang('accounts.auth.register.Female')</span>
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" name="gender" id="gender-{{ \App\Types\Accounts\Gender::MALE }}" value="{{ \App\Types\Accounts\Gender::MALE }}">
-                                                <span class="radio-icon fuse-ripple-ready"></span>
-                                                <span>@lang('accounts.auth.register.Male')</span>
-                                            </label>
-                                        </div>
-
-                                        @if($errors->has('gender'))
-                                            <span class="text-right text-danger">{{ $errors->first('gender') }}</span>
-                                        @endif
-                                    </div>
-
-                                    <div class="form-group mb-4">
-                                        <input type="email" name="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" id="registerFormInputEmail"value="{{ old('email') }}"/>
-                                        <label for="registerFormInputEmail">@lang('accounts.auth.register.Email Address')</label>
-                                        @if($errors->has('email'))
-                                            @foreach($errors->get('email') as $error)
-                                                <span class="invalid-feedback">{{ $error }}</span>
-                                            @endforeach
-                                        @endif
-                                    </div>
-
-                                    <div class="form-group mb-4">
-                                        <input type="text" name="username" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" id="registerFormInputUsername"value="{{ old('username') }}"/>
-                                        <label for="registerFormInputUsername">@lang('accounts.auth.register.Username')</label>
-                                        @if($errors->has('username'))
-                                            @foreach($errors->get('username') as $error)
-                                                <span class="invalid-feedback">{{ $error }}</span>
-                                            @endforeach
-                                        @endif
-                                    </div>
-
-                                    <div class="form-group mb-4">
-                                        <input type="password" name="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" id="registerFormInputPassword"/>
-                                        <label for="registerFormInputPassword">@lang('accounts.auth.register.Password')</label>
-                                        @if($errors->has('password'))
-                                            @foreach($errors->get('password') as $error)
-                                                <span class="invalid-feedback">{{ $error }}</span>
-                                            @endforeach
-                                        @endif
-                                    </div>
-
-                                    <div class="form-group mb-4">
-                                        <input type="password" name="password_confirmation" class="form-control" id="registerFormInputPasswordConfirmation"/>
-                                        <label for="registerFormInputPasswordConfirmation">@lang('accounts.auth.register.Password Confirmation')</label>
-                                    </div>
-
-                                    <div class="terms-conditions row pt-4 mb-8">
-                                        <div class="form-check mr-1 mb-1">
-                                            <label class="form-check-label">
-                                                <input type="checkbox" name="terms" class="form-check-input{{ $errors->has('password') ? ' is-invalid' : '' }}" aria-label="Terms" {{ old('terms') ? 'checked' : ''}}/>
-                                                <span class="checkbox-icon"></span>
-                                                <span class="col-sm-12">@lang('accounts.auth.register.I have read terms and policy')</span>
-                                            </label>
-                                        </div>
-                                        @if($errors->has('terms'))
-                                            <span class="col-sm-12 text-danger text-right">{{ $errors->first('terms') }}</span>
-                                        @endif
-                                    </div>
-
-                                    <button type="submit" class="submit-button btn btn-block btn-secondary my-4 mx-auto" aria-label="LOG IN">
-                                        @lang('accounts.auth.register.Sign Up')
-                                    </button>
-
-                                </form>
-
-                                <div class="login d-flex flex-column flex-sm-row align-items-center justify-content-center mt-8 mb-6 mx-auto">
-                                    <span class="text mr-sm-2">
-                                        @lang('accounts.auth.register.Already have an account')
-                                        <a class="link text-secondary" href="{{ route('accounts.auth.login.show') }}">@lang('accounts.auth.register.Log In')</a>
-                                    </span>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
+    <div class="row {{ $errors->isEmpty() ? ' animated fadeInRightBig' : '' }}">
+        <div class="main-login col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
+            <div class="logo margin-top-30">
+                <img src="assets/images/logo.png" alt="Clip-Two"/>
             </div>
-        </div>
-    </main>
+            <!-- start: REGISTER BOX -->
+            <div class="box-register">
+                <form action="{{ route('accounts.auth.register.register') }}" method="post" name="registerForm" class="form-register">
+                    @csrf
 
+                    <fieldset>
+                        <legend>@lang('accounts.auth.register.Sign Up')</legend>
+
+                        <p>@lang('accounts.auth.register.Enter your personal details below')</p>
+
+                        <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
+                            <input type="text" class="form-control{{ $errors->has('first_name') ? ' is-invalid' : '' }}" name="first_name" placeholder="@lang('accounts.auth.register.First Name')" value="{{ old('first_name') }}">
+                            @if($errors->has('first_name'))
+                                @foreach($errors->get('first_name') as $error)
+                                    <span class="text-danger">{{ $error }}</span>
+                                @endforeach
+                            @endif
+                        </div>
+
+                        <div class="form-group{{ $errors->has('last_name') ? ' has-error' : '' }}">
+                            <input type="text" class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}" name="last_name" placeholder="@lang('accounts.auth.register.Last Name')" value="{{ old('last_name') }}">
+                            @if($errors->has('last_name'))
+                                @foreach($errors->get('last_name') as $error)
+                                    <span class="text-danger">{{ $error }}</span>
+                                @endforeach
+                            @endif
+                        </div>
+
+                        <div class="form-group{{ $errors->has('gender') ? ' has-error' : '' }}">
+                            <label class="block">
+                                @lang('accounts.auth.register.Gender')
+                            </label>
+                            <div class="clip-radio radio-primary">
+                                <input type="radio" id="rg-female" name="gender" value="{{ \App\Types\Accounts\Gender::FEMALE }}" @if(old('gender') == \App\Types\Accounts\Gender::FEMALE) checked @endif />
+                                <label for="rg-female">
+                                    @lang('accounts.auth.register.Female')
+                                </label>
+                                <input type="radio" id="rg-male" name="gender" value="{{ \App\Types\Accounts\Gender::MALE }}" @if(old('gender') == \App\Types\Accounts\Gender::MALE) checked @endif />
+                                <label for="rg-male">
+                                    @lang('accounts.auth.register.male')
+                                </label>
+                            </div>
+                            @if($errors->has('gender'))
+                                <span class="text-danger">{{ $errors->first('gender') }}</span>
+                            @endif
+                        </div>
+
+                        <p>@lang('accounts.auth.register.Enter your account details below')</p>
+
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <span class="input-icon">
+                                <input type="email" class="form-control" name="email" placeholder="@lang('accounts.auth.register.Email')" value="{{ old('email') }}">
+                                <i class="fa fa-envelope"></i>
+                            </span>
+
+                            @if($errors->has('email'))
+                                @foreach($errors->get('email') as $error)
+                                    <span class="text-danger">{{ $error }}</span>
+                                @endforeach
+                            @endif
+                        </div>
+
+                        <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+                            <span class="input-icon">
+                                <input type="text" class="form-control" name="username" placeholder="@lang('accounts.auth.register.Username')" value="{{ old('username') }}">
+                                <i class="fa fa-user"></i>
+                            </span>
+
+                            @if($errors->has('username'))
+                                @foreach($errors->get('username') as $error)
+                                    <span class="text-danger">{{ $error }}</span>
+                                @endforeach
+                            @endif
+                        </div>
+
+                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                            <span class="input-icon">
+                                <input type="password" class="form-control" id="password" name="password" placeholder="@lang('accounts.auth.register.Password')">
+                                <i class="fa fa-lock"></i>
+                            </span>
+
+                            @if($errors->has('password'))
+                                @foreach($errors->get('password') as $error)
+                                    <span class="text-danger">{{ $error }}</span>
+                                @endforeach
+                            @endif
+                        </div>
+
+                        <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
+                            <span class="input-icon">
+                                <input type="password" class="form-control" name="password_confirmation" placeholder="@lang('accounts.auth.register.Password Confirmation')">
+                                <i class="fa fa-lock"></i>
+                            </span>
+
+                            @if($errors->has('password_confirmation'))
+                                @foreach($errors->get('password_confirmation') as $error)
+                                    <span class="text-danger">{{ $error }}</span>
+                                @endforeach
+                            @endif
+                        </div>
+
+                        <div class="form-group{{ $errors->has('terms') ? ' has-error' : '' }}">
+                            <div class="checkbox clip-check check-primary">
+                                <input name="terms" type="checkbox" id="terms" @if(old('terms')) checked @endif />
+                                <label for="terms">
+                                    @lang('accounts.auth.register.I have read terms and policy')
+                                </label>
+                            </div>
+                            @if($errors->has('terms'))
+                                @foreach($errors->get('terms') as $error)
+                                    <span class="text-danger">{{ $error }}</span>
+                                @endforeach
+                            @endif
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary pull-right">
+                                @lang('accounts.auth.register.Register') <i class="fa fa-arrow-circle-left"></i>
+                            </button>
+                        </div>
+
+                        <div class="form-actions">
+                            <p>
+                                @lang('accounts.auth.register.Already have an account')
+                                <a href="{{ route('accounts.auth.login.show') }}">
+                                    @lang('accounts.auth.register.')@lang('accounts.auth.register.Log In')
+                                </a>
+                            </p>
+                        </div>
+                    </fieldset>
+                </form>
+
+                <!-- start: COPYRIGHT -->
+                <div class="copyright">
+                    @lang('accounts.auth.register.copyright')
+                </div>
+                <!-- end: COPYRIGHT -->
+            </div>
+            <!-- end: REGISTER BOX -->
+        </div>
+    </div>
 @endsection
 {{-- End : Page Contetnts --}}
 
@@ -151,6 +160,7 @@
 @endsection
 {{-- End : Page Title --}}
 
+@section('body-class', 'login')
 
 {{-- Start : Specific header assets for this page --}}
 @section('page-styles')
