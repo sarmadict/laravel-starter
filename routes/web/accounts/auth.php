@@ -20,5 +20,18 @@ Route::group([
 
         Route::any('/logout', 'LoginController@logout')
             ->name('login.logout');
+
+        Route::get('password/forget', 'ForgotPasswordController@showLinkRequestForm')
+            ->name('password.forget');
+
+        Route::post('password/email', 'ForgotPasswordController@sendResetLinkEmail')
+            ->name('password.email');
+
+        Route::get('password/reset/{token}', 'ResetPasswordController@showResetForm')
+            ->name('password.recover');
+
+        Route::post('password/reset', 'ResetPasswordController@reset')
+            ->name('password.reset');
+
     }
 );

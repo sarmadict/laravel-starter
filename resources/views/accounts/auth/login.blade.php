@@ -35,7 +35,7 @@
                             <span class="input-icon">
                                 <input type="password" class="form-control password{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="@lang('accounts.auth.login.Password')">
                                 <i class="fa fa-lock"></i>
-                                <a class="forgot" href="login_forgot.html">@lang('accounts.auth.login.I forgot my password')</a>
+                                <a class="forgot" href="{{ route('accounts.auth.password.forget') }}">@lang('accounts.auth.login.I forgot my password')</a>
                             </span>
                             @if($errors->has('password'))
                                 @foreach($errors->get('password') as $error)

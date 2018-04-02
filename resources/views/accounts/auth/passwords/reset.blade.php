@@ -1,77 +1,82 @@
-@extends('auth.layouts.main')
+@extends('accounts.auth.layouts.main')
 
 {{--  Start : Page Contetnts --}}
 @section('page-contents')
-    @include('auth.partials.alerts')
+    @include('accounts.auth.partials.alerts')
 
     <!-- start: FORGOT -->
-    <div class="row animated fadeInRight" id="main-box">
+    <div class="row{{ $errors->isEmpty() ? ' animated fadeInRightBig' : '' }}" id="main-box">
         <div class="main-login col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
             <div class="logo margin-top-30">
                 <img src="assets/images/logo.png" alt="Clip-Two"/>
             </div>
             <!-- start: FORGOT BOX -->
             <div class="box-forgot">
-                <form class="form-forgot" method="post" action="{{ url('auth/password/reset') }}">
-                    {!! csrf_field() !!}
-                    {!! method_field('POST') !!}
+                <form class="form-forgot" method="post" action="{{ route('accounts.auth.password.reset') }}">
+                    @csrf
 
                     <input type="hidden" name="token" value="{{ $token }}">
 
                     <fieldset>
                         <legend>
-                            {{ trans('accounts.auth.password.reset.Reset Password') }}
+                            @lang('accounts.auth.password_reset.Reset Password')
                         </legend>
-                        <p>
-                            {{ trans('accounts.auth.password.reset.Enter your email and new password') }}
-                        </p>
-                        <div class="form-group @if($errors->resetPassword->has('email')) has-error @endif">
+
+                        <p>@lang('accounts.auth.password_reset.Enter your email and new password')</p>
+
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <span class="input-icon">
-                                <input type="email" class="form-control" name="email" placeholder="{{ trans('accounts.auth.password.reset.PLACEHOLDER.email') }}" value="{{ old('email', $email) }}">
+                                <input type="email" class="form-control" name="email" placeholder="@lang('accounts.auth.password_reset.Email address')" value="{{ old('email', $email) }}">
                                 <i class="fa fa-envelope-o"></i>
                             </span>
-                            @if($errors->resetPassword->has('email'))
+                            @if($errors->has('email'))
                                 <span class="help-block">
-                                    {{ $errors->resetPassword->first('email') }}
+                                    {{ $errors->first('email') }}
                                 </span>
                             @endif
                         </div>
-                        <div class="form-group @if($errors->resetPassword->has('password')) has-error @endif">
+
+                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <span class="input-icon">
-                                <input type="password" class="form-control" name="password" placeholder="{{ trans('accounts.auth.password.reset.PLACEHOLDER.password') }}">
+                                <input type="password" class="form-control" name="password" placeholder="@lang('accounts.auth.password_reset.Password')">
                                 <i class="fa fa-lock"></i>
                             </span>
-                            @if($errors->resetPassword->has('password'))
+                            @if($errors->has('password'))
                                 <span class="help-block">
-                                    {{ $errors->resetPassword->first('password') }}
+                                    {{ $errors->first('password') }}
                                 </span>
                             @endif
                         </div>
-                        <div class="form-group @if($errors->resetPassword->has('password_confirmation')) has-error @endif">
+
+                        <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
                             <span class="input-icon">
-                                <input type="password" class="form-control" name="password_confirmation" placeholder="{{ trans('accounts.auth.password.reset.PLACEHOLDER.password_confirmation') }}">
+                                <input type="password" class="form-control" name="password_confirmation" placeholder="@lang('accounts.auth.password_reset.Password Confirmation')">
                                 <i class="fa fa-lock"></i>
                             </span>
-                            @if($errors->resetPassword->has('password_confirmation'))
+                            @if($errors->has('password_confirmation'))
                                 <span class="help-block">
-                                    {{ $errors->resetPassword->first('password_confirmation') }}
+                                    {{ $errors->first('password_confirmation') }}
                                 </span>
                             @endif
                         </div>
+
                         <div class="form-actions">
-                            <a class="btn btn-primary btn-o" href="{{ url('auth/login') }}">
-                                <i class="fa fa-chevron-circle-right"></i> {{ trans('accounts.auth.password.reset.LINK.Log-In') }}
-                            </a>
                             <button type="submit" class="btn btn-primary pull-left">
-                                {{ trans('accounts.auth.password.reset.Submit') }}
+                                @lang('accounts.auth.password_reset.Submit')
                                 <i class="fa fa-arrow-circle-left"></i>
                             </button>
+                        </div>
+
+                        <div class="form-actions">
+                            <a class="btn btn-primary btn-o" href="{{ route('accounts.auth.login.show') }}">
+                                <i class="fa fa-chevron-circle-left"></i> @lang('accounts.auth.password_reset.Log In')
+                            </a>
                         </div>
                     </fieldset>
                 </form>
                 <!-- start: COPYRIGHT -->
                 <div class="copyright">
-                    &copy; <span class="current-year"></span><span class="text-bold text-uppercase"> ClipTheme</span>. <span>All rights reserved</span>
+                    @lang('accounts.auth.password_reset.Copyright')
                 </div>
                 <!-- end: COPYRIGHT -->
             </div>
@@ -82,32 +87,33 @@
 @endsection
 {{-- End : Page Contetnts --}}
 
-
-
-{{-- Start : Specific header assets fot this page --}}
-@section('page-head-assets')
-    @stack('styles')
-@endsection
-{{-- End : Specific header assets fot this page --}}
-
-
-{{-- Start : Specific footer assets fot this page --}}
-@section('page-foot-assets')
-    <script>
-        $('a').click(function(e){
-            $('#main-box').removeClass('fadeInRight').addClass('fadeOutLeft');
-        });
-    </script>
-
-    @stack('scripts')
-@endsection
-{{-- End : Specific footer assets fot this page --}}
-
-
 {{-- Start : Page Title --}}
 @section('page-title')
-    {{ trans('accounts.auth.password.email.page title') }}
+    @lang('accounts.auth.password_reset.page title')
 @endsection
 {{-- End : Page Title --}}
 
 
+@section('body-class', 'login')
+
+
+{{-- Start : Specific header assets for this page --}}
+@section('page-styles')
+    @stack('styles')
+@endsection
+{{-- End : Specific header assets for this page --}}
+
+
+{{-- Start : Specific footer assets for this page --}}
+@section('page-before-scripts')
+
+@endsection
+{{-- End : Specific footer assets for this page --}}
+
+
+{{-- Start : Specific footer assets for this page --}}
+@section('page-after-scripts')
+    @stack('scripts')
+
+@endsection
+{{-- End : Specific footer assets for this page --}}
