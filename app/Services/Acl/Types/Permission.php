@@ -2,9 +2,9 @@
 
 namespace App\Services\Acl\Types;
 
-use App\Types\Enum;
+use App\Types\Enumeration;
 
-class Permission extends Enum
+class Permission extends Enumeration
 {
     const PRIMARY = 1;
 

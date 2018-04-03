@@ -2,9 +2,9 @@
 
 namespace App\Services\Alert\Types;
 
-use App\Types\Enum;
+use App\Types\Enumeration;
 
-class Severity extends Enum
+class Severity extends Enumeration
 {
     const SUCCESS = 1;
 

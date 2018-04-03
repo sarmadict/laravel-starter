@@ -2,9 +2,9 @@
 
 namespace App\Types\Accounts;
 
-use App\Types\Enum;
+use App\Types\Enumeration;
 
-class Gender extends Enum
+class Gender extends Enumeration
 {
     const MALE = 1;
 

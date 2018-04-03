@@ -2,7 +2,7 @@
 
 namespace App\Types;
 
-class State extends Enum
+class State extends Enumeration
 {
     const DISABLED = 1;
 
