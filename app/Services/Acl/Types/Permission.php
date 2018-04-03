@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Types\Accounts\Permission;
+namespace App\Services\Acl\Types;
 
 use App\Types\Enum;
 
