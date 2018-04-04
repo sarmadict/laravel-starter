@@ -39,6 +39,10 @@ class Kernel extends HttpKernel
 //            \Laravel\Passport\Http\Middleware\CreateFreshApiToken::class,
         ],
 
+        'panel.admin' => [
+            'auth'
+        ],
+
         'api' => [
             'throttle:60,1',
             'bindings',
