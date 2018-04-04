@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\ViewComposers\AdminPanelComposer;
-use App\ViewComposers\GeneralComposer;
+use App\Http\ViewComposers\AdminPanelComposer;
+use App\Http\ViewComposers\GeneralComposer;
 use Illuminate\Support\ServiceProvider;
 
 class ComposerServiceProvider extends ServiceProvider
