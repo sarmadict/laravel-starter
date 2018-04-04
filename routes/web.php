@@ -14,3 +14,7 @@
 require route_path('web/accounts/auth.php');
 
 require route_path('web/panel/admin.php');
+
+Route::get('/test/1', function (\Illuminate\Http\Request $request){
+     dd($request->path());
+});
