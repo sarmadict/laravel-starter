@@ -164,6 +164,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         App\Services\Alert\AlertServiceProvider::class,
+        App\Providers\ComposerServiceProvider::class,
     ],
 
     /*
