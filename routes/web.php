@@ -12,3 +12,5 @@
 */
 
 require route_path('web/accounts/auth.php');
+
+require route_path('web/panel/admin.php');

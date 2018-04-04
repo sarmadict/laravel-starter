@@ -23,3 +23,16 @@ mix.js('resources/assets/accounts/auth/js/vendor.js', 'public/assets/accounts/au
         }
     })
     .version();
+
+mix.js('resources/assets/panel/admin/js/vendor.js', 'public/assets/panel/admin/js')
+    .js('resources/assets/panel/admin/js/app.js', 'public/assets/panel/admin/js')
+    .sass('resources/assets/panel/admin/sass/vendor.scss', 'public/assets/panel/admin/css')
+    .sass('resources/assets/panel/admin/sass/app.scss', 'public/assets/panel/admin/css')
+    .sass('resources/assets/panel/admin/sass/themes/theme-2.scss', 'public/assets/panel/admin/css/themes')
+    .options({
+        fileLoaderDirs: {
+            images: 'assets/panel/admin/images',
+            fonts: 'assets/panel/admin/fonts'
+        }
+    })
+    .version();
