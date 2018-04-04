@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Providers;
+namespace App\Services\Acl;
 
-use App\Services\Acl\PermissionRegistrar;
 use Illuminate\Support\ServiceProvider;
 
 class AclServiceProvider extends ServiceProvider
