@@ -153,6 +153,7 @@ return [
          * Package Service Providers...
          */
         Hekmatinasser\Verta\VertaServiceProvider::class,
+        Baum\Providers\BaumServiceProvider::class,
 
         /*
          * Application Service Providers...

@@ -30,7 +30,9 @@
     <div class="app-content">
         @include('panel.admin.partials.navbar')
 
-        @yield('page-contents')
+        <div class="main-content">
+            @yield('page-contents')
+        </div>
     </div>
 
     @include('panel.admin.partials.footer')
