@@ -7,8 +7,6 @@ use Illuminate\Contracts\Auth\Access\Gate;
 
 abstract class Menu
 {
-    protected $menu;
-
     protected $gate;
 
     public function __construct(Gate $gate)
@@ -16,14 +14,9 @@ abstract class Menu
         $this->gate = $gate;
     }
 
-    public function getRawMenu()
-    {
-        return $this->menu;
-    }
-
     public function get()
     {
-        return $this->processMenu($this->menu);
+        return $this->processMenu($this->getItems());
     }
 
     public function processMenu($menu)
@@ -58,4 +51,6 @@ abstract class Menu
 
         return $permission ? $this->gate->allows($permission) : true;
     }
+
+    public abstract function getItems();
 }
