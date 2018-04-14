@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends NestedSetModel
 {
-    use SoftDeletes, CategoryRelationships, CategoryScopes;
+    use SoftDeletes, CategoryRelationships, CategoryScopes, CategoryModifiers;
 
     /**
      * The attributes that are mass assignable.
@@ -16,7 +16,7 @@ class Category extends NestedSetModel
      * @var array
      */
     protected $fillable = [
-        'name', 'title', 'description', 'slug', 'types', 'hits', 'keywords', 'state', 'created_by', 'updated_by'
+        'name', 'title', 'description', 'slug', 'type', 'hits', 'keywords', 'state', 'created_by', 'updated_by'
     ];
 
     /**

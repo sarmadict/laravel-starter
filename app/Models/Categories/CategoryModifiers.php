@@ -17,4 +17,14 @@ trait CategoryModifiers
     {
         return new CategoryType($value);
     }
+
+    public function getTypeNameAttribute()
+    {
+        return trans('panel.admin.categories.type_'. $this->type->getKey());
+    }
+
+    public function getParentTitleAttribute()
+    {
+        return $this->parent ? $this->parent->title : trans('panel.admin.categories.without_parent');
+    }
 }
