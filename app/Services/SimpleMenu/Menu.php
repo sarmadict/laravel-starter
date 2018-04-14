@@ -11,6 +11,7 @@ abstract class Menu
 
     public function __construct(Gate $gate)
     {
+        \Log::info(3);
         $this->gate = $gate;
     }
 

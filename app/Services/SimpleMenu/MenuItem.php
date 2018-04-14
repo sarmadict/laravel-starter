@@ -63,6 +63,11 @@ class MenuItem
         return $this->subMenu;
     }
 
+    public function hasSubMenu()
+    {
+        return count($this->subMenu) > 0;
+    }
+
     public function isAbstract()
     {
         return $this->isAbstract;
