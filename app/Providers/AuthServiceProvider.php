@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Categories\Category;
+use App\Policies\Categories\CategoryPolicy;
 use App\Services\Auth\FlexibleUserProvider;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -16,7 +18,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'App\Model' => 'App\Policies\ModelPolicy',
+        Category::class => CategoryPolicy::class
     ];
 
 
