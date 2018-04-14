@@ -4,10 +4,8 @@ return [
 
     'users' => 'users',
 
-    'general' => [
-        'categories' => 'categories',
+    'categories' => 'categories',
 
-        'categorizables' => 'categorizable',
-    ]
+    'categorizables' => 'categorizable',
 
 ];

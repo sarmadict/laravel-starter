@@ -13,9 +13,9 @@ class CreateCategoriesTable extends Migration
      */
     public function up()
     {
-        $categories = config('tables.general.categories');
+        $categories = config('tables.categories');
 
-        $categorizables = config('tables.general.categorizables');
+        $categorizables = config('tables.categorizables');
 
         $users = config('tables.users');
 
@@ -63,8 +63,8 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
-        $categories = config('tables.general.categories');
-        $categorizables = config('tables.general.categorizables');
+        $categories = config('tables.categories');
+        $categorizables = config('tables.categorizables');
 
         Schema::disableForeignKeyConstraints();
         Schema::dropIfExists($categories);
