@@ -31,7 +31,9 @@
         @include('panel.admin.partials.navbar')
 
         <div class="main-content">
-            @yield('page-contents')
+            <div class="wrap-content container" id="container">
+                @yield('page-contents')
+            </div>
         </div>
     </div>
 
