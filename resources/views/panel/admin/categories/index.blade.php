@@ -21,8 +21,18 @@
     </section>
     <div class="container-fluid container-fullw bg-white">
         <div class="row">
-            <div class="col-md-12">
 
+            <div class="col-md-12 margin-bottom-60">
+                <div class="pull-left">
+                    @can('panelAdminCategoriesCreate', \App\Models\Categories\Category::class)
+                        <a href="{{ route('panel.admin.categories.create') }}" class="btn btn-green">
+                            <i class="fa fa-plus"></i> @lang('panel.admin.default.create')
+                        </a>
+                    @endcan
+                </div>
+            </div>
+
+            <div class="col-md-12">
                 <div class="responsive-table-wrapper">
                     <table class="table table-hover table-striped table-bordered table-responsive" id="items-table">
                         <thead>
@@ -77,6 +87,11 @@
                         </tbody>
                     </table>
                 </div>
+
+                <div class="text-center">
+                    {!! $items->appends(request()->all())->links() !!}
+                </div>
+
             </div>
         </div>
     </div>

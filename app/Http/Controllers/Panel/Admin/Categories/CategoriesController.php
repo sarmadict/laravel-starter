@@ -21,9 +21,9 @@ class CategoriesController extends AdminBaseController
         $this->authorize('panelAdminCategoriesIndex', Category::class);
 
         $items = $this->categories->query()
-//            ->with('parent')
+            ->with('parent')
             ->orderBy('id', 'desc')
-            ->paginate(15);
+            ->paginate();
 
         return view('panel.admin.categories.index', compact('items'));
     }
