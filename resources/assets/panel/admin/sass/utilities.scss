@@ -5,3 +5,18 @@
 .responsive-table-wrapper table {
     margin-bottom: 0;
 }
+
+table.table thead .sorting {
+    padding-right: 20px;
+    background: url('../images/sort_both.png') no-repeat center right;
+}
+
+table.table thead .sorting_asc {
+    padding-right: 20px;
+    background: url('../images/sort_asc.png') no-repeat center right;
+}
+
+table.table thead .sorting_desc {
+    padding-right: 20px;
+    background: url('../images/sort_desc.png') no-repeat center right;
+}
