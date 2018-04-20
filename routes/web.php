@@ -23,9 +23,9 @@ Route::get('/test/1', function (\Illuminate\Http\Request $request){
 Route::get('test/5', function () {
     $user = Auth::user();
 
-    dd($user->can('panelAdminCategoriesIndex', \App\Models\Categories\Category::class));
-
-    $user = \App\Models\Accounts\User::find(1);
+//    dd($user->can('panelAdminCategoriesIndex', \App\Models\Categories\Category::class));
+//
+//    $user = \App\Models\Accounts\User::find(1);
 
     $items = collect();
 

@@ -25,8 +25,8 @@
             <div class="col-md-12 margin-bottom-30">
                 <div class="pull-left">
                     @can('panelAdminCategoriesCreate', \App\Models\Categories\Category::class)
-                        <a href="{{ route('panel.admin.categories.create') }}" class="btn btn-green">
-                            <i class="fa fa-plus"></i> @lang('panel.admin.default.create')
+                        <a href="{{ route('panel.admin.categories.create', ['type' => \App\Types\General\Category::POST]) }}" class="btn btn-green">
+                            <i class="fa fa-plus"></i> @lang('panel.admin.categories.Create Post Category')
                         </a>
                     @endcan
                 </div>
