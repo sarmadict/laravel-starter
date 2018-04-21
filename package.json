@@ -26,6 +26,7 @@
     "jquery.cookie": "^1.4.1",
     "lodash": "^4.17.5",
     "perfect-scrollbar": "^1.3.0",
+    "select2": "^4.0.6-rc.1",
     "sweetalert": "^2.1.0",
     "switchery": "github:abpetkov/switchery",
     "toastr": "^2.1.4"
