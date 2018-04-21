@@ -1,36 +1,37 @@
-@extends('panel.admin.layouts.main')
+@extends('admin.layouts.main')
 
+@section('page-header')
+    {{--<section id="page-title">--}}
+        {{--<div class="row">--}}
+            {{--<div class="col-sm-8">--}}
+                {{--<h1 class="mainTitle">@lang('admin.categories.elements.New Category')</h1>--}}
+                {{--<span class="mainDescription">@lang('admin.categories.elements.Create New Category')</span>--}}
+            {{--</div>--}}
+            {{--<ol class="breadcrumb">--}}
+                {{--<li>--}}
+                    {{--<span>Tables</span>--}}
+                {{--</li>--}}
+                {{--<li class="active">--}}
+                    {{--<span>Basic Tables</span>--}}
+                {{--</li>--}}
+            {{--</ol>--}}
+        {{--</div>--}}
+    {{--</section>--}}
+@endsection
 
 @section('page-contents')
-    <!-- start: PAGE TITLE -->
-    <section id="page-title">
-        <div class="row">
-            <div class="col-sm-8">
-                <h1 class="mainTitle">@lang('panel.admin.categories.New Category')</h1>
-                <span class="mainDescription">@lang('panel.admin.categories.Create New Category')</span>
-            </div>
-            <ol class="breadcrumb">
-                <li>
-                    <span>Tables</span>
-                </li>
-                <li class="active">
-                    <span>Basic Tables</span>
-                </li>
-            </ol>
-        </div>
-    </section>
     <div class="container-fluid container-fullw bg-white">
         <div class="row">
             {!! form_start($form) !!}
             <div class="col-md-12 margin-bottom-30">
                 <div class="pull-left">
-                    <a href="{{ route('panel.admin.categories.index') }}" class="btn btn-grey">
-                        <i class="fa fa-times"></i> @lang('panel.admin.default.Cancel')
+                    <a href="{{ route('admin.categories.index') }}" class="btn btn-grey">
+                        <i class="fa fa-times"></i> @lang('admin.default.actions.Cancel')
                     </a>
 
                     @if(isset($item))
-                        <a href="{{ route('panel.admin.categories.destroy', $item) }}" class="btn btn-red">
-                            <i class="fa fa-trash"></i> @lang('panel.admin.default.Destroy')
+                        <a href="{{ route('admin.categories.destroy', $item) }}" class="btn btn-red">
+                            <i class="fa fa-trash"></i> @lang('admin.default.actions.Destroy')
                         </a>
                     @endif
 
@@ -43,7 +44,7 @@
                     <ul id="form-tabs" class="nav nav-tabs">
                         <li class="active">
                             <a href="#tab-general" data-toggle="tab">
-                                @lang('panel.admin.categories.Tab General')
+                                @lang('admin.categories.elements.Tab General')
                             </a>
                         </li>
                     </ul>
@@ -53,7 +54,7 @@
                                 <div class="col-sm-9">
                                     <div class="panel panel-white" id="panel-general">
                                         <div class="panel-heading">
-                                            <h4 class="panel-title text-primary">@lang('panel.admin.categories.panel_general')</h4>
+                                            <h4 class="panel-title text-primary">@lang('admin.categories.elements.panel_general')</h4>
                                         </div>
                                         <div class="panel-body form-horizontal">
                                             {!! form_row($form->name) !!}
@@ -67,7 +68,7 @@
                                 <div class="col-sm-3">
                                     <div class="panel panel-white" id="panel-meta">
                                         <div class="panel-heading">
-                                            <h4 class="panel-title text-primary">@lang('panel.admin.categories.panel_meta')</h4>
+                                            <h4 class="panel-title text-primary">@lang('admin.categories.elements.panel_meta')</h4>
                                         </div>
                                         <div class="panel-body">
                                             {!! form_row($form->parent_id) !!}
@@ -88,7 +89,7 @@
 
 
 @section('page-title')
-    @lang('panel.admin.categories.page title')
+    @lang('admin.categories.elements.page title')
 @endsection
 
 

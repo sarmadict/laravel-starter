@@ -167,6 +167,13 @@ return [
         App\Services\Alert\AlertServiceProvider::class,
         App\Providers\ComposerServiceProvider::class,
         App\Services\Acl\AclServiceProvider::class,
+
+        /*
+         * Module Service Providers...
+         */
+        App\Modules\Admin\Categories\ServiceProvider::class,
+        App\Modules\Admin\Dashboard\ServiceProvider::class,
+
     ],
 
     /*

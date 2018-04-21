@@ -20,11 +20,11 @@ trait CategoryModifiers
 
     public function getTypeNameAttribute()
     {
-        return trans('panel.admin.categories.type_'. $this->type->getKey());
+        return trans('admin.categories.elements.type_'. $this->type->getKey());
     }
 
     public function getParentTitleAttribute()
     {
-        return $this->parent ? $this->parent->title : trans('panel.admin.categories.without_parent');
+        return $this->parent ? $this->parent->title : trans('admin.categories.elements.without_parent');
     }
 }

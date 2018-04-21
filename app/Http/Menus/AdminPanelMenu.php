@@ -11,10 +11,10 @@ class AdminPanelMenu extends Menu
     {
         return [
             [
-                'name' => 'panel.admin.dashboard',
-                'title' => trans('menu.panel.admin.dashboard.menu_title'),
-                'permission' => 'panel.admin.dashboard.index',
-                'route' => route('panel.admin.dashboard.index'),
+                'name' => 'admin.dashboard',
+                'title' => trans('admin.menu.dashboard.menu_title'),
+                'permission' => 'admin.dashboard.index',
+                'route' => route('admin.dashboard.index'),
                 'class' => '',
                 'icon' => 'fa fa-check',
                 'abstract' => false,
@@ -26,10 +26,10 @@ class AdminPanelMenu extends Menu
                 'sub_menu' => [],
             ],
             [
-                'name' => 'panel.admin.categories',
-                'title' => trans('menu.panel.admin.categories.menu_title'),
-                'permission' => 'panel.admin.categories.index',
-                'route' => route('panel.admin.categories.index'),
+                'name' => 'admin.categories',
+                'title' => trans('admin.menu.categories.menu_title'),
+                'permission' => 'admin.categories.index',
+                'route' => route('admin.categories.index'),
                 'class' => '',
                 'icon' => 'fa fa-check',
                 'abstract' => false,

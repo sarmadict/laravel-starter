@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Forms\Panel\Admin\Categories;
+namespace App\Modules\Admin\Categories\Forms;
 
 
-use App\Http\Forms\Panel\Admin\AdminBaseForm;
+use App\Http\Forms\Admin\AdminBaseForm;
 use App\Models\Categories\Category;
 
 class CategoryForm extends AdminBaseForm
@@ -13,7 +13,7 @@ class CategoryForm extends AdminBaseForm
         parent::buildForm();
 
         $this->add('name', 'text', [
-            'label' => trans('panel.admin.categories.name'),
+            'label' => trans('admin.categories.fields.name'),
             'label_attr' => [
                 'class' => 'col-md-3 control-label',
             ],
@@ -22,7 +22,7 @@ class CategoryForm extends AdminBaseForm
         ]);
 
         $this->add('title', 'text', [
-            'label' => trans('panel.admin.categories.title'),
+            'label' => trans('admin.categories.fields.title'),
             'label_attr' => [
                 'class' => 'col-md-3 control-label',
             ],
@@ -31,7 +31,7 @@ class CategoryForm extends AdminBaseForm
         ]);
 
         $this->add('slug', 'text', [
-            'label' => trans('panel.admin.categories.slug'),
+            'label' => trans('admin.categories.fields.slug'),
             'label_attr' => [
                 'class' => 'col-md-3 control-label',
             ],
@@ -40,14 +40,14 @@ class CategoryForm extends AdminBaseForm
         ]);
 
         $this->add('keywords', 'text', [
-            'label' => trans('panel.admin.categories.keywords'),
+            'label' => trans('admin.categories.fields.keywords'),
             'label_attr' => [
                 'class' => 'control-label',
             ],
         ]);
 
         $this->add('description', 'textarea', [
-            'label' => trans('panel.admin.categories.description'),
+            'label' => trans('admin.categories.fields.description'),
             'label_attr' => [
                 'class' => 'col-md-3 control-label',
             ],
@@ -56,7 +56,7 @@ class CategoryForm extends AdminBaseForm
         ]);
 
         $this->add('parent_id', 'choice', [
-            'label' => trans('panel.admin.categories.parent_id'),
+            'label' => trans('admin.categories.fields.parent_id'),
             'label_attr' => [
                 'class' => 'control-label',
             ],

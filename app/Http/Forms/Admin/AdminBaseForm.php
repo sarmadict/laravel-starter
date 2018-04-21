@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Forms\Panel\Admin;
+namespace App\Http\Forms\Admin;
 
 
 use App\Http\Forms\BaseForm;
@@ -12,7 +12,7 @@ class AdminBaseForm extends BaseForm
         parent::buildForm();
 
         $this->add('SaveAndReload', 'submit', [
-            'label' => '<i class="fa fa-check"></i> ' . trans('panel.admin.defaults.SaveAndReload'),
+            'label' => '<i class="fa fa-check"></i> ' . trans('admin.defaults.actions.SaveAndReload'),
             'attr' => [
                 'class' => 'btn btn-green',
                 'value' => 'SaveAndReload',
@@ -20,7 +20,7 @@ class AdminBaseForm extends BaseForm
         ]);
 
         $this->add('SaveAndClose', 'submit', [
-            'label' => trans('panel.admin.defaults.SaveAndClose'),
+            'label' => trans('admin.defaults.actions.SaveAndClose'),
             'attr' => [
                 'class' => 'btn btn-azure',
                 'value' => 'SaveAndClose',
@@ -28,7 +28,7 @@ class AdminBaseForm extends BaseForm
         ]);
 
         $this->add('SaveAndNew', 'submit', [
-            'label' => trans('panel.admin.defaults.SaveAndNew'),
+            'label' => trans('admin.defaults.actions.SaveAndNew'),
             'attr' => [
                 'class' => 'btn btn-primary',
                 'value' => 'SaveAndNew',
@@ -36,7 +36,7 @@ class AdminBaseForm extends BaseForm
         ]);
 
         $this->add('SaveAndShow', 'submit', [
-            'label' => trans('panel.admin.defaults.SaveAndShow'),
+            'label' => trans('admin.defaults.actions.SaveAndShow'),
             'attr' => [
                 'class' => 'btn btn-yellow',
                 'value' => 'SaveAndShow',

@@ -39,8 +39,8 @@ class Kernel extends HttpKernel
 //            \Laravel\Passport\Http\Middleware\CreateFreshApiToken::class,
         ],
 
-        'panel.admin' => [
-            'auth'
+        'admin' => [
+            'auth',
         ],
 
         'api' => [

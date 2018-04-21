@@ -19,35 +19,37 @@
         <meta content="Application" name="description"/>
     @show
 
-    @include('panel.admin.partials.head-assets')
+    @include('admin.partials.head-assets')
 </head>
 
 <body class="@yield('body-class')">
 <div id="app">
 
-    @include('panel.admin.partials.sidebar')
+    @include('admin.partials.sidebar')
 
     <div class="app-content">
-        @include('panel.admin.partials.navbar')
+        @include('admin.partials.navbar')
 
         <div class="main-content">
             <div class="wrap-content container" id="container">
+                @yield('page-header')
+
                 @yield('page-contents')
             </div>
         </div>
     </div>
 
-    @include('panel.admin.partials.footer')
+    @include('admin.partials.footer')
 
-    @include('panel.admin.partials.off-sidebar')
+    @include('admin.partials.off-sidebar')
 
-    @include('panel.admin.partials.settings')
+    @include('admin.partials.settings')
 
 </div>
 
-@include('panel.admin.partials.alerts')
+@include('admin.partials.alerts')
 
-@include('panel.admin.partials.foot-assets')
+@include('admin.partials.foot-assets')
 </body>
 
 </html>

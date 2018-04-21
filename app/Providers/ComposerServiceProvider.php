@@ -17,7 +17,7 @@ class ComposerServiceProvider extends ServiceProvider
     {
         // view()->composer('*', GeneralComposer::class);
 
-        view()->composer('panel.admin.layouts.main', AdminPanelComposer::class);
+        view()->composer('admin.layouts.main', AdminPanelComposer::class);
     }
 
     /**

@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Panel\Admin\Categories;
+namespace App\Modules\Admin\Categories\Controllers;
 
-use App\Http\Controllers\Panel\Admin\AdminBaseController;
-use App\Http\Forms\Panel\Admin\Categories\CategoryForm;
+
+use App\Http\Controllers\Admin\AdminBaseController;
 use App\Models\Categories\Category;
+use App\Modules\Admin\Categories\Forms\CategoryForm;
 use App\Repositories\Categories\CategoryRepository;
 use App\Types\General\Category as CategoryType;
 use Illuminate\Http\Request;
@@ -21,19 +22,19 @@ class CategoriesController extends AdminBaseController
 
     public function index(Request $request)
     {
-        $this->authorize('panelAdminCategoriesIndex', Category::class);
+        $this->authorize('adminCategoriesIndex', Category::class);
 
         $items = $this->categories->query()
             ->with('parent')
             ->orderBy('id', 'desc')
             ->paginate();
 
-        return view('panel.admin.categories.index', compact('items'));
+        return view('AdminCategories::index', compact('items'));
     }
 
     public function create(Request $request)
     {
-        $this->authorize('panelAdminCategoriesCreate', Category::class);
+        $this->authorize('adminCategoriesCreate', Category::class);
 
         $this->validate($request, [
             'type' => [
@@ -44,13 +45,13 @@ class CategoriesController extends AdminBaseController
 
         $form = FormBuilder::create(CategoryForm::class, [
             'method' => 'POST',
-            'url' => route('panel.admin.categories.store'),
+            'url' => route('admin.categories.store'),
             // 'class' => 'form-horizontal',
             'data' => [
                 'type' => $request->input('type'),
             ]
         ]);
 
-        return view('panel.admin.categories.form', compact('form'));
+        return view('AdminCategories::form', compact('form'));
     }
 }
