@@ -5,9 +5,10 @@
 <?php endif; ?>
 
 <?php if ($showField): ?>
-    <?= Form::checkbox($name, $options['value'], $options['checked'], $options['attr']) ?>
-
-    <?php include 'help_block.php' ?>
+        <?= (isset($options['widget_prefix'])) && $showLabel ? $options['widget_prefix'] : ''; ?>
+        <?= Form::checkbox($name, $options['value'], $options['checked'], $options['attr']) ?>
+        <?php include 'help_block.php' ?>
+        <?= (isset($options['widget_suffix'])) && $showLabel ? $options['widget_suffix'] : ''; ?>
 <?php endif; ?>
 
 <?php if ($showLabel && $options['label'] !== false && $options['label_show']): ?>

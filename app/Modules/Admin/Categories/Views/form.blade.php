@@ -24,6 +24,10 @@
         <div class="row">
             {!! form_start($form) !!}
             <div class="col-md-12 margin-bottom-30">
+                <div class="pull-right">
+                    {!! form_row($form->state) !!}
+                </div>
+
                 <div class="pull-left">
                     <a href="{{ route('admin.categories.index') }}" class="btn btn-grey">
                         <i class="fa fa-times"></i> @lang('admin.default.actions.Cancel')
