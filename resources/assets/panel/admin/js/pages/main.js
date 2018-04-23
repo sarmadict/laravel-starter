@@ -428,6 +428,21 @@ module.exports = function () {
         });
     };
 
+    var select2Handler = function () {
+        $('.select2.select2-regular').select2({
+            dir: 'rtl',
+            width: '100%',
+            language: 'fa',
+        });
+
+        $('.select2.select2-tags').select2({
+            dir: 'rtl',
+            tags:true,
+            width: '100%',
+            language: 'fa',
+        });
+    };
+
     function wrapLeave() {
         wrap.trigger('mouseleave');
     }
@@ -477,6 +492,7 @@ module.exports = function () {
             panelToolsHandler();
             customSelectHandler();
             goTopHandler();
+            select2Handler();
         }
     };
 }();

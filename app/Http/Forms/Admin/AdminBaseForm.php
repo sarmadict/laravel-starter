@@ -50,6 +50,7 @@ class AdminBaseForm extends BaseForm
             ],
             'widget_prefix' => '<label class="el-switch el-switch-green" style="font-size:200%">',
             'widget_suffix' => '<span class="el-switch-style"></span></label>',
+            'default_value' => true,
         ]);
     }
 }

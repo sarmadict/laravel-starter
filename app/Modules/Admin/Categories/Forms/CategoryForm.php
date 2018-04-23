@@ -17,6 +17,9 @@ class CategoryForm extends AdminBaseForm
             'label_attr' => [
                 'class' => 'col-md-3 control-label',
             ],
+            'attr' => [
+                'placeholder' => trans('admin.categories.elements.name'),
+            ],
             'widget_prefix' => '<div class="col-md-9">',
             'widget_suffix' => '</div>',
         ]);
@@ -25,6 +28,9 @@ class CategoryForm extends AdminBaseForm
             'label' => trans('admin.categories.fields.title'),
             'label_attr' => [
                 'class' => 'col-md-3 control-label',
+            ],
+            'attr' => [
+                'placeholder' => trans('admin.categories.elements.title'),
             ],
             'widget_prefix' => '<div class="col-md-9">',
             'widget_suffix' => '</div>',
@@ -35,15 +41,23 @@ class CategoryForm extends AdminBaseForm
             'label_attr' => [
                 'class' => 'col-md-3 control-label',
             ],
+            'attr' => [
+                'placeholder' => trans('admin.categories.elements.slug'),
+            ],
             'widget_prefix' => '<div class="col-md-9">',
             'widget_suffix' => '</div>',
         ]);
 
-        $this->add('keywords', 'text', [
+        $this->add('keywords', 'choice', [
             'label' => trans('admin.categories.fields.keywords'),
             'label_attr' => [
                 'class' => 'control-label',
             ],
+            'attr' => [
+                'class' => 'form-control col-md-12 select2 select2-tags',
+            ],
+            'multiple' => true,
+            'choices' => []
         ]);
 
         $this->add('description', 'textarea', [
@@ -51,14 +65,21 @@ class CategoryForm extends AdminBaseForm
             'label_attr' => [
                 'class' => 'col-md-3 control-label',
             ],
-            'widget_prefix' => '<div class="col-md-9">',
-            'widget_suffix' => '</div>',
+            'attr' => [
+                'class' => 'form-control area-animated',
+                'placeholder' => trans('admin.categories.elements.description'),
+            ],
+            'widget_prefix' => '<div class="col-md-9"><div class="note-editor">',
+            'widget_suffix' => '</div></div>',
         ]);
 
         $this->add('parent_id', 'choice', [
             'label' => trans('admin.categories.fields.parent_id'),
             'label_attr' => [
                 'class' => 'control-label',
+            ],
+            'attr' => [
+                'class' => 'form-control col-md-12 select2 select2-regular',
             ],
             'choices' => $this->getParentIds()
         ]);
