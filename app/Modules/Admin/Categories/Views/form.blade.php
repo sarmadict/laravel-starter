@@ -120,9 +120,11 @@
 
 @section('page-after-scripts')
     @stack('scripts')
+
     <script>
-        $(document).ready(function () {
-            $('[data-toggle="tooltip"]').tooltip();
+        $(document).ready(function(){
+
         });
     </script>
+
 @endsection

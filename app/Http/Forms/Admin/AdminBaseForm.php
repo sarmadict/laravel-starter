@@ -48,8 +48,15 @@ class AdminBaseForm extends BaseForm
             'label_attr' => [
                 'class' => 'col-md-3 control-label',
             ],
-            'widget_prefix' => '<label class="el-switch el-switch-green" style="font-size:200%">',
-            'widget_suffix' => '<span class="el-switch-style"></span></label>',
+            'attr' => [
+                'data-toggle' => 'toggle',
+                'data-on' => trans('admin.defaults.elements.enabled'),
+                'data-off' => trans('admin.defaults.elements.disabled'),
+                'data-size' => 'large',
+            ],
+            'wrapperAttrs' => [
+                'class' => 'form-group dir-ltr',
+            ],
             'default_value' => true,
         ]);
     }

@@ -60,7 +60,9 @@ class CategoriesController extends AdminBaseController
 
     public function store(StoreCategoryRequest $request)
     {
-        $item = $this->categories->createCategory($request->all(), $request->input('type'));
+        $data = $request->all();
+
+        $item = $this->categories->createCategory($data, $request->input('type'));
 
         return redirect()->route('admin.categories.edit', $item);
     }

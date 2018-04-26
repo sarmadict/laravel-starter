@@ -52,7 +52,7 @@ class CategoryRepository extends Repository
             'type' => $type,
             'slug' => array_get($data, 'slug', null),
             'keywords' => array_get($data, 'keywords', []),
-            'state' => array_get($data, 'state', State::DISABLED),
+            'state' => array_has($data, 'state') ? State::ENABLED : State::DISABLED,
             'created_by' => $auth->id,
             'updated_by' => $auth->id,
         ]);

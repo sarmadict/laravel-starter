@@ -8,8 +8,6 @@ require('bootstrap');
 
 require('jquery.cookie');
 
-window.Switchery = require('switchery');
-
 window.axios = require('axios');
 
 window.PerfectScrollbar = $.perfectScrollbar = PerfectScrollbar;
@@ -17,3 +15,5 @@ window.PerfectScrollbar = $.perfectScrollbar = PerfectScrollbar;
 window.swal = swal;
 
 require('select2');
+
+require('bootstrap-toggle');
