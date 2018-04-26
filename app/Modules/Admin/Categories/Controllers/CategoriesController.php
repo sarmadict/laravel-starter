@@ -127,6 +127,13 @@ class CategoriesController extends AdminBaseController
         return view('AdminCategories::form', compact('form', 'item'));
     }
 
+    /**
+     * Update a category item
+     *
+     * @param UpdateCategoryRequest $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(UpdateCategoryRequest $request, $id)
     {
         try {
