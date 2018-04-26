@@ -6,6 +6,7 @@ namespace App\Modules\Admin\Categories\Controllers;
 use App\Http\Controllers\Admin\AdminBaseController;
 use App\Models\Categories\Category;
 use App\Modules\Admin\Categories\Forms\CategoryForm;
+use App\Modules\Admin\Categories\Requests\StoreCategoryRequest;
 use App\Repositories\Categories\CategoryRepository;
 use App\Types\General\Category as CategoryType;
 use Illuminate\Http\Request;
@@ -43,15 +44,24 @@ class CategoriesController extends AdminBaseController
             ],
         ]);
 
+        $type = $request->input('type');
+
         $form = FormBuilder::create(CategoryForm::class, [
             'method' => 'POST',
             'url' => route('admin.categories.store'),
             // 'class' => 'form-horizontal',
             'data' => [
-                'type' => $request->input('type'),
+                'type' => $type,
             ]
         ]);
 
-        return view('AdminCategories::form', compact('form'));
+        return view('AdminCategories::form', compact('form', 'type'));
+    }
+
+    public function store(StoreCategoryRequest $request)
+    {
+        $item = $this->categories->createCategory($request->all(), $request->input('type'));
+
+        return redirect()->route('admin.categories.edit', $item);
     }
 }

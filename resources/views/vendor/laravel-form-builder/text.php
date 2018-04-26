@@ -13,10 +13,10 @@
         <?= Form::input($type, $name, $options['value'], $options['attr']) ?>
 
         <?php include 'help_block.php' ?>
+        <?php include 'errors.php' ?>
         <?= (isset($options['widget_suffix'])) && $showLabel ? $options['widget_suffix'] : ''; ?>
     <?php endif; ?>
 
-    <?php include 'errors.php' ?>
 
     <?php if ($showLabel && $showField): ?>
     <?php if ($options['wrapper'] !== false): ?>

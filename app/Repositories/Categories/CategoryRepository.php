@@ -29,7 +29,7 @@ class CategoryRepository extends Repository
 
     public function getRootCategory($type)
     {
-        $root = $this->query()->roots()->ofType($type)->first();
+        $root = $this->roots()->ofType($type)->first();
 
         return $root ?: $this->createRootCategory($type);
     }

@@ -23,6 +23,9 @@
     <div class="container-fluid container-fullw bg-white">
         <div class="row">
             {!! form_start($form) !!}
+
+            <input type="hidden" name="type" value="{{ $type }}">
+
             <div class="col-md-12 margin-bottom-30">
                 <div class="pull-right">
                     {!! form_row($form->state) !!}
