@@ -118,6 +118,29 @@ class AlertMessage implements Jsonable, JsonSerializable
         return $this->severity;
     }
 
+    public function getSeverityClass()
+    {
+        switch ($this->severity) {
+            case 'SUCCESS':
+                return 'success';
+
+            case 'ERROR':
+            case 'ALERT':
+            case 'CRITICAL':
+            case 'EMERGENCY':
+                return 'danger';
+
+            case 'warning':
+            case 'DEBUG':
+                return 'warning';
+
+            case 'INFO':
+            case 'NOTICE':
+            default:
+                return 'info';
+        }
+    }
+
     /**
      * Set Message Severity
      *

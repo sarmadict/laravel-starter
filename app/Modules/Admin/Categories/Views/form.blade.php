@@ -1,22 +1,22 @@
 @extends('admin.layouts.main')
 
 @section('page-header')
-    {{--<section id="page-title">--}}
-        {{--<div class="row">--}}
-            {{--<div class="col-sm-8">--}}
-                {{--<h1 class="mainTitle">@lang('admin.categories.elements.New Category')</h1>--}}
-                {{--<span class="mainDescription">@lang('admin.categories.elements.Create New Category')</span>--}}
-            {{--</div>--}}
-            {{--<ol class="breadcrumb">--}}
-                {{--<li>--}}
-                    {{--<span>Tables</span>--}}
-                {{--</li>--}}
-                {{--<li class="active">--}}
-                    {{--<span>Basic Tables</span>--}}
-                {{--</li>--}}
-            {{--</ol>--}}
-        {{--</div>--}}
-    {{--</section>--}}
+    {{--<section id="page-title">
+        <div class="row">
+            <div class="col-sm-8">
+                <h1 class="mainTitle">@lang('admin.categories.elements.New Category')</h1>
+                <span class="mainDescription">@lang('admin.categories.elements.Create New Category')</span>
+            </div>
+            <ol class="breadcrumb">
+                <li>
+                    <span>Tables</span>
+                </li>
+                <li class="active">
+                    <span>Basic Tables</span>
+                </li>
+            </ol>
+        </div>
+    </section>--}}
 @endsection
 
 @section('page-contents')
@@ -24,7 +24,9 @@
         <div class="row">
             {!! form_start($form) !!}
 
-            <input type="hidden" name="type" value="{{ $type }}">
+            @if(!isset($item))
+                <input type="hidden" name="type" value="{{ $type }}">
+            @endif
 
             <div class="col-md-12 margin-bottom-30">
                 <div class="pull-right">
@@ -36,11 +38,11 @@
                         <i class="fa fa-times"></i> @lang('admin.default.actions.Cancel')
                     </a>
 
-                    @if(isset($item))
+                    {{--@if(isset($item) )
                         <a href="{{ route('admin.categories.destroy', $item) }}" class="btn btn-red">
                             <i class="fa fa-trash"></i> @lang('admin.default.actions.Destroy')
                         </a>
-                    @endif
+                    @endif--}}
 
                     {!! form_row($form->SaveAndReload) !!}
                 </div>
@@ -120,11 +122,5 @@
 
 @section('page-after-scripts')
     @stack('scripts')
-
-    <script>
-        $(document).ready(function(){
-
-        });
-    </script>
 
 @endsection

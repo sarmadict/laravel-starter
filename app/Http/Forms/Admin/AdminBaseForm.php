@@ -4,6 +4,7 @@ namespace App\Http\Forms\Admin;
 
 
 use App\Http\Forms\BaseForm;
+use App\Types\State;
 
 class AdminBaseForm extends BaseForm
 {
@@ -54,10 +55,17 @@ class AdminBaseForm extends BaseForm
                 'data-off' => trans('admin.defaults.elements.disabled'),
                 'data-size' => 'large',
             ],
-            'wrapperAttrs' => [
+            'wrapper' => [
                 'class' => 'form-group dir-ltr',
             ],
-            'default_value' => true,
+            'checked' => $this->stateIsChecked(),
         ]);
+    }
+
+    protected function stateIsChecked()
+    {
+        $model = $this->getModel();
+
+        return $model && $model->state == State::DISABLED ? false : true;
     }
 }

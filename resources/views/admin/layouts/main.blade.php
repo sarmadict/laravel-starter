@@ -34,6 +34,8 @@
             <div class="wrap-content container" id="container">
                 @yield('page-header')
 
+                @include('admin.partials.alerts')
+
                 @yield('page-contents')
             </div>
         </div>
@@ -47,7 +49,7 @@
 
 </div>
 
-@include('admin.partials.alerts')
+
 
 @include('admin.partials.foot-assets')
 </body>

@@ -57,7 +57,7 @@ class CategoryForm extends AdminBaseForm
                 'class' => 'form-control col-md-12 select2 select2-tags',
             ],
             'multiple' => true,
-            'choices' => []
+            'choices' => $this->getKeywords(),
         ]);
 
         $this->add('description', 'textarea', [
@@ -92,4 +92,12 @@ class CategoryForm extends AdminBaseForm
         return Category::query()->ofType($type)->pluck('title', 'id')->toArray();
     }
 
+    protected function getKeywords()
+    {
+        $model = $this->getModel();
+
+        $items = old('keywords', $model ? $model->keywords : []);
+
+        return array_combine($items, $items);
+    }
 }

@@ -61,4 +61,25 @@ class CategoryRepository extends Repository
 
         return $item;
     }
+
+    public function updateCategory($item, $data)
+    {
+        $parent = $this->getParentCategory(array_get($data, 'parent_id', $item->parent_id), $item->type);
+
+        $auth = Auth::user();
+
+        $item = $this->forceUpdate($item, [
+            'name' => $data['name'],
+            'title' => $data['title'],
+            'description' => $data['description'],
+            'slug' => array_get($data, 'slug', null),
+            'keywords' => array_get($data, 'keywords', []),
+            'state' => array_has($data, 'state') ? State::ENABLED : State::DISABLED,
+            'updated_by' => $auth->id,
+        ]);
+
+        $item->makeChildOf($parent);
+
+        return $item;
+    }
 }

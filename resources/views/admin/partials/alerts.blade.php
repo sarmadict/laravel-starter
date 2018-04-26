@@ -1,10 +1,16 @@
 {{-- Start : Regular Alerts --}}
-@foreach($alerts->all() as $alert)
-    <div class="alert alert-{{ $alert->severity }}">
-        <button data-ct-dismiss="alert" class="close">×</button>
-        {{ $alert }}
+@if($alerts->count() > 0)
+    <div class="container-fluid container-fullw bg-white padding-top-10 padding-bottom-0">
+        @foreach($alerts->all() as $alert)
+            <div class="alert alert-{{ $alert->getSeverityClass() }}">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                {{ $alert }}
+            </div>
+        @endforeach
     </div>
-@endforeach
+@endif
 {{-- End : Regular Alerts --}}
 
 
