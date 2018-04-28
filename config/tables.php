@@ -8,4 +8,6 @@ return [
 
     'categorizables' => 'categorizable',
 
+    'posts' => 'posts',
+
 ];

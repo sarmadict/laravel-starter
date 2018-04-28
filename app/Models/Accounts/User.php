@@ -2,6 +2,7 @@
 
 namespace App\Models\Accounts;
 
+use App\Models\Traits\HasState;
 use App\Notifications\Accounts\Auth\ResetPassword as ResetPasswordNotification;
 use App\Services\Acl\Traits\CanAuthorize;
 use App\Services\Acl\Traits\HasPermission;
@@ -51,5 +52,10 @@ class User extends Authenticatable
     public function isApproved()
     {
         return !is_null($this->approved_at);
+    }
+
+    public function getDisplayNameAttribute($value)
+    {
+        return $value ?: $this->first_name . " " . $this->last_name;
     }
 }

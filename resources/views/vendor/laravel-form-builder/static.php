@@ -9,9 +9,12 @@
 <?php endif; ?>
 
 <?php if ($showField): ?>
-    <<?= $options['tag'] ?> <?= $options['elemAttrs'] ?>><?= $options['value'] ?></<?= $options['tag'] ?>>
 
-    <?php include 'help_block.php' ?>
+   <?= (isset($options['widget_prefix'])) && $showLabel ? $options['widget_prefix'] : ''; ?>
+        <<?= $options['tag'] ?> <?= $options['elemAttrs'] ?>><?= $options['value'] ?></<?= $options['tag'] ?>>
+
+        <?php include 'help_block.php' ?>
+    <?= (isset($options['widget_suffix'])) && $showLabel ? $options['widget_suffix'] : ''; ?>
 
 <?php endif; ?>
 

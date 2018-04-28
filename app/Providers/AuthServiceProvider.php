@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Models\Categories\Category;
+use App\Models\Posts\Post;
 use App\Policies\Categories\CategoryPolicy;
+use App\Policies\Posts\PostPolicy;
 use App\Services\Auth\FlexibleUserProvider;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -18,7 +20,8 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        Category::class => CategoryPolicy::class
+        Category::class => CategoryPolicy::class,
+        Post::class => PostPolicy::class,
     ];
 
 
@@ -27,7 +30,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function register()
     {
-         Passport::ignoreMigrations();
+        Passport::ignoreMigrations();
     }
 
     /**

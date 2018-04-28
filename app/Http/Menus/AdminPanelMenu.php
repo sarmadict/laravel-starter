@@ -39,6 +39,20 @@ class AdminPanelMenu extends Menu
                 'active_class' => 'active open',
                 'sub_menu' => [],
             ],
+            [
+                'name' => 'admin.posts',
+                'title' => trans('admin.menu.posts.menu_title'),
+                'permission' => 'admin.posts.index',
+                'route' => route('admin.posts.index'),
+                'class' => '',
+                'icon' => 'fa fa-check',
+                'abstract' => false,
+                'active_patterns' => [
+                    'admin/blog/posts*'
+                ],
+                'active_class' => 'active open',
+                'sub_menu' => [],
+            ],
 
             /**
             [

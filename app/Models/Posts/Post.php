@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Models\Categories;
+namespace App\Models\Posts;
 
-
-use App\Models\NestedSetModel;
+use App\Models\BaseModel;
 use App\Models\Traits\HasState;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Category extends NestedSetModel
+class Post extends BaseModel
 {
-    use SoftDeletes, HasState, CategoryRelationships, CategoryScopes, CategoryModifiers;
+    use SoftDeletes, HasState, PostRelationships, PostScopes, PostModifiers;
 
     /**
      * The attributes that are mass assignable.
@@ -17,7 +16,9 @@ class Category extends NestedSetModel
      * @var array
      */
     protected $fillable = [
-        'name', 'title', 'description', 'slug', 'type', 'hits', 'keywords', 'state', 'created_by', 'updated_by'
+        'title', 'slug', 'excerpt', 'content', 'user_id', 'user_name', 'status',
+        'category_id', 'published_at', 'expired_at', 'image_path', 'hits',
+        'meta_keywords', 'meta_description', 'state', 'created_by', 'updated_by'
     ];
 
     /**
@@ -26,7 +27,7 @@ class Category extends NestedSetModel
      * @var array
      */
     protected $casts = [
-        'keywords' => 'array',
+        'meta_keywords' => 'array',
     ];
 
     /**
@@ -39,6 +40,6 @@ class Category extends NestedSetModel
     {
         parent::__construct($attributes);
 
-        $this->setTable(config('tables.categories'));
+        $this->setTable(config('tables.posts'));
     }
 }

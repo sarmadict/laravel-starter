@@ -18,9 +18,37 @@ Route::get('/test/1', function (\Illuminate\Http\Request $request){
 });
 
 
-Route::get('test/5', function () {
+Route::get('test/4', function () {
     $user = Auth::user();
 
+    $permissionNames = [
+        'admin.posts.index',
+        'admin.posts.create',
+        'admin.posts.show',
+        'admin.posts.edit',
+        'admin.posts.delete',
+    ];
+
+    $permissions = [];
+
+    foreach ($permissionNames as $permissionName){
+        $permissions[] = \App\Models\Accounts\Permission::query()->firstOrCreate([
+           'name' => $permissionName
+        ],[
+            'title'=> $permissionName,
+            'type' => \App\Services\Acl\Types\Permission::PRIMARY,
+            'state' => \App\Types\State::ENABLED,
+        ]);
+    }
+
+    $user->permissions()->syncWithoutDetaching(array_pluck($permissions, 'id'));
+
+});
+
+
+Route::get('test/5', function () {
+    $user = Auth::user();
+dd(\App\Types\Blog\PostStatus::flipTrans('dsdsd.dsds'));
 //    dd($user->can('panelAdminCategoriesIndex', \App\Models\Categories\Category::class));
 //
 //    $user = \App\Models\Accounts\User::find(1);
