@@ -178,6 +178,16 @@ module.exports = function () {
             })
         }
     };
+
+    var datetimepickerHandler = function () {
+        $('.datetimepicker.regular').each(function (key, item) {
+            $(item).datetimepicker({
+                format: $(item).data('format'),
+                showClear: true,
+            })
+        });
+    };
+
     //toggle class
     var toggleClassOnElement = function () {
         var toggleAttribute = $('*[data-toggle-class]');
@@ -485,6 +495,7 @@ module.exports = function () {
             tooltipHandler();
             popoverHandler();
             perfectScrollbarHandler();
+            datetimepickerHandler();
             switcheryHandler();
             resizeHandler();
             showTabHandler();

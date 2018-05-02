@@ -17,3 +17,7 @@ window.swal = swal;
 require('select2');
 
 require('bootstrap-toggle');
+
+require('moment');
+
+require('eonasdan-bootstrap-datetimepicker');

@@ -4,7 +4,6 @@ namespace App\Modules\Admin\Posts\Controllers;
 
 
 use App\Http\Controllers\Admin\AdminBaseController;
-use App\Models\Categories\Category;
 use App\Models\Posts\Post;
 use App\Modules\Admin\Posts\Forms\PostForm;
 use App\Modules\Admin\Posts\Requests\StorePostRequest;
@@ -82,7 +81,6 @@ class PostsController extends AdminBaseController
             $item = $this->posts->createPost($data);
 
         } catch (Exception $e) {
-            throw $e;
             Alert::error(trans('admin.posts.elements.Creating post failed'));
 
             return back()->withInput();

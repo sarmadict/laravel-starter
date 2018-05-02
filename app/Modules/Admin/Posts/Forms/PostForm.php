@@ -125,6 +125,8 @@ class PostForm extends AdminBaseForm
             ],
             'attr' => [
                 'placeholder' => trans('admin.posts.elements.published_at'),
+                'class' => 'form-control datetimepicker regular dir-ltr',
+                'data-format' => 'Y-MM-DD HH:mm:ss',
             ],
         ]);
 
@@ -135,6 +137,8 @@ class PostForm extends AdminBaseForm
             ],
             'attr' => [
                 'placeholder' => trans('admin.posts.elements.expired_at'),
+                'class' => 'form-control datetimepicker regular dir-ltr',
+                'data-format' => 'Y-MM-DD HH:mm:ss',
             ],
         ]);
         $this->add('meta_keywords', 'choice', [
