@@ -4,6 +4,7 @@ namespace App\Repositories\Accounts;
 
 use App\Models\Accounts\User;
 use App\Repositories\Repository;
+use App\Types\State;
 
 class UserRepository extends Repository
 {
@@ -13,6 +14,20 @@ class UserRepository extends Repository
     }
 
     public function registerUser($data)
+    {
+        return $this->forceCreate([
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'display_name' => $data['first_name'] . " " . $data['last_name'],
+            'email' => $data['email'],
+            'username' => $data['username'],
+            'gender' => $data['gender'],
+            'state' => State::ENABLED,
+            'password' => bcrypt($data['password'])
+        ]);
+    }
+
+    public function createUser($data)
     {
         return $this->forceCreate([
             'first_name' => $data['first_name'],

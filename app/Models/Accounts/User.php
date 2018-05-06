@@ -58,4 +58,34 @@ class User extends Authenticatable
     {
         return $value ?: $this->first_name . " " . $this->last_name;
     }
+
+    public function creator()
+    {
+        return $this->belongsTo(User::class, 'created_by', 'id', 'creator');
+    }
+    
+    public function updater()
+    {
+        return $this->belongsTo(User::class, 'updated_by', 'id', 'approver');
+    }
+    
+    public function approver()
+    {
+        return $this->belongsTo(User::class, 'approved_by', 'id', 'approver');
+    }
+
+    public function getJCreatedAtAttribute()
+    {
+        return $this->created_at;
+    }
+
+    public function getJApprovedAtAttribute()
+    {
+        return $this->updated_at;
+    }
+
+    public function getJUpdatedAtAttribute()
+    {
+        return $this->approved_at ?: trans('admin.users.elements.User not approved');
+    }
 }

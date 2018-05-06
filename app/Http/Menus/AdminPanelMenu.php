@@ -53,6 +53,20 @@ class AdminPanelMenu extends Menu
                 'active_class' => 'active open',
                 'sub_menu' => [],
             ],
+            [
+                'name' => 'admin.users',
+                'title' => trans('admin.menu.users.menu_title'),
+                'permission' => 'admin.users.index',
+                'route' => route('admin.users.index'),
+                'class' => '',
+                'icon' => 'fa fa-check',
+                'abstract' => false,
+                'active_patterns' => [
+                    'admin/accounts/users*'
+                ],
+                'active_class' => 'active open',
+                'sub_menu' => [],
+            ],
 
             /**
             [

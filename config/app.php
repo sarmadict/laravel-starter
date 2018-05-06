@@ -174,6 +174,7 @@ return [
         App\Modules\Admin\Dashboard\ServiceProvider::class,
         App\Modules\Admin\Categories\ServiceProvider::class,
         App\Modules\Admin\Posts\ServiceProvider::class,
+        App\Modules\Admin\Users\ServiceProvider::class,
 
     ],
 

@@ -22,11 +22,11 @@ Route::get('test/4', function () {
     $user = Auth::user();
 
     $permissionNames = [
-        'admin.posts.index',
-        'admin.posts.create',
-        'admin.posts.show',
-        'admin.posts.edit',
-        'admin.posts.delete',
+        'admin.users.index',
+        'admin.users.create',
+        'admin.users.show',
+        'admin.users.edit',
+        'admin.users.delete',
     ];
 
     $permissions = [];
@@ -42,6 +42,8 @@ Route::get('test/4', function () {
     }
 
     $user->permissions()->syncWithoutDetaching(array_pluck($permissions, 'id'));
+
+    cache()->clear();
 
 });
 
