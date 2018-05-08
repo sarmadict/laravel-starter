@@ -15,4 +15,14 @@ trait HasState
     {
         $query->where('state', State::DISABLED);
     }
+
+    public function getStateAttribute($value)
+    {
+        return new State($value);
+    }
+
+    public function getStateNameAttribute()
+    {
+        return trans('admin.defaults.fields.state_' . $this->state->getKey());
+    }
 }

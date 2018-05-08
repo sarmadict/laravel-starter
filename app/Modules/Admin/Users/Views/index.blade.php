@@ -78,7 +78,7 @@
                         @forelse($items as $item)
                             <tr>
                                 <td>{{ $item->id }}</td>
-                                <td>{{ $item->state }}</td>
+                                <td>{{ $item->state_name }}</td>
                                 <td>{{ $item->first_name }}</td>
                                 <td>{{ $item->last_name }}</td>
                                 <td>{{ $item->email }}</td>
