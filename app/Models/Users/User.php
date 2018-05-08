@@ -3,6 +3,7 @@
 namespace App\Models\Users;
 
 
+use App\Models\Traits\HasState;
 use App\Notifications\Accounts\Auth\ResetPassword as ResetPasswordNotification;
 use App\Services\Acl\Traits\CanAuthorize;
 use App\Services\Acl\Traits\HasPermission;
@@ -13,7 +14,7 @@ use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use Notifiable, HasApiTokens,
+    use Notifiable, HasApiTokens, HasState,
         HasRole, HasPermission, CanAuthorize,
         UserRelationships, UserScopes, UserModifiers;
 

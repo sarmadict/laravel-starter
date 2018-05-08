@@ -4,8 +4,8 @@
     {{--<section id="page-title">
         <div class="row">
             <div class="col-sm-8">
-                <h1 class="mainTitle">@lang('admin.users.elements.New Category')</h1>
-                <span class="mainDescription">@lang('admin.users.elements.Create New Category')</span>
+                <h1 class="mainTitle">@lang('admin.posts.elements.New Category')</h1>
+                <span class="mainDescription">@lang('admin.posts.elements.Create New Category')</span>
             </div>
             <ol class="breadcrumb">
                 <li>
@@ -56,37 +56,34 @@
                                             <h4 class="panel-title text-primary">@lang('admin.users.elements.panel_general')</h4>
                                         </div>
                                         <div class="panel-body form-horizontal">
-                                            {!! form_row($form->title) !!}
-                                            {!! form_row($form->slug) !!}
-                                            {!! form_row($form->content) !!}
-                                            {!! form_row($form->excerpt) !!}
+                                            {!! form_row($form->first_name) !!}
+                                            {!! form_row($form->last_name) !!}
+                                            {!! form_row($form->display_name) !!}
+                                            {!! form_row($form->username) !!}
+                                            {!! form_row($form->email) !!}
+                                            {!! form_row($form->mobile_number) !!}
+                                            {!! form_row($form->position) !!}
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="col-sm-3">
-                                    <div class="panel panel-white" id="panel-publish">
+                                    <div class="panel panel-white" id="panel-image">
                                         <div class="panel-heading">
-                                            <h4 class="panel-title text-primary">@lang('admin.users.elements.panel_publish')</h4>
+                                            <h4 class="panel-title text-primary">@lang('admin.users.elements.panel_image')</h4>
                                         </div>
                                         <div class="panel-body">
-                                            {!! form_row($form->status) !!}
-                                            {!! form_row($form->published_at) !!}
-                                            {!! form_row($form->expired_at) !!}
+                                            {!! form_row($form->image_path) !!}
                                         </div>
                                     </div>
 
                                     <div class="panel panel-white" id="panel-meta">
                                         <div class="panel-heading">
-                                            <h4 class="panel-title text-primary">@lang('admin.users.elements.panel_meta')</h4>
+                                            <h4 class="panel-title text-primary">@lang('admin.users.elements.panel_birthday')</h4>
                                         </div>
                                         <div class="panel-body">
-                                            {!! form_row($form->category_id) !!}
-                                            {!! form_row($form->user_id) !!}
-                                            {!! form_row($form->user_name) !!}
-                                            {!! form_row($form->image_path) !!}
-                                            {!! form_row($form->meta_keywords) !!}
-                                            {!! form_row($form->meta_description) !!}
+                                            {!! form_row($form->gender) !!}
+                                            {!! form_row($form->birthday) !!}
                                         </div>
                                     </div>
 
@@ -96,8 +93,12 @@
                                                 <h4 class="panel-title text-primary">@lang('admin.users.elements.panel_info')</h4>
                                             </div>
                                             <div class="panel-body form-horizontal">
-                                                {!! form_row($form->hits) !!}
-                                                {!! form_row($form->likes_count) !!}
+                                                {!! form_row($form->created_at) !!}
+                                                {!! form_row($form->updated_at) !!}
+                                                {!! form_row($form->approved_at) !!}
+                                                {!! form_row($form->created_by) !!}
+                                                {!! form_row($form->updated_by) !!}
+                                                {!! form_row($form->approved_by) !!}
                                             </div>
                                         </div>
                                     @endif

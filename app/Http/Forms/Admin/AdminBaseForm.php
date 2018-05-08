@@ -66,6 +66,6 @@ class AdminBaseForm extends BaseForm
     {
         $model = $this->getModel();
 
-        return $model && $model->state == State::DISABLED ? false : true;
+        return $model && $model->state->getValue() == State::DISABLED ? false : true;
     }
 }

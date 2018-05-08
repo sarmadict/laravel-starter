@@ -32,11 +32,14 @@ class UserRepository extends Repository
         return $this->forceCreate([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
-            'display_name' => $data['first_name'] . " " . $data['last_name'],
+            'display_name' => array_get($data, 'display_name', null) ?? $data['first_name'] . " " . $data['last_name'],
             'email' => $data['email'],
             'username' => $data['username'],
+            'mobile_number' => $data['mobile_number'],
             'gender' => $data['gender'],
-            'password' => bcrypt($data['password'])
+            'position' => $data['position'],
+            'birthday' => $data['birthday'],
+            'image_path' => $data['image_path'],
         ]);
     }
 

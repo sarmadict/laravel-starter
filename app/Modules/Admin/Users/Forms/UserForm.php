@@ -103,8 +103,10 @@ class UserForm extends AdminBaseForm
                 'class' => 'control-label',
             ],
             'attr' => [
-                'class' => 'form-control col-md-12',
+                'class' => 'form-control',
             ],
+            'widget_prefix' => '<div class="clip-radio radio-primary">',
+            'widget_suffix' => '</div>',
             'choices' => $this->getGenders(),
             'expanded' => true,
             'multiple' => false,

@@ -43,8 +43,6 @@ class StoreUserRequest extends AdminBaseRequest
 
             'user_id' => ['required', Rule::exists('users', 'id')],
 
-            'status' => ['required', Rule::in(UserStatus::values())],
-
             'published_at' => ['nullable'],
 
             'expired_at' => ['nullable'],

@@ -27,7 +27,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->string('position', 255)->nullable();
             $table->smallInteger('gender')->nullable();
-            $table->string('image_path')->nullable();
+            $table->string('image_path', 8190)->nullable();
             $table->date('birthday')->nullable();
             $table->smallInteger('state');
             $table->integer('approved_by')->unsigned()->nullable();
