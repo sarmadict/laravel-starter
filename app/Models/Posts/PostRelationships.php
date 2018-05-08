@@ -3,7 +3,7 @@
 namespace App\Models\Posts;
 
 
-use App\Models\Accounts\User;
+use App\Models\Users\User;
 use App\Models\Categories\Category;
 
 trait PostRelationships

@@ -3,7 +3,7 @@
 namespace App\Services\Acl\Traits;
 
 
-use App\Models\Accounts\Role;
+use App\Models\Roles\Role;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 trait HasRole

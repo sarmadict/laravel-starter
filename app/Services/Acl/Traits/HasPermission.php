@@ -3,7 +3,7 @@
 namespace App\Services\Acl\Traits;
 
 
-use App\Models\Accounts\Permission;
+use App\Models\Permissions\Permission;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Support\Collection;
 

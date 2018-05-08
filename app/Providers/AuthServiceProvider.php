@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Models\Accounts\User;
+use App\Models\Users\User;
 use App\Models\Categories\Category;
 use App\Models\Posts\Post;
 use App\Policies\Categories\CategoryPolicy;

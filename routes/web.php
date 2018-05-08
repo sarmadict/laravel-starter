@@ -53,7 +53,7 @@ Route::get('test/5', function () {
 dd(\App\Types\Blog\PostStatus::flipTrans('dsdsd.dsds'));
 //    dd($user->can('panelAdminCategoriesIndex', \App\Models\Categories\Category::class));
 //
-//    $user = \App\Models\Accounts\User::find(1);
+//    $user = \App\Models\Users\User::find(1);
 
     $items = collect();
 

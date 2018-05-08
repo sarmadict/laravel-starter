@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories\Accounts;
+namespace App\Repositories\Users;
 
-use App\Models\Accounts\User;
+use App\Models\Users\User;
 use App\Repositories\Repository;
 use App\Types\State;
 

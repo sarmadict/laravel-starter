@@ -28,7 +28,7 @@
 
             <div class="col-md-12 margin-bottom-30">
                 <div class="pull-left">
-                    @can('adminUsersCreate', \App\Models\Accounts\User::class)
+                    @can('adminUsersCreate', \App\Models\Users\User::class)
                         <a href="{{ route('admin.users.create') }}" class="btn btn-green">
                             <i class="fa fa-plus"></i> @lang('admin.users.elements.Create New User')
                         </a>

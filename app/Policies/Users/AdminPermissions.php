@@ -3,7 +3,7 @@
 namespace App\Policies\Users;
 
 
-use App\Models\Accounts\User;
+use App\Models\Users\User;
 
 trait AdminPermissions
 {

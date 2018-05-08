@@ -4,11 +4,11 @@ namespace App\Modules\Admin\Users\Controllers;
 
 
 use App\Http\Controllers\Admin\AdminBaseController;
-use App\Models\Accounts\User;
+use App\Models\Users\User;
 use App\Modules\Admin\Users\Forms\UserForm;
 use App\Modules\Admin\Users\Requests\StoreUserRequest;
 use App\Modules\Admin\Users\Requests\UpdateUserRequest;
-use App\Repositories\Accounts\UserRepository;
+use App\Repositories\Users\UserRepository;
 use App\Services\Alert\Facade\Alert;
 use Exception;
 use Illuminate\Http\Request;

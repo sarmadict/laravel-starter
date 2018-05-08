@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Accounts\Auth;
 
 use App\Http\Requests\Accounts\Auth\RegisterUserRequest;
-use App\Models\Accounts\User;
-use App\Repositories\Accounts\UserRepository;
+use App\Models\Users\User;
+use App\Repositories\Users\UserRepository;
 use Illuminate\Foundation\Auth\RedirectsUsers;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;

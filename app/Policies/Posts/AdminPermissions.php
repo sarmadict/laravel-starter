@@ -3,7 +3,7 @@
 namespace App\Policies\Posts;
 
 
-use App\Models\Accounts\User;
+use App\Models\Users\User;
 use App\Models\Posts\Post;
 
 trait AdminPermissions

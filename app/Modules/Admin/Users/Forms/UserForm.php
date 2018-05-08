@@ -4,7 +4,7 @@ namespace App\Modules\Admin\Users\Forms;
 
 
 use App\Http\Forms\Admin\AdminBaseForm;
-use App\Models\Accounts\User;
+use App\Models\Users\User;
 use App\Types\Accounts\Gender;
 
 class UserForm extends AdminBaseForm

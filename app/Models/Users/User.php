@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models\Accounts;
+namespace App\Models\Users;
 
-use App\Models\Traits\HasState;
+
 use App\Notifications\Accounts\Auth\ResetPassword as ResetPasswordNotification;
 use App\Services\Acl\Traits\CanAuthorize;
 use App\Services\Acl\Traits\HasPermission;
@@ -13,7 +13,9 @@ use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use Notifiable, HasApiTokens, HasRole, HasPermission, CanAuthorize;
+    use Notifiable, HasApiTokens,
+        HasRole, HasPermission, CanAuthorize,
+        UserRelationships, UserScopes, UserModifiers;
 
     /**
      * The attributes that are mass assignable.
@@ -52,40 +54,5 @@ class User extends Authenticatable
     public function isApproved()
     {
         return !is_null($this->approved_at);
-    }
-
-    public function getDisplayNameAttribute($value)
-    {
-        return $value ?: $this->first_name . " " . $this->last_name;
-    }
-
-    public function creator()
-    {
-        return $this->belongsTo(User::class, 'created_by', 'id', 'creator');
-    }
-    
-    public function updater()
-    {
-        return $this->belongsTo(User::class, 'updated_by', 'id', 'approver');
-    }
-    
-    public function approver()
-    {
-        return $this->belongsTo(User::class, 'approved_by', 'id', 'approver');
-    }
-
-    public function getJCreatedAtAttribute()
-    {
-        return $this->created_at;
-    }
-
-    public function getJApprovedAtAttribute()
-    {
-        return $this->updated_at;
-    }
-
-    public function getJUpdatedAtAttribute()
-    {
-        return $this->approved_at ?: trans('admin.users.elements.User not approved');
     }
 }

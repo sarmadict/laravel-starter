@@ -4,7 +4,7 @@ namespace App\Modules\Admin\Posts\Forms;
 
 
 use App\Http\Forms\Admin\AdminBaseForm;
-use App\Models\Accounts\User;
+use App\Models\Users\User;
 use App\Models\Categories\Category;
 use App\Types\General\Category as CategoryType;
 use App\Types\Blog\PostStatus;
