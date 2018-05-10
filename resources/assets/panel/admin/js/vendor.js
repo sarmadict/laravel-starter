@@ -21,3 +21,7 @@ require('bootstrap-toggle');
 require('moment');
 
 require('eonasdan-bootstrap-datetimepicker');
+
+require('datatables.net');
+
+require('datatables.net-bs');

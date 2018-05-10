@@ -13,6 +13,26 @@ class UserRepository extends Repository
         $this->setModel($model);
     }
 
+    public function getAdminDatatable()
+    {
+        $query = $this->query()
+            //->with(['creator', 'updater', 'approver'])
+            ->select([
+                'users.id',
+                'users.state',
+                'users.first_name',
+                'users.last_name',
+                'users.email',
+                'users.username',
+                'users.mobile_number',
+                'users.position',
+                'users.created_at',
+                'users.approved_at',
+            ]);
+
+        return $query;
+    }
+
     public function registerUser($data)
     {
         return $this->forceCreate([

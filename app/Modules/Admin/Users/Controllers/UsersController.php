@@ -38,12 +38,7 @@ class UsersController extends AdminBaseController
     {
         $this->authorize('adminUsersIndex', User::class);
 
-        $items = $this->users->query()
-            ->with(['creator', 'updater', 'approver'])
-            ->orderBy('id', 'desc')
-            ->paginate();
-
-        return view('AdminUsers::index', compact('items'));
+        return view('AdminUsers::index');
     }
 
     /**

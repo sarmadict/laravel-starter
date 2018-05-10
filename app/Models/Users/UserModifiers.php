@@ -17,12 +17,12 @@ trait UserModifiers
         return $this->created_at;
     }
 
-    public function getJApprovedAtAttribute()
+    public function getJUpdatedAtAttribute()
     {
         return $this->updated_at;
     }
 
-    public function getJUpdatedAtAttribute()
+    public function getJApprovedAtAttribute()
     {
         return $this->approved_at ?: trans('admin.users.elements.User not approved');
     }

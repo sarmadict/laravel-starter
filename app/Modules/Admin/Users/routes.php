@@ -8,4 +8,5 @@ Route::namespace('App\Modules\Admin\Users\Controllers')
     ->group(function () {
         Route::resource('users', 'UsersController');
 
+        Route::post('get', 'UsersTableController')->name('users.get');
     });

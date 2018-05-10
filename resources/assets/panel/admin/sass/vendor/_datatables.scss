@@ -1,0 +1,19 @@
+/* ---------------------------------------------------------------------- */
+/*  Datatables
+/* ---------------------------------------------------------------------- */
+
+.data-table-wrapper {
+    table {
+        margin-bottom: 0 !important;
+    }
+}
+
+div.dataTables_wrapper {
+    div.dataTables_paginate {
+        text-align: left;
+    }
+
+    div.dataTables_filter{
+        text-align: left;
+    }
+}

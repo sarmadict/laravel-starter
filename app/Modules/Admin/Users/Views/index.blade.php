@@ -37,85 +37,28 @@
             </div>
 
             <div class="col-md-12">
-                <div class="responsive-table-wrapper">
+                <div class="data-table-wrapper">
                     <table class="table table-hover table-striped table-bordered table-responsive" id="items-table">
                         <thead>
                         <tr>
                             <th class="center">#</th>
-                            <th class="{{ table_sort_class('state') }}">
-                                <a href="{{ table_sort_link('state') }}">@lang('admin.users.fields.state')</a>
-                            </th>
-                            <th class="{{ table_sort_class('first_name') }}">
-                                <a href="{{ table_sort_link('first_name') }}">@lang('admin.users.fields.first_name')</a>
-                            </th>
-                            <th class="{{ table_sort_class('last_name') }}">
-                                <a href="{{ table_sort_link('last_name') }}">@lang('admin.users.fields.last_name')</a>
-                            </th>
-                            <th class="{{ table_sort_class('email') }}">
-                                <a href="{{ table_sort_link('email') }}">@lang('admin.users.fields.email')</a>
-                            </th>
-                            <th class="{{ table_sort_class('username') }}">
-                                <a href="{{ table_sort_link('username') }}">@lang('admin.users.fields.username')</a>
-                            </th>
-                            <th class="{{ table_sort_class('mobile_number') }}">
-                                <a href="{{ table_sort_link('mobile_number') }}">@lang('admin.users.fields.mobile_number')</a>
-                            </th>
-                            <th class="{{ table_sort_class('position') }}">
-                                <a href="{{ table_sort_link('position') }}">@lang('admin.users.fields.position')</a>
-                            </th>
-                            <th class="{{ table_sort_class('created_at') }}">
-                                <a href="{{ table_sort_link('created_at') }}">@lang('admin.users.fields.created_at')</a>
-                            </th>
-                            <th class="{{ table_sort_class('approved_at') }}">
-                                <a href="{{ table_sort_link('approved_at') }}">@lang('admin.users.fields.approved_at')</a>
-                            </th>
-                            <th>
-                                @lang('admin.users.fields.actions')
-                            </th>
+                            <th>@lang('admin.users.fields.state')</th>
+                            <th>@lang('admin.users.fields.first_name')</th>
+                            <th>@lang('admin.users.fields.last_name')</th>
+                            <th>@lang('admin.users.fields.email')</th>
+                            <th>@lang('admin.users.fields.username')</th>
+                            <th>@lang('admin.users.fields.mobile_number')</th>
+                            <th>@lang('admin.users.fields.position')</th>
+                            <th>@lang('admin.users.fields.created_at')</th>
+                            <th>@lang('admin.users.fields.approved_at')</th>
+                            <th>@lang('admin.users.fields.actions')</th>
                         </tr>
                         </thead>
-                        <tbody>
-                        @forelse($items as $item)
-                            <tr>
-                                <td>{{ $item->id }}</td>
-                                <td>{{ $item->state_name }}</td>
-                                <td>{{ $item->first_name }}</td>
-                                <td>{{ $item->last_name }}</td>
-                                <td>{{ $item->email }}</td>
-                                <td>{{ $item->username }}</td>
-                                <td>{{ $item->mobile_number }}</td>
-                                <td>{{ $item->position }}</td>
-                                <td>{{ $item->j_created_at }}</td>
-                                <td>{{ $item->j_approved_at }}</td>
-                                <td class="center">
-                                    <div class="">
-                                        @can('adminUsersShow', $item)
-                                            <a href="{{ route('admin.users.show', $item) }}" class="btn btn-block btn-xs btn-light-azure" data-toggle="tooltip" data-placement="left" title="@lang('admin.default.actions.show')">
-                                                <i class="fa fa-eye"></i> @lang('admin.default.actions.show')
-                                            </a>
-                                        @endcan
-                                        @can('AdminUsersEdit', $item)
-                                            <a href="{{ route('admin.users.edit', $item) }}" class="btn btn-block btn-xs btn-dark-purple" data-toggle="tooltip" data-placement="left" title="@lang('admin.default.actions.edit')">
-                                                <i class="fa fa-pencil"></i> @lang('admin.default.actions.edit')
-                                            </a>
-                                        @endcan
-                                    </div>
-                                </td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td colspan="12" class="center">@lang('admin.users.elements.No Items Found')</td>
-                            </tr>
-                        @endforelse
-                        </tbody>
+                        <tbody></tbody>
                     </table>
                 </div>
-
-                <div class="text-center">
-                    {!! $items->appends(request()->all())->links() !!}
-                </div>
-
             </div>
+
         </div>
     </div>
 @endsection
@@ -147,4 +90,44 @@
 @section('page-after-scripts')
     @stack('scripts')
 
+    <script>
+        var page = function () {
+            function initDatatable() {
+                return $("#items-table").DataTable({
+                    scrollX: true,
+                    processing: true,
+                    serverSide: true,
+                    ajax: {
+                        url: '{{ route("admin.users.get") }}',
+                        type: 'post'
+                    },
+                    columns: [
+                        {data: 'id'},
+                        {data: 'state_name'},
+                        {data: 'first_name'},
+                        {data: 'last_name'},
+                        {data: 'email'},
+                        {data: 'username'},
+                        {data: 'mobile_number', searchable: true, sortable: false},
+                        {data: 'position', searchable: true, sortable: false},
+                        {data: 'j_created_at'},
+                        {data: 'j_approved_at'},
+                        {data: 'actions', searchable: false, sortable: false},
+                    ],
+                    order: [[0, "desc"]],
+                    searchDelay: 500,
+                });
+            }
+
+            return {
+                init: function () {
+                    initDatatable();
+                }
+            };
+        }();
+
+        $(document).ready(function () {
+            page.init();
+        });
+    </script>
 @endsection
