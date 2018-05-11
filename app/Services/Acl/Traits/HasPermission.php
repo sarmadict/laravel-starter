@@ -56,12 +56,24 @@ trait HasPermission
      */
     public function loadPermissions(): Collection
     {
-        $cacheKey = property_exists($this, 'aclCacheKey') ? $this->aclCacheKey : $this->getTable();
-
-        $config = config('acl.cache.' . $cacheKey);
+        $config = $this->getAclCacheConfig();
 
         return cache()->remember($config['prefix'] . '.' . $this->getKey(), $config['expiration_time'], function () {
             return $this->permissions()->pluck('name');
         });
+    }
+
+    public function getAclCacheConfig()
+    {
+        $cacheKey = property_exists($this, 'aclCacheKey') ? $this->aclCacheKey : $this->getTable();
+
+        return config('acl.cache.' . $cacheKey);
+    }
+
+    public function clearPermissionsCache()
+    {
+        $config = $this->getAclCacheConfig();
+
+        return cache()->forget($config['prefix'] . '.' . $this->getKey());
     }
 }

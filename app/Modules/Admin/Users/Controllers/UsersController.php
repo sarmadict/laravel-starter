@@ -3,6 +3,8 @@
 namespace App\Modules\Admin\Users\Controllers;
 
 
+use App\Events\Users\UserCreated;
+use App\Events\Users\UserUpdated;
 use App\Http\Controllers\Admin\AdminBaseController;
 use App\Models\Users\User;
 use App\Modules\Admin\Users\Forms\UserForm;
@@ -75,6 +77,8 @@ class UsersController extends AdminBaseController
 
             $item = $this->users->createUser($data);
 
+            event(new UserCreated($item));
+
         } catch (Exception $e) {
             Alert::error(trans('admin.users.elements.Creating user failed'));
 
@@ -125,6 +129,8 @@ class UsersController extends AdminBaseController
             $data = $request->all();
 
             $item = $this->users->updateUser($item, $data);
+
+            event(new UserUpdated($item));
 
         } catch (Exception $e) {
             Alert::error(trans('admin.users.elements.Updating user failed'));
