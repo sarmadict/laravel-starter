@@ -7,6 +7,7 @@ use App\Repositories\Repository;
 use App\Types\State;
 use DB;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 
 class UserRepository extends Repository
 {
@@ -52,6 +53,8 @@ class UserRepository extends Repository
     public function createUser($data)
     {
         try {
+            $auth = Auth::user();
+
             DB::beginTransaction();
 
             $item =  $this->forceCreate([
@@ -65,6 +68,9 @@ class UserRepository extends Repository
                 'position' => $data['position'],
                 'birthday' => array_get($data, 'birthday'),
                 'image_path' => $data['image_path'],
+                'state' => array_has($data, 'state') ? State::ENABLED : State::DISABLED,
+                'created_by' => $auth->id,
+                'updated_by' => $auth->id,
             ]);
 
             $item->roles()->sync(array_get($data, 'roles', []));
@@ -85,6 +91,8 @@ class UserRepository extends Repository
     public function updateUser($item, $data)
     {
         try {
+            $auth = Auth::user();
+
             DB::beginTransaction();
 
             $item = $this->forceUpdate($item, [
@@ -98,6 +106,8 @@ class UserRepository extends Repository
                 'position' => $data['position'],
                 'birthday' => array_get($data, 'birthday', null),
                 'image_path' => $data['image_path'],
+                'state' => array_has($data, 'state') ? State::ENABLED : State::DISABLED,
+                'updated_by' => $auth->id,
             ]);
 
             $item->roles()->sync(array_get($data, 'roles', []));

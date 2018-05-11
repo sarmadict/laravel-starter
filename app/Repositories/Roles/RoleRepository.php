@@ -39,10 +39,10 @@ class RoleRepository extends Repository
             DB::beginTransaction();
 
             $item =  $this->forceCreate([
-                'state' => array_has($data, 'state') ? State::ENABLED : State::DISABLED,
                 'name' => $data['name'],
                 'title' => $data['title'],
                 'description' => array_get($data, 'description', null),
+                'state' => array_has($data, 'state') ? State::ENABLED : State::DISABLED,
                 'created_by' => $auth->id,
                 'updated_by' => $auth->id,
             ]);
@@ -68,10 +68,10 @@ class RoleRepository extends Repository
             DB::beginTransaction();
 
             $item = $this->forceUpdate($item, [
-                'state' => array_has($data, 'state') ? State::ENABLED : State::DISABLED,
                 'name' => $data['name'],
                 'title' => $data['title'],
                 'description' => array_get($data, 'description', null),
+                'state' => array_has($data, 'state') ? State::ENABLED : State::DISABLED,
                 'updated_by' => $auth->id,
             ]);
 
