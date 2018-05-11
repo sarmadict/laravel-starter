@@ -30,4 +30,14 @@ trait PermissionRelationships
         return $this->morphedByMany(User::class, 'permissible', config('acl.tables.permissible'))
             ->withPivot(['assigned_by', 'assigned_at']);
     }
+
+    public function creator()
+    {
+        return $this->belongsTo(User::class, 'created_by', 'id', 'creator');
+    }
+
+    public function updater()
+    {
+        return $this->belongsTo(User::class, 'updated_by', 'id', 'approver');
+    }
 }
