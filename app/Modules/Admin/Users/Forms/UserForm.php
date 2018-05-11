@@ -68,6 +68,7 @@ class UserForm extends AdminBaseForm
             ],
             'attr' => [
                 'placeholder' => trans('admin.users.elements.email'),
+                'class' => 'form-control  dir-ltr'
             ],
             'widget_prefix' => '<div class="col-md-9">',
             'widget_suffix' => '</div>',
@@ -80,6 +81,7 @@ class UserForm extends AdminBaseForm
             ],
             'attr' => [
                 'placeholder' => trans('admin.users.elements.mobile_number'),
+                'class' => 'form-control  dir-ltr'
             ],
             'widget_prefix' => '<div class="col-md-9">',
             'widget_suffix' => '</div>',

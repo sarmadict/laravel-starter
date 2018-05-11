@@ -5,6 +5,8 @@ namespace App\Modules\Admin\Users\Requests;
 
 use App\Http\Requests\Admin\AdminBaseRequest;
 use App\Models\Users\User;
+use App\Rules\MobileNumber;
+use App\Types\Accounts\Gender;
 use App\Types\Blog\UserStatus;
 use App\Types\State;
 use Illuminate\Validation\Rule;
@@ -35,29 +37,25 @@ class UpdateUserRequest extends AdminBaseRequest
         return [
             'state' => [Rule::in(State::values()),],
 
-            'title' => ['required', 'between:1, 255'],
+            'first_name' => ['required', 'max:255'],
 
-            'excerpt' => ['nullable', 'between:1, 8190'],
+            'last_name' => ['required', 'max:255'],
 
-            'content' => ['required', 'between:1, 819000'],
+            'display_name' => ['nullable', 'max: 255'],
 
-            'slug' => ['required', 'alpha_dash', 'unique:users,slug,' . $id, 'between:1, 255'],
+            'username' => ['required', 'unique:users,username,' . $id, 'alpha_dash'],
 
-            'category_id' => ['nullable', Rule::exists('categories', 'id')],
+            'email' => ['required', 'email', 'unique:users,email,' . $id],
 
-            'user_id' => ['required', Rule::exists('users', 'id')],
+            'mobile_number' => ['nullable', new MobileNumber()],
 
-            'status' => ['required', Rule::in(UserStatus::values())],
+            'position' => ['nullable', 'max:255'],
 
-            'published_at' => ['nullable'],
+            'gender' => [Rule::in(Gender::values())],
 
-            'expired_at' => ['nullable'],
+            'image_path' => ['nullable', 'url'],
 
-            'meta_keywords' => ['nullable', 'array'],
-
-            'meta_description' => ['nullable', 'between:0,8190'],
-
-            'image_path' => ['nullable'],
+            'birthday' => ['nullable', 'date:Y-m-d'],
         ];
     }
 }
