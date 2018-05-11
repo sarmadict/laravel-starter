@@ -16,6 +16,28 @@ class PostRepository extends Repository
         $this->setModel($model);
     }
 
+    public function getAdminDatatable()
+    {
+        $query = $this->query()
+            ->with(['category', 'user'])
+            ->select([
+                'posts.id',
+                'posts.state',
+                'posts.title',
+                'posts.excerpt',
+                'posts.slug',
+                'posts.status',
+                'posts.user_id',
+                'posts.user_name',
+                'posts.category_id',
+                'posts.published_at',
+                'posts.expired_at',
+                'posts.hits',
+            ]);
+
+        return $query;
+    }
+
     public function getCategory($id)
     {
         return $id ? Category::query()->find($id) : null;

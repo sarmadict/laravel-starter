@@ -38,7 +38,7 @@ trait PostModifiers
         return $this->expired_at;
     }
 
-    public function getCategoryNameAttribute()
+    public function getCategoryTitleAttribute()
     {
         return $this->category ? $this->category->title : trans('admin.posts.elements.uncategorized');
     }
