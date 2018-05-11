@@ -16,6 +16,24 @@ class CategoryRepository extends Repository
         $this->setModel($model);
     }
 
+    public function getAdminDatatable()
+    {
+        $query = $this->query()
+            ->with(['parent'])
+            ->select([
+                'categories.id',
+                'categories.state',
+                'categories.name',
+                'categories.title',
+                'categories.slug',
+                'categories.type',
+                'categories.parent_id',
+                'categories.hits',
+            ]);
+
+        return $query;
+    }
+
     public function createRootCategory($type)
     {
         return $this->forceCreate([

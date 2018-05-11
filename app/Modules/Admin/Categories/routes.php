@@ -8,4 +8,5 @@ Route::namespace('App\Modules\Admin\Categories\Controllers')
     ->group(function () {
         Route::resource('categories', 'CategoriesController');
 
+        Route::post('get', 'CategoriesTableController')->name('categories.get');
     });
