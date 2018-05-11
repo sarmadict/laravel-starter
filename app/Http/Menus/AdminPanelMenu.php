@@ -67,6 +67,20 @@ class AdminPanelMenu extends Menu
                 'active_class' => 'active open',
                 'sub_menu' => [],
             ],
+            [
+                'name' => 'admin.roles',
+                'title' => trans('admin.menu.roles.menu_title'),
+                'permission' => 'admin.roles.index',
+                'route' => route('admin.roles.index'),
+                'class' => '',
+                'icon' => 'fa fa-check',
+                'abstract' => false,
+                'active_patterns' => [
+                    'admin/accounts/roles*'
+                ],
+                'active_class' => 'active open',
+                'sub_menu' => [],
+            ],
 
             /**
             [

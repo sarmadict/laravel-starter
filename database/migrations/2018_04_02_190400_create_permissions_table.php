@@ -31,11 +31,13 @@ class CreatePermissionsTable extends Migration
 
             $table->foreign('created_by')
                 ->references('id')
-                ->on('users');
+                ->on('users')
+                ->onDelete('SET NULL');
 
             $table->foreign('updated_by')
                 ->references('id')
-                ->on('users');
+                ->on('users')
+                ->onDelete('SET NULL');
         });
 
         Schema::create(array_get($tables, 'permissible', 'permissible'), function (Blueprint $table) use ($tables) {

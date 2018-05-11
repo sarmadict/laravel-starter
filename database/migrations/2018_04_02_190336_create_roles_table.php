@@ -37,8 +37,8 @@ class CreateRolesTable extends Migration
         });
 
         Schema::create(array_get($tables, 'role_user', 'role_user'), function (Blueprint $table) use ($tables) {
-            $table->unsignedInteger('role_id')->index();
-            $table->unsignedInteger('user_id')->index();
+            $table->unsignedInteger('role_id');
+            $table->unsignedInteger('user_id');
 
             $table->foreign('role_id')
                 ->references('id')

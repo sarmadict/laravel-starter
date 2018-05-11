@@ -2,11 +2,13 @@
 
 namespace App\Providers;
 
+use App\Models\Roles\Role;
 use App\Models\Users\User;
 use App\Models\Categories\Category;
 use App\Models\Posts\Post;
 use App\Policies\Categories\CategoryPolicy;
 use App\Policies\Posts\PostPolicy;
+use App\Policies\Roles\RolePolicy;
 use App\Policies\Users\UserPolicy;
 use App\Services\Auth\FlexibleUserProvider;
 use Illuminate\Support\Facades\Auth;
@@ -25,6 +27,7 @@ class AuthServiceProvider extends ServiceProvider
         Category::class => CategoryPolicy::class,
         Post::class => PostPolicy::class,
         User::class => UserPolicy::class,
+        Role::class => RolePolicy::class,
     ];
 
 
