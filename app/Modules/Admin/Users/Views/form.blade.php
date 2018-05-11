@@ -46,6 +46,16 @@
                                 @lang('admin.users.elements.Tab General')
                             </a>
                         </li>
+                        <li>
+                            <a href="#tab-roles" data-toggle="tab">
+                                @lang('admin.users.elements.Tab Roles')
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#tab-permissions" data-toggle="tab">
+                                @lang('admin.users.elements.Tab Permissions')
+                            </a>
+                        </li>
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane fade active in" id="tab-general">
@@ -102,6 +112,36 @@
                                             </div>
                                         </div>
                                     @endif
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade in" id="tab-roles">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="panel panel-white" id="panel-roles">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title text-primary">@lang('admin.users.elements.panel_roles')</h4>
+                                        </div>
+                                        <div class="panel-body form-horizontal">
+                                            {!! form_row($form->roles) !!}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade in" id="tab-permissions">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="panel panel-white" id="panel-permissions">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title text-primary">@lang('admin.users.elements.panel_permissions')</h4>
+                                        </div>
+                                        <div class="panel-body form-horizontal">
+                                            {!! form_row($form->permissions) !!}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

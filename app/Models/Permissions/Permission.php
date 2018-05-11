@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Permission extends BaseModel
 {
-    use PermissionRelationships, PermissionScopes, PermissionModifiers;
+    use HasState, PermissionRelationships, PermissionScopes, PermissionModifiers;
 
     /**
      * The attributes that are mass assignable.

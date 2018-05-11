@@ -4,6 +4,8 @@ namespace App\Modules\Admin\Users\Forms;
 
 
 use App\Http\Forms\Admin\AdminBaseForm;
+use App\Models\Permissions\Permission;
+use App\Models\Roles\Role;
 use App\Models\Users\User;
 use App\Types\Accounts\Gender;
 
@@ -210,6 +212,38 @@ class UserForm extends AdminBaseForm
             'widget_suffix' => '</div>',
             'value' => $this->getApprovedByName(),
         ]);
+
+        $this->add('roles', 'choice', [
+            'label' => false,
+            'choice_options' => [
+                'label_attr' => [
+                    'class' => '',
+                ],
+                'wrapper' => [
+                    'class' => 'col-md-3 checkbox clip-check check-primary checkbox-inline',
+                ],
+            ],
+            'selected' => $this->getSelectedRoles(),
+            'choices' => $this->getRoles(),
+            'expanded' => true,
+            'multiple' => true,
+        ]);
+
+        $this->add('permissions', 'choice', [
+            'label' => false,
+            'choice_options' => [
+                'label_attr' => [
+                    'class' => '',
+                ],
+                'wrapper' => [
+                    'class' => 'col-md-3 checkbox clip-check check-primary checkbox-inline',
+                ],
+            ],
+            'selected' => $this->getSelectedPermissions(),
+            'choices' => $this->getPermissions(),
+            'expanded' => true,
+            'multiple' => true,
+        ]);
     }
 
     protected function getGenders()
@@ -236,5 +270,29 @@ class UserForm extends AdminBaseForm
         $model = $this->getModel();
 
         return ($model && $model->updater) ? $model->updater->display_name : '';
+    }
+
+    protected function getRoles()
+    {
+        return Role::query()->enabled()->pluck('title', 'id')->toArray();
+    }
+
+    protected function getSelectedRoles()
+    {
+        $model = $this->getModel();
+
+        return $model ? $model->roles()->pluck('id')->toArray() : [];
+    }
+
+    protected function getPermissions()
+    {
+        return Permission::query()->enabled()->pluck('title', 'id')->toArray();
+    }
+
+    protected function getSelectedPermissions()
+    {
+        $model = $this->getModel();
+
+        return $model ? $model->permissions()->pluck('id')->toArray() : [];
     }
 }

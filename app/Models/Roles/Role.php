@@ -3,11 +3,12 @@
 namespace App\Models\Roles;
 
 use App\Models\BaseModel;
+use App\Models\Traits\HasState;
 use App\Services\Acl\Traits\HasPermission;
 
 class Role extends BaseModel
 {
-    use HasPermission, RoleRelationships, RoleScopes, RoleModifiers;
+    use HasPermission, HasState, RoleRelationships, RoleScopes, RoleModifiers;
 
     /**
      * The attributes that are mass assignable.
