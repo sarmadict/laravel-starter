@@ -38,12 +38,7 @@ class PostsController extends AdminBaseController
     {
         $this->authorize('adminPostsIndex', Post::class);
 
-        $items = $this->posts->query()
-            ->with('category')
-            ->orderBy('id', 'desc')
-            ->paginate();
-
-        return view('AdminPosts::index', compact('items'));
+        return view('AdminPosts::index');
     }
 
     /**
