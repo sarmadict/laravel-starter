@@ -3,6 +3,8 @@
 namespace App\Modules\Admin\Roles\Controllers;
 
 
+use App\Events\Roles\RoleCreated;
+use App\Events\Roles\RoleUpdated;
 use App\Http\Controllers\Admin\AdminBaseController;
 use App\Models\Roles\Role;
 use App\Modules\Admin\Roles\Forms\RoleForm;
@@ -75,6 +77,8 @@ class RolesController extends AdminBaseController
 
             $item = $this->roles->createRole($data);
 
+            event(new RoleCreated($item));
+
         } catch (Exception $e) {
             Alert::error(trans('admin.roles.elements.Creating role failed'));
 
@@ -126,9 +130,11 @@ class RolesController extends AdminBaseController
 
             $item = $this->roles->updateRole($item, $data);
 
+            event(new RoleUpdated($item));
+
         } catch (Exception $e) {
             Alert::error(trans('admin.roles.elements.Updating role failed'));
-throw $e;
+
             return back()->withInput();
         }
 
