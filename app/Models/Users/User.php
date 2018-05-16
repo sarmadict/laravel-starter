@@ -56,4 +56,15 @@ class User extends Authenticatable
     {
         return !is_null($this->approved_at);
     }
+
+    /**
+     * Get a default image if nothing specified
+     *
+     * @return string
+     */
+    public function getDefaultImagePath()
+    {
+        // @todo: Decide between man and woman default image
+        return '#';
+    }
 }

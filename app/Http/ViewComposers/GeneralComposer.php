@@ -14,8 +14,8 @@ class GeneralComposer
      */
     public function compose(View $view)
     {
-        $authUser = auth()->user();
+        $auth = auth()->user();
 
-        $view->with('auth_user', $authUser);
+        $view->with('auth', $auth);
     }
 }

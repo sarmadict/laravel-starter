@@ -19,7 +19,7 @@ Route::group([
             ->name('register.register');
 
         Route::any('/logout', 'LoginController@logout')
-            ->name('login.logout');
+            ->name('logout');
 
         Route::get('password/forget', 'ForgotPasswordController@showLinkRequestForm')
             ->name('password.forget');

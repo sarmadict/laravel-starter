@@ -16,11 +16,11 @@ class AdminPanelComposer
      */
     public function compose(View $view)
     {
-        $user = Auth::user();
+        $auth = Auth::user();
 
         $menu = app(AdminPanelMenu::class);
 
-        $view->with('user', $user);
+        $view->with('auth', $auth);
         $view->with('sidebar_menu', $menu->get());
     }
 }

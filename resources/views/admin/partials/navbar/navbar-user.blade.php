@@ -1,7 +1,8 @@
 <!-- start: USER OPTIONS DROPDOWN -->
 <li class="dropdown current-user">
     <a href class="dropdown-toggle" data-toggle="dropdown">
-        <img src="assets/images/avatar-1.jpg" alt="Peter"> <span class="username">Peter <i class="ti-angle-down"></i></i></span>
+        <img src="{{ $auth->image_link }}" alt="{{ $auth->display_name }}">
+        <span class="username">{{ $auth->display_name }} <i class="ti-angle-down"></i></span>
     </a>
     <ul class="dropdown-menu dropdown-dark">
         <li>
@@ -25,8 +26,8 @@
             </a>
         </li>
         <li>
-            <a href="login_signin.html">
-                Log Out
+            <a href="{{ route('accounts.auth.logout') }}">
+                @lang('admin.default.elements.logout')
             </a>
         </li>
     </ul>

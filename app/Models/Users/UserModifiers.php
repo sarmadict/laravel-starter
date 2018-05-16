@@ -3,8 +3,6 @@
 namespace App\Models\Users;
 
 
-use App\Types\Blog\PostStatus;
-
 trait UserModifiers
 {
     public function getDisplayNameAttribute($value)
@@ -25,5 +23,10 @@ trait UserModifiers
     public function getJApprovedAtAttribute()
     {
         return $this->approved_at ?: trans('admin.users.elements.User not approved');
+    }
+
+    public function getImageLinkAttribute()
+    {
+        return $this->image_path ?: $this->getDefaultImagePath();
     }
 }
