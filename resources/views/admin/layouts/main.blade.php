@@ -49,9 +49,8 @@
 
 </div>
 
-
-
 @include('admin.partials.foot-assets')
+
 </body>
 
 </html>
