@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Accounts\Auth;
+namespace App\Modules\Accounts\Auth\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Accounts\AccountsBaseController;
 use App\Services\Alert\AlertMessage;
 use App\Services\Alert\Facade\Alert;
 use Illuminate\Auth\Events\PasswordReset;
@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 
-class ResetPasswordController extends Controller
+class ResetPasswordController extends AccountsBaseController
 {
     use RedirectsUsers;
 
@@ -46,7 +46,7 @@ class ResetPasswordController extends Controller
      */
     public function showResetForm(Request $request, $token = null)
     {
-        return view('accounts.auth.passwords.reset')->with(
+        return view('AccountsAuth::passwords.reset')->with(
             ['token' => $token, 'email' => $request->email]
         );
     }

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Requests\Accounts\Auth;
+namespace App\Modules\Accounts\Auth\Requests;
 
+use App\Http\Requests\Admin\AdminBaseRequest;
 use App\Rules\Jalali\JalaliBefore;
 use App\Rules\MobileNumber;
 use App\Types\Accounts\Gender;
@@ -11,7 +12,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Validation\Rule;
 
-class RegisterUserRequest extends FormRequest
+class RegisterUserRequest extends AdminBaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.

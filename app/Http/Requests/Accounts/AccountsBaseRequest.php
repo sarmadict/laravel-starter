@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Accounts\Auth;
+namespace App\Http\Requests\Accounts;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PasswordResetRequest extends FormRequest
+class AccountsBaseRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,10 +23,6 @@ class PasswordResetRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'token' => 'required',
-            'email' => 'required|email',
-            'password' => 'required|confirmed|min:6',
-        ];
+        return [];
     }
 }

@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Accounts\Auth;
+namespace App\Modules\Accounts\Auth\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Accounts\Auth\PasswordForgotRequest;
+use App\Http\Controllers\Accounts\AccountsBaseController;
+use App\Modules\Accounts\Auth\Requests\PasswordForgotRequest;
 use App\Services\Alert\AlertMessage;
 use App\Services\Alert\Facade\Alert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 
-class ForgotPasswordController extends Controller
+class ForgotPasswordController extends AccountsBaseController
 {
     /**
      * Create a new controller instance.
@@ -28,7 +28,7 @@ class ForgotPasswordController extends Controller
      */
     public function showLinkRequestForm()
     {
-        return view('accounts.auth.passwords.email');
+        return view('AccountsAuth::passwords.email');
     }
 
     /**

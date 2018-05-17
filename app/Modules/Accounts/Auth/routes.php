@@ -1,11 +1,11 @@
 <?php
 
-Route::group([
-    'namespace' => 'Accounts\Auth',
-    'prefix' => 'auth',
-    'domain' => domain('accounts'),
-    'as' => 'accounts.auth.'],
-    function () {
+Route::namespace('App\Modules\Accounts\Auth\Controllers')
+    ->middleware(['web'])
+    ->domain(domain('accounts'))
+    ->prefix('auth')
+    ->name('accounts.auth.')
+    ->group(function () {
         Route::get('/login', 'LoginController@showLoginForm')
             ->name('login.show');
 
@@ -32,6 +32,4 @@ Route::group([
 
         Route::post('password/reset', 'ResetPasswordController@reset')
             ->name('password.reset');
-
-    }
-);
+    });

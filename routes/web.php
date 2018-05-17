@@ -11,8 +11,6 @@
 |
 */
 
-require route_path('web/accounts/auth.php');
-
 Route::get('/test/1', function (\Illuminate\Http\Request $request) {
     dd($request->path());
 });

@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Accounts\Auth;
+namespace App\Modules\Accounts\Auth\Controllers;
 
-use App\Http\Requests\Accounts\Auth\RegisterUserRequest;
+use App\Http\Controllers\Accounts\AccountsBaseController;
 use App\Models\Users\User;
+use App\Modules\Accounts\Auth\Requests\RegisterUserRequest;
 use App\Repositories\Users\UserRepository;
 use Illuminate\Foundation\Auth\RedirectsUsers;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Controller;
 
-class RegisterController extends Controller
+class RegisterController extends AccountsBaseController
 {
     /*
     |--------------------------------------------------------------------------
@@ -58,7 +58,7 @@ class RegisterController extends Controller
      */
     public function showRegistrationForm()
     {
-        return view('accounts.auth.register');
+        return view('AccountsAuth::register');
     }
 
     /**

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Accounts\Auth;
+namespace App\Modules\Accounts\Auth\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\Accounts\AccountsBaseRequest;
 
-class PasswordForgotRequest extends FormRequest
+class LoginRequest extends AccountsBaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,8 @@ class PasswordForgotRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => ['required', 'email'],
+            'username' => ['required'],
+            'password' => ['required'],
         ];
     }
 }

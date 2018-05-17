@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Accounts\Auth;
+namespace App\Modules\Accounts\Auth\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Accounts\Auth\LoginRequest;
+use App\Http\Controllers\Accounts\AccountsBaseController;
+use App\Modules\Accounts\Auth\Requests\LoginRequest;
 use App\Services\Alert\AlertMessage;
 use App\Services\Alert\Facade\Alert;
 use Illuminate\Foundation\Auth\RedirectsUsers;
@@ -11,9 +11,8 @@ use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
 
-class LoginController extends Controller
+class LoginController extends AccountsBaseController
 {
     /*
     |--------------------------------------------------------------------------
@@ -66,7 +65,7 @@ class LoginController extends Controller
      */
     public function showLoginForm()
     {
-        return view('accounts.auth.login');
+        return view('AccountsAuth::login');
     }
 
     /**
