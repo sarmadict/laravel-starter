@@ -8,5 +8,5 @@ Route::namespace('App\Modules\Admin\Roles\Controllers')
     ->group(function () {
         Route::resource('roles', 'RolesController');
 
-        Route::post('get', 'RolesTableController')->name('roles.get');
+        Route::post('roles/get', 'RolesTableController')->name('roles.get');
     });
