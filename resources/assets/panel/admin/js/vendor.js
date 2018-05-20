@@ -25,3 +25,5 @@ require('eonasdan-bootstrap-datetimepicker');
 require('datatables.net');
 
 require('datatables.net-bs');
+
+require('../modules/tinymce/tinymce');
