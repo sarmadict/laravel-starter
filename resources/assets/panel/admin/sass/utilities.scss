@@ -32,3 +32,14 @@ table.table thead .sorting_desc {
 .dir-ltr {
     direction: ltr !important;
 }
+
+.post-form-title-control{
+    height:60px;
+    font-size:32px !important;
+}
+
+.post-form-title-control::PLACEHOLDER {
+    color: #858585;
+    font-size: 32px;
+}
+

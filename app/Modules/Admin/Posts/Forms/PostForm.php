@@ -18,51 +18,46 @@ class PostForm extends AdminBaseForm
         $this->add('title', 'text', [
             'label' => trans('admin.posts.fields.title'),
             'label_attr' => [
-                'class' => 'col-md-3 control-label',
+                'class' => 'control-label',
             ],
             'attr' => [
                 'placeholder' => trans('admin.posts.elements.title'),
+                'class' => "form-control input-lg post-form-title-control"
             ],
-            'widget_prefix' => '<div class="col-md-9">',
-            'widget_suffix' => '</div>',
         ]);
 
         $this->add('slug', 'text', [
             'label' => trans('admin.posts.fields.slug'),
             'label_attr' => [
-                'class' => 'col-md-3 control-label',
+                'class' => 'control-label',
             ],
             'attr' => [
                 'placeholder' => trans('admin.posts.elements.slug'),
             ],
-            'widget_prefix' => '<div class="col-md-9">',
-            'widget_suffix' => '</div>',
         ]);
 
         $this->add('content', 'textarea', [
             'label' => trans('admin.posts.fields.content'),
             'label_attr' => [
-                'class' => 'col-md-3 control-label',
+                'class' => 'control-label',
             ],
             'attr' => [
-                'class' => 'form-control editor',
+                'class' => 'form-control editor regular',
                 'placeholder' => trans('admin.posts.elements.content'),
             ],
-            'widget_prefix' => '<div class="col-md-9">',
-            'widget_suffix' => '</div>',
         ]);
 
         $this->add('excerpt', 'textarea', [
             'label' => trans('admin.posts.fields.excerpt'),
             'label_attr' => [
-                'class' => 'col-md-3 control-label',
+                'class' => 'control-label',
             ],
             'attr' => [
                 'class' => 'form-control area-animated',
                 'placeholder' => trans('admin.posts.elements.excerpt'),
             ],
-            'widget_prefix' => '<div class="col-md-9"><div class="note-editor">',
-            'widget_suffix' => '</div></div>',
+            'widget_prefix' => '<div class="note-editor">',
+            'widget_suffix' => '</div>',
         ]);
 
         $this->add('category_id', 'choice', [

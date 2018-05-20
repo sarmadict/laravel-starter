@@ -55,9 +55,8 @@
                                         <div class="panel-heading">
                                             <h4 class="panel-title text-primary">@lang('admin.posts.elements.panel_general')</h4>
                                         </div>
-                                        <div class="panel-body form-horizontal">
+                                        <div class="panel-body">
                                             {!! form_row($form->title) !!}
-                                            {!! form_row($form->slug) !!}
                                             {!! form_row($form->content) !!}
                                             {!! form_row($form->excerpt) !!}
                                         </div>
@@ -70,6 +69,7 @@
                                             <h4 class="panel-title text-primary">@lang('admin.posts.elements.panel_publish')</h4>
                                         </div>
                                         <div class="panel-body">
+                                            {!! form_row($form->slug) !!}
                                             {!! form_row($form->status) !!}
                                             {!! form_row($form->published_at) !!}
                                             {!! form_row($form->expired_at) !!}
