@@ -447,7 +447,7 @@ module.exports = function () {
 
         $('.select2.select2-tags').select2({
             dir: 'rtl',
-            tags:true,
+            tags: true,
             width: '100%',
             language: 'fa',
         });
@@ -462,12 +462,45 @@ module.exports = function () {
             toolbar1: 'formatselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify | ltr rtl | numlist bullist outdent indent  | removeformat',
             image_advtab: true,
             templates: [
-                { title: 'Test template 1', content: 'Test 1' },
-                { title: 'Test template 2', content: 'Test 2' }
+                {title: 'Test template 1', content: 'Test 1'},
+                {title: 'Test template 2', content: 'Test 2'}
             ],
             content_css: [
                 //
             ]
+        });
+    };
+
+    var configureDatatableDefaults = function () {
+        $.extend($.fn.dataTable.defaults, {
+            scrollX: true,
+            processing: true,
+            serverSide: true,
+            order: [[0, "desc"]],
+            searchDelay: 500,
+            language: {
+                "sEmptyTable": "هیچ داده ای در جدول وجود ندارد",
+                "sInfo": "نمایش _START_ تا _END_ از _TOTAL_ رکورد",
+                "sInfoEmpty": "نمایش 0 تا 0 از 0 رکورد",
+                "sInfoFiltered": "(فیلتر شده از _MAX_ رکورد)",
+                "sInfoPostFix": "",
+                "sInfoThousands": ",",
+                "sLengthMenu": "نمایش _MENU_ رکورد",
+                "sLoadingRecords": "در حال بارگزاری...",
+                "sProcessing": "در حال پردازش...",
+                "sSearch": "جستجو:",
+                "sZeroRecords": "رکوردی با این مشخصات پیدا نشد",
+                "oPaginate": {
+                    "sFirst": "ابتدا",
+                    "sLast": "انتها",
+                    "sNext": "بعدی",
+                    "sPrevious": "قبلی"
+                },
+                "oAria": {
+                    "sSortAscending": ": فعال سازی نمایش به صورت صعودی",
+                    "sSortDescending": ": فعال سازی نمایش به صورت نزولی"
+                }
+            }
         });
     };
 
@@ -523,6 +556,7 @@ module.exports = function () {
             goTopHandler();
             select2Handler();
             tinymceHandler();
+            configureDatatableDefaults();
         }
     };
 }();

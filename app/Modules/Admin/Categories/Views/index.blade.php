@@ -89,9 +89,6 @@
         var page = function () {
             function initDatatable() {
                 return $("#items-table").DataTable({
-                    scrollX: true,
-                    processing: true,
-                    serverSide: true,
                     ajax: {
                         url: '{{ route("admin.categories.get") }}',
                         type: 'post'
@@ -107,8 +104,6 @@
                         {data: 'hits'},
                         {data: 'actions', searchable: false, sortable: false},
                     ],
-                    order: [[0, "desc"]],
-                    searchDelay: 500,
                 });
             }
 

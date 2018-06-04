@@ -94,9 +94,6 @@
         var page = function () {
             function initDatatable() {
                 return $("#items-table").DataTable({
-                    scrollX: true,
-                    processing: true,
-                    serverSide: true,
                     ajax: {
                         url: '{{ route("admin.users.get") }}',
                         type: 'post'
@@ -114,8 +111,6 @@
                         {data: 'j_approved_at'},
                         {data: 'actions', searchable: false, sortable: false},
                     ],
-                    order: [[0, "desc"]],
-                    searchDelay: 500,
                 });
             }
 
