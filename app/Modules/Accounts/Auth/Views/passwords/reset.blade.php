@@ -1,8 +1,8 @@
-@extends('accounts.auth.layouts.main')
+@extends('auth.layouts.main')
 
 {{--  Start : Page Contetnts --}}
 @section('page-contents')
-    @include('accounts.auth.partials.alerts')
+    @include('auth.partials.alerts')
 
     <!-- start: FORGOT -->
     <div class="row{{ $errors->isEmpty() ? ' animated fadeInRightBig' : '' }}" id="main-box">

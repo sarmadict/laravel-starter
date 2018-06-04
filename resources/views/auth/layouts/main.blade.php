@@ -15,13 +15,13 @@
         <meta content="Application Login" name="description"/>
     @show
 
-    @include('accounts.auth.partials.head-assets')
+    @include('auth.partials.head-assets')
 </head>
 
 <body class="@yield('body-class')">
 @yield('page-contents')
 
-@include('accounts.auth.partials.foot-assets')
+@include('auth.partials.foot-assets')
 </body>
 
 </html>

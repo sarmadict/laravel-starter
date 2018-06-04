@@ -1,8 +1,8 @@
-@extends('accounts.auth.layouts.main')
+@extends('auth.layouts.main')
 
 {{--  Start : Page Contetnts --}}
 @section('page-contents')
-    @include('accounts.auth.partials.alerts')
+    @include('auth.partials.alerts')
 
     <div class="row {{ $errors->isEmpty() ? ' animated fadeInRightBig' : '' }}">
         <div class="main-login col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
