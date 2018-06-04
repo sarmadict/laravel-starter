@@ -12,6 +12,8 @@ class PermissionsTableSeeder extends Seeder
     public function run()
     {
         $permissions = [
+            'admin.settings_general.edit',
+
             'admin.users.index',
             'admin.users.create',
             'admin.users.show',

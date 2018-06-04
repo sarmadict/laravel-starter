@@ -43,7 +43,7 @@
                             <ul class="sub-menu">
                                 @foreach($menuItem->getSubMenu() as $subMenuItem)
                                     <li class="{{ $subMenuItem->showActiveClass() }}">
-                                        <a href="{{ $subMenuItem->route() }}">
+                                        <a href="{{ $subMenuItem->route }}">
                                             <span class="title"> {{ $subMenuItem->title }} </span>
                                         </a>
                                     </li>

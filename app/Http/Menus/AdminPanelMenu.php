@@ -26,6 +26,34 @@ class AdminPanelMenu extends Menu
                 'sub_menu' => [],
             ],
             [
+                'name' => 'admin.settings',
+                'title' => trans('admin.menu.settings.menu_title'),
+                'permission' => false,
+                'route' => 'javascript::void(0)',
+                'class' => '',
+                'icon' => 'fa fa-cog',
+                'abstract' => true,
+                'active_patterns' => [
+                    'admin/general/settings*',
+                ],
+                'active_class' => 'active open',
+                'sub_menu' => [
+                    [
+                        'name' => 'admin.settings_general',
+                        'title' => trans('admin.menu.settings_general.menu_title'),
+                        'permission' => false,
+                        'route' => route('admin.settings.edit', 'general'),
+                        'class' => '',
+                        'icon' => 'fa fa-cog',
+                        'abstract' => true,
+                        'active_patterns' => [
+                            'admin/general/settings/general*',
+                        ],
+                        'active_class' => 'active open',
+                    ],
+                ],
+            ],
+            [
                 'name' => 'admin.categories',
                 'title' => trans('admin.menu.categories.menu_title'),
                 'permission' => 'admin.categories.index',

@@ -178,6 +178,7 @@ return [
         App\Modules\Admin\Posts\ServiceProvider::class,
         App\Modules\Admin\Users\ServiceProvider::class,
         App\Modules\Admin\Roles\ServiceProvider::class,
+        App\Modules\Admin\Settings\ServiceProvider::class,
 
     ],
 
