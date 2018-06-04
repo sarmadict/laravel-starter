@@ -106,19 +106,17 @@
     animation: heart-pulse 1s linear infinite;
 }
 
-@keyframes
-
-"heart-pulse" {
+@keyframes heart-pulse {
     0% {
         color: rgba(165, 25, 25, 1);
     }
 
     90% {
-        color: rgba(255,0,0,0.0);
+        color: rgba(255, 0, 0, 0.0);
     }
 
     100% {
-        color: rgba(255,0,0,1.0);
+        color: rgba(255, 0, 0, 1.0);
     }
 }
 
@@ -128,42 +126,38 @@
     }
 
     90% {
-        color: rgba(255,0,0,0.0);
+        color: rgba(255, 0, 0, 0.0);
     }
 
     100% {
-        color: rgba(255,0,0,1.0);
+        color: rgba(255, 0, 0, 1.0);
     }
 }
 
-@-webkit-keyframes
-
-"heart-pulse" {
+@-webkit-keyframes heart-pulse {
     0% {
         color: rgba(165, 25, 25, 1);
     }
 
     90% {
-        color: rgba(255,0,0,0.0);
+        color: rgba(255, 0, 0, 0.0);
     }
 
     100% {
-        color: rgba(255,0,0,1.0);
+        color: rgba(255, 0, 0, 1.0);
     }
 }
 
-@-ms-keyframes
-
-"heart-pulse" {
+@-ms-keyframes heart-pulse {
     0% {
         color: rgba(165, 25, 25, 1);
     }
 
     90% {
-        color: rgba(255,0,0,0.0);
+        color: rgba(255, 0, 0, 0.0);
     }
 
     100% {
-        color: rgba(255,0,0,1.0);
+        color: rgba(255, 0, 0, 1.0);
     }
 }
