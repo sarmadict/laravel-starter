@@ -30,12 +30,22 @@ trait PostModifiers
 
     public function getJPublishedAtAttribute()
     {
-        return $this->published_at;
+        return $this->toJalali($this->published_at);
     }
 
     public function getJExpiredAtAttribute()
     {
-        return $this->expired_at;
+        return $this->toJalali($this->expired_at);
+    }
+
+    public function setJPublishedAtAttribute($value)
+    {
+        $this->published_at = $this->fromJalali($value);;
+    }
+
+    public function setJExpiredAtAttribute($value)
+    {
+        $this->expired_at = $this->fromJalali($value);;
     }
 
     public function getCategoryTitleAttribute()

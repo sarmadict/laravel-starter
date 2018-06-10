@@ -3,12 +3,14 @@
 namespace App\Models\Permissions;
 
 use App\Models\BaseModel;
+use App\Models\Traits\HasJalaliTimestamps;
 use App\Models\Traits\HasState;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Permission extends BaseModel
 {
-    use HasState, PermissionRelationships, PermissionScopes, PermissionModifiers;
+    use PermissionRelationships, PermissionScopes, PermissionModifiers,
+        HasState, HasJalaliTimestamps;
 
     /**
      * The attributes that are mass assignable.

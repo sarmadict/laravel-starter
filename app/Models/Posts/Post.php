@@ -3,12 +3,14 @@
 namespace App\Models\Posts;
 
 use App\Models\BaseModel;
+use App\Models\Traits\HasJalaliTimestamps;
 use App\Models\Traits\HasState;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends BaseModel
 {
-    use SoftDeletes, HasState, PostRelationships, PostScopes, PostModifiers;
+    use SoftDeletes, PostRelationships, PostScopes, PostModifiers,
+        HasState, HasJalaliTimestamps;
 
     /**
      * The attributes that are mass assignable.

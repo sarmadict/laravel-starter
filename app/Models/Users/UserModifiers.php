@@ -10,19 +10,14 @@ trait UserModifiers
         return $value ?: $this->first_name . " " . $this->last_name;
     }
 
-    public function getJCreatedAtAttribute()
-    {
-        return $this->created_at;
-    }
-
-    public function getJUpdatedAtAttribute()
-    {
-        return $this->updated_at;
-    }
-
     public function getJApprovedAtAttribute()
     {
-        return $this->approved_at ?: trans('admin.users.elements.User not approved');
+        return $this->toJalali($this->approved_at);
+    }
+
+    public function aetJApprovedAtAttribute($value)
+    {
+        $this->approved_at = $this->fromJalali($value);;
     }
 
     public function getImageLinkAttribute()
