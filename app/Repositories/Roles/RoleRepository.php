@@ -18,15 +18,7 @@ class RoleRepository extends Repository
 
     public function getAdminDatatable()
     {
-        $query = $this->query()
-            ->select([
-                'roles.id',
-                'roles.state',
-                'roles.name',
-                'roles.title',
-                'roles.description',
-                'roles.created_at',
-            ]);
+        $query = $this->query();
 
         return $query;
     }

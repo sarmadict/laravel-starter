@@ -18,22 +18,7 @@ class PostRepository extends Repository
 
     public function getAdminDatatable()
     {
-        $query = $this->query()
-            ->with(['category', 'user'])
-            ->select([
-                'posts.id',
-                'posts.state',
-                'posts.title',
-                'posts.excerpt',
-                'posts.slug',
-                'posts.status',
-                'posts.user_id',
-                'posts.user_name',
-                'posts.category_id',
-                'posts.published_at',
-                'posts.expired_at',
-                'posts.hits',
-            ]);
+        $query = $this->query()->with(['category', 'user']);
 
         return $query;
     }

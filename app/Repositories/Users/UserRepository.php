@@ -18,20 +18,7 @@ class UserRepository extends Repository
 
     public function getAdminDatatable()
     {
-        $query = $this->query()
-            //->with(['creator', 'updater', 'approver'])
-            ->select([
-                'users.id',
-                'users.state',
-                'users.first_name',
-                'users.last_name',
-                'users.email',
-                'users.username',
-                'users.mobile_number',
-                'users.position',
-                'users.created_at',
-                'users.approved_at',
-            ]);
+        $query = $this->query();
 
         return $query;
     }
