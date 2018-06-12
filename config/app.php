@@ -167,6 +167,7 @@ return [
         App\Services\Alert\AlertServiceProvider::class,
         App\Providers\ComposerServiceProvider::class,
         App\Services\Acl\AclServiceProvider::class,
+        App\Services\Settings\SettingsServiceProvider::class,
 
         /*
          * Module Service Providers...
