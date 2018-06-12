@@ -2,7 +2,7 @@
 
 namespace App\Models\Posts;
 
-use App\Types\PostStatus;
+use App\Types\Blog\PostStatus;
 
 trait PostScopes
 {
