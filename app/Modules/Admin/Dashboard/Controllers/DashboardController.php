@@ -9,6 +9,8 @@ class DashboardController extends AdminBaseController
 {
     public function index()
     {
+        $this->authorize('admin.dashboard.index');
+
         return view('AdminDashboard::index');
     }
 }

@@ -12,6 +12,8 @@ class PermissionsTableSeeder extends Seeder
     public function run()
     {
         $permissions = [
+            'admin.dashboard.index',
+
             'admin.settings_general.edit',
 
             'admin.users.index',
@@ -54,5 +56,7 @@ class PermissionsTableSeeder extends Seeder
 
             $user->permissions()->syncWithoutDetaching([$permission->id]);
         }
+
+        $user->clearPermissionsCache();
     }
 }
