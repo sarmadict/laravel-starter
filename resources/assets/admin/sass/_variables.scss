@@ -102,3 +102,9 @@ $screen-lg-min: 1200px !default;
 $screen-xs-max: ($screen-sm-min - 1) !default;
 $screen-sm-max: ($screen-md-min - 1) !default;
 $screen-md-max: ($screen-lg-min - 1) !default;
+
+// Fontawesome fonts path
+$fa-font-path: "~font-awesome/fonts" !default;
+
+// Bootstrap Glyphicons fonts path
+$icon-font-path: "~bootstrap/fonts/" !default;
