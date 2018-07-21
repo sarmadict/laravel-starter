@@ -4,6 +4,7 @@ namespace App\Models\Categories;
 
 
 use App\Models\NestedSetModel;
+use App\Models\Traits\HasCreatorAndUpdater;
 use App\Models\Traits\HasJalaliTimestamps;
 use App\Models\Traits\HasState;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -11,7 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Category extends NestedSetModel
 {
     use SoftDeletes, CategoryRelationships, CategoryScopes, CategoryModifiers,
-        HasState, HasJalaliTimestamps;
+        HasState, HasJalaliTimestamps, HasCreatorAndUpdater;
 
     /**
      * The attributes that are mass assignable.

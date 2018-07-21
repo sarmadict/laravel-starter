@@ -3,6 +3,7 @@
 namespace App\Models\Roles;
 
 use App\Models\BaseModel;
+use App\Models\Traits\HasCreatorAndUpdater;
 use App\Models\Traits\HasJalaliTimestamps;
 use App\Models\Traits\HasState;
 use App\Services\Acl\Traits\HasPermission;
@@ -10,7 +11,7 @@ use App\Services\Acl\Traits\HasPermission;
 class Role extends BaseModel
 {
     use HasPermission, RoleRelationships, RoleScopes, RoleModifiers,
-        HasState, HasJalaliTimestamps;
+        HasState, HasJalaliTimestamps, HasCreatorAndUpdater;
 
     /**
      * The attributes that are mass assignable.
