@@ -77,7 +77,8 @@ class PostForm extends AdminBaseForm
                 'class' => 'control-label',
             ],
             'attr' => [
-                'class' => 'form-control col-md-12 select2 select2-regular',
+                'class' => 'form-control col-md-12 select2 select2-ajax',
+                'data-url' => route('admin.core.search-users')
             ],
             'choices' => $this->getUserIds()
         ]);
@@ -199,7 +200,11 @@ class PostForm extends AdminBaseForm
 
     protected function getUserIds()
     {
-        return User::query()->get()->pluck('display_name', 'id')->toArray();
+        $model = $this->getModel();
+
+        return ($model && $model->user)
+            ? [[$model->user->id => $model->user->display_name]]
+            : [];
     }
 
     protected function getStatuses()

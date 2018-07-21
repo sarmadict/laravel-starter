@@ -125,4 +125,13 @@ class UserRepository extends Repository
             str_pad($day, 2, '0', STR_PAD_LEFT),
         ]);
     }
+
+    public function simpleSearch($term)
+    {
+        return $this->getModel()->newQuery()
+            ->where("first_name", "like", $term)
+            ->orWhere("last_name", "like", $term)
+            ->orWhere("mobile_number", "like", $term)
+            ->orWhere("email", "like", $term);
+    }
 }

@@ -439,18 +439,39 @@ module.exports = function () {
     };
 
     var select2Handler = function () {
-        $('.select2.select2-regular').select2({
-            dir: 'rtl',
-            width: '100%',
-            language: 'fa',
-        });
+        $.fn.select2.defaults.set("dir", "rtl");
+        $.fn.select2.defaults.set("width", "100%");
+        $.fn.select2.defaults.set("language", "fa");
+
+        $('.select2.select2-regular').select2();
 
         $('.select2.select2-tags').select2({
-            dir: 'rtl',
             tags: true,
-            width: '100%',
-            language: 'fa',
         });
+
+        $('.select2.select2-ajax').each(function (index, item) {
+
+            let hasTags = Boolean($(this).attr('data-tags'));
+            let url = $(this).attr("data-url");
+
+            $(this).select2({
+                tags: hasTags,
+                delay: 500,
+                minimumInputLength: 1,
+                ajax: {
+                    url: url,
+                    t: console.log($(this), $(this).attr("data-url")),
+                    processResults: function (data) {
+                        return {
+                            results: data.data,
+                            pagination: {
+                                more: data.current_page < data.last_page,
+                            }
+                        };
+                    }
+                }
+            });
+        })
     };
 
     var tinymceHandler = function () {
