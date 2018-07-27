@@ -13,9 +13,9 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        $users = config('tables.users');
+        $tables = config('tables');
 
-        Schema::create($users, function (Blueprint $table) {
+        Schema::create($tables['users'], function (Blueprint $table) use ($tables) {
             $table->increments('id');
             $table->string('first_name');
             $table->string('last_name');
@@ -40,22 +40,22 @@ class CreateUsersTable extends Migration
 
             $table->foreign('approved_by')
                 ->references('id')
-                ->on('users')
+                ->on($tables['users'])
                 ->onDelete('SET NULL');
 
             $table->foreign('created_by')
                 ->references('id')
-                ->on('users')
+                ->on($tables['users'])
                 ->onDelete('SET NULL');
 
             $table->foreign('updated_by')
                 ->references('id')
-                ->on('users')
+                ->on($tables['users'])
                 ->onDelete('SET NULL');
 
             $table->foreign('deleted_by')
                 ->references('id')
-                ->on('users')
+                ->on($tables['users'])
                 ->onDelete('SET NULL');
         });
     }
@@ -67,8 +67,10 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        $users = config('tables.users');
+        $tables = config('tables');
 
-        Schema::dropIfExists($users);
+        Schema::disableForeignKeyConstraints();
+        Schema::dropIfExists($tables['users']);
+        Schema::enableForeignKeyConstraints();
     }
 }

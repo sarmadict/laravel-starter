@@ -42,7 +42,9 @@ class PermissionsTableSeeder extends Seeder
 
         ];
 
-        $user = \App\Models\Users\User::query()->find(1);
+        $system = \App\Models\Users\User::query()->find(1);
+        $superadmin = \App\Models\Users\User::query()->find(2);
+
 
         foreach ($permissions as $permissionName) {
             $permission = \App\Models\Permissions\Permission::query()->firstOrCreate(
@@ -54,9 +56,11 @@ class PermissionsTableSeeder extends Seeder
                 ]
             );
 
-            $user->permissions()->syncWithoutDetaching([$permission->id]);
+            $system->permissions()->syncWithoutDetaching([$permission->id]);
+            $superadmin->permissions()->syncWithoutDetaching([$permission->id]);
         }
 
-        $user->clearPermissionsCache();
+        $system->clearPermissionsCache();
+        $superadmin->clearPermissionsCache();
     }
 }
