@@ -21,9 +21,7 @@ mix.js('resources/assets/auth/js/app.js', 'public/assets/auth/js')
     })
     .version();
 
-mix.js('resources/assets/admin/js/vendor.js', 'public/assets/admin/js')
-    .js('resources/assets/admin/js/app.js', 'public/assets/admin/js')
-    .sass('resources/assets/admin/sass/vendor.scss', 'public/assets/admin/css')
+mix.js('resources/assets/admin/js/app.js', 'public/assets/admin/js')
     .sass('resources/assets/admin/sass/app.scss', 'public/assets/admin/css')
     .sass('resources/assets/admin/sass/themes/theme-2.scss', 'public/assets/admin/css/themes')
     .options({
