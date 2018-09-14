@@ -91,7 +91,7 @@ class CategoriesController extends AdminBaseController
             return back();
         }
 
-        Alert::success(trans('admin.categories.elements.Category acreated successfully'));
+        Alert::success(trans('admin.categories.elements.Category created successfully'));
 
         return redirect()->route('admin.categories.edit', $item);
     }
