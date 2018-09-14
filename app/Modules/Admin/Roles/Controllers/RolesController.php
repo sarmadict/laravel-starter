@@ -12,7 +12,6 @@ use App\Modules\Admin\Roles\Requests\StoreRoleRequest;
 use App\Modules\Admin\Roles\Requests\UpdateRoleRequest;
 use App\Repositories\Roles\RoleRepository;
 use App\Services\Alert\Facade\Alert;
-use Exception;
 use Illuminate\Http\Request;
 use Kris\LaravelFormBuilder\Facades\FormBuilder;
 
@@ -72,18 +71,11 @@ class RolesController extends AdminBaseController
      */
     public function store(StoreRoleRequest $request)
     {
-        try {
-            $data = $request->all();
+        $data = $request->all();
 
-            $item = $this->roles->createRole($data);
+        $item = $this->roles->createRole($data);
 
-            event(new RoleCreated($item));
-
-        } catch (Exception $e) {
-            Alert::error(trans('admin.roles.elements.Creating role failed'));
-
-            return back()->withInput();
-        }
+        event(new RoleCreated($item));
 
         Alert::success(trans('admin.roles.elements.Role created successfully'));
 
@@ -123,20 +115,13 @@ class RolesController extends AdminBaseController
      */
     public function update(UpdateRoleRequest $request, $id)
     {
-        try {
-            $item = $this->roles->findOrFail($id);
+        $item = $this->roles->findOrFail($id);
 
-            $data = $request->all();
+        $data = $request->all();
 
-            $item = $this->roles->updateRole($item, $data);
+        $item = $this->roles->updateRole($item, $data);
 
-            event(new RoleUpdated($item));
-
-        } catch (Exception $e) {
-            Alert::error(trans('admin.roles.elements.Updating role failed'));
-
-            return back()->withInput();
-        }
+        event(new RoleUpdated($item));
 
         Alert::success(trans('admin.roles.elements.Role updated successfully'));
 

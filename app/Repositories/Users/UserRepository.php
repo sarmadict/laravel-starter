@@ -5,9 +5,8 @@ namespace App\Repositories\Users;
 use App\Models\Users\User;
 use App\Repositories\Repository;
 use App\Types\State;
-use DB;
-use Exception;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UserRepository extends Repository
 {
@@ -38,77 +37,64 @@ class UserRepository extends Repository
 
     public function createUser($data)
     {
-        try {
-            $auth = Auth::user();
+        $auth = Auth::user();
 
-            DB::beginTransaction();
+        DB::beginTransaction();
 
-            $item =  $this->forceCreate([
-                'first_name' => $data['first_name'],
-                'last_name' => $data['last_name'],
-                'display_name' => array_get($data, 'display_name', null) ?? $data['first_name'] . " " . $data['last_name'],
-                'email' => $data['email'],
-                'username' => $data['username'],
-                'mobile_number' => $this->normalizeMobileNumber($data['mobile_number']),
-                'gender' => array_get($data, 'gender', null),
-                'position' => $data['position'],
-                'birthday' => array_get($data, 'birthday'),
-                'image_path' => $data['image_path'],
-                'state' => array_has($data, 'state') ? State::ENABLED : State::DISABLED,
-                'created_by' => $auth->id,
-                'updated_by' => $auth->id,
-            ]);
+        $item = $this->forceCreate([
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'display_name' => array_get($data, 'display_name', null) ?? $data['first_name'] . " " . $data['last_name'],
+            'email' => $data['email'],
+            'username' => $data['username'],
+            'mobile_number' => $this->normalizeMobileNumber($data['mobile_number']),
+            'gender' => array_get($data, 'gender', null),
+            'position' => $data['position'],
+            'birthday' => array_get($data, 'birthday'),
+            'image_path' => $data['image_path'],
+            'state' => array_has($data, 'state') ? State::ENABLED : State::DISABLED,
+            'created_by' => $auth->id,
+            'updated_by' => $auth->id,
+        ]);
 
-            $item->roles()->sync(array_get($data, 'roles', []));
+        $item->roles()->sync(array_get($data, 'roles', []));
 
-            $item->permissions()->sync(array_get($data, 'permissions', []));
+        $item->permissions()->sync(array_get($data, 'permissions', []));
 
-            DB::commit();
+        DB::commit();
 
-            return $item;
-
-        } catch (Exception $e) {
-            \DB::rollBack();
-
-            throw $e;
-        }
+        return $item;
     }
 
     public function updateUser($item, $data)
     {
-        try {
-            $auth = Auth::user();
 
-            DB::beginTransaction();
+        $auth = Auth::user();
 
-            $item = $this->forceUpdate($item, [
-                'first_name' => $data['first_name'],
-                'last_name' => $data['last_name'],
-                'display_name' => array_get($data, 'display_name', null) ?? $data['first_name'] . " " . $data['last_name'],
-                'email' => $data['email'],
-                'username' => $data['username'],
-                'mobile_number' => $this->normalizeMobileNumber($data['mobile_number']),
-                'gender' => array_get($data, 'gender', null),
-                'position' => $data['position'],
-                'birthday' => array_get($data, 'birthday', null),
-                'image_path' => $data['image_path'],
-                'state' => array_has($data, 'state') ? State::ENABLED : State::DISABLED,
-                'updated_by' => $auth->id,
-            ]);
+        DB::beginTransaction();
 
-            $item->roles()->sync(array_get($data, 'roles', []));
+        $item = $this->forceUpdate($item, [
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'display_name' => array_get($data, 'display_name', null) ?? $data['first_name'] . " " . $data['last_name'],
+            'email' => $data['email'],
+            'username' => $data['username'],
+            'mobile_number' => $this->normalizeMobileNumber($data['mobile_number']),
+            'gender' => array_get($data, 'gender', null),
+            'position' => $data['position'],
+            'birthday' => array_get($data, 'birthday', null),
+            'image_path' => $data['image_path'],
+            'state' => array_has($data, 'state') ? State::ENABLED : State::DISABLED,
+            'updated_by' => $auth->id,
+        ]);
 
-            $item->permissions()->sync(array_get($data, 'permissions', []));
+        $item->roles()->sync(array_get($data, 'roles', []));
 
-            DB::commit();
+        $item->permissions()->sync(array_get($data, 'permissions', []));
 
-            return $item;
+        DB::commit();
 
-        } catch (Exception $e) {
-            \DB::rollBack();
-
-            throw $e;
-        }
+        return $item;
     }
 
     public function normalizeMobileNumber($mobile)

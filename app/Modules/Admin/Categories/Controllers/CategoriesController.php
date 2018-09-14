@@ -11,8 +11,8 @@ use App\Modules\Admin\Categories\Requests\UpdateCategoryRequest;
 use App\Repositories\Categories\CategoryRepository;
 use App\Services\Alert\Facade\Alert;
 use App\Types\General\Category as CategoryType;
-use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Kris\LaravelFormBuilder\Facades\FormBuilder;
 
 class CategoriesController extends AdminBaseController
@@ -55,7 +55,7 @@ class CategoriesController extends AdminBaseController
         $this->validate($request, [
             'type' => [
                 'required',
-                'in:' . implode(',', CategoryType::values())
+                Rule::in(CategoryType::values()),
             ],
         ]);
 
@@ -80,16 +80,9 @@ class CategoriesController extends AdminBaseController
      */
     public function store(StoreCategoryRequest $request)
     {
-        try {
-            $data = $request->all();
+        $data = $request->all();
 
-            $item = $this->categories->createCategory($data, $request->input('type'));
-
-        } catch (Exception $e) {
-            Alert::error(trans('admin.categories.elements.Creating category failed'));
-
-            return back();
-        }
+        $item = $this->categories->createCategory($data, $request->input('type'));
 
         Alert::success(trans('admin.categories.elements.Category created successfully'));
 
@@ -131,18 +124,11 @@ class CategoriesController extends AdminBaseController
      */
     public function update(UpdateCategoryRequest $request, $id)
     {
-        try {
-            $item = $this->categories->findOrFail($id);
+        $item = $this->categories->findOrFail($id);
 
-            $data = $request->all();
+        $data = $request->all();
 
-            $item = $this->categories->updateCategory($item, $data);
-
-        } catch (Exception $e) {
-            Alert::error(trans('admin.categories.elements.Updating category failed'));
-
-            return back();
-        }
+        $item = $this->categories->updateCategory($item, $data);
 
         Alert::success(trans('admin.categories.elements.Category updated successfully'));
 

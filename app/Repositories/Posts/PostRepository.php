@@ -8,6 +8,7 @@ use App\Models\Posts\Post;
 use App\Repositories\Repository;
 use App\Types\State;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PostRepository extends Repository
 {

@@ -5,9 +5,9 @@ namespace App\Repositories\Roles;
 use App\Models\Roles\Role;
 use App\Repositories\Repository;
 use App\Types\State;
-use DB;
 use Exception;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class RoleRepository extends Repository
 {
@@ -25,58 +25,44 @@ class RoleRepository extends Repository
 
     public function createRole($data)
     {
-        try {
-            $auth = Auth::user();
+        $auth = Auth::user();
 
-            DB::beginTransaction();
+        DB::beginTransaction();
 
-            $item =  $this->forceCreate([
-                'name' => $data['name'],
-                'title' => $data['title'],
-                'description' => array_get($data, 'description', null),
-                'state' => array_has($data, 'state') ? State::ENABLED : State::DISABLED,
-                'created_by' => $auth->id,
-                'updated_by' => $auth->id,
-            ]);
+        $item = $this->forceCreate([
+            'name' => $data['name'],
+            'title' => $data['title'],
+            'description' => array_get($data, 'description', null),
+            'state' => array_has($data, 'state') ? State::ENABLED : State::DISABLED,
+            'created_by' => $auth->id,
+            'updated_by' => $auth->id,
+        ]);
 
-            $item->permissions()->sync(array_get($data, 'permissions', []));
+        $item->permissions()->sync(array_get($data, 'permissions', []));
 
-            DB::commit();
+        DB::commit();
 
-            return $item;
-
-        } catch (Exception $e) {
-            \DB::rollBack();
-
-            throw $e;
-        }
+        return $item;
     }
 
     public function updateRole($item, $data)
     {
-        try {
-            $auth = Auth::user();
+        $auth = Auth::user();
 
-            DB::beginTransaction();
+        DB::beginTransaction();
 
-            $item = $this->forceUpdate($item, [
-                'name' => $data['name'],
-                'title' => $data['title'],
-                'description' => array_get($data, 'description', null),
-                'state' => array_has($data, 'state') ? State::ENABLED : State::DISABLED,
-                'updated_by' => $auth->id,
-            ]);
+        $item = $this->forceUpdate($item, [
+            'name' => $data['name'],
+            'title' => $data['title'],
+            'description' => array_get($data, 'description', null),
+            'state' => array_has($data, 'state') ? State::ENABLED : State::DISABLED,
+            'updated_by' => $auth->id,
+        ]);
 
-            $item->permissions()->sync(array_get($data, 'permissions', []));
+        $item->permissions()->sync(array_get($data, 'permissions', []));
 
-            DB::commit();
+        DB::commit();
 
-            return $item;
-
-        } catch (Exception $e) {
-            \DB::rollBack();
-
-            throw $e;
-        }
+        return $item;
     }
 }

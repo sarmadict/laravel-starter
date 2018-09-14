@@ -10,7 +10,6 @@ use App\Modules\Admin\Posts\Requests\StorePostRequest;
 use App\Modules\Admin\Posts\Requests\UpdatePostRequest;
 use App\Repositories\Posts\PostRepository;
 use App\Services\Alert\Facade\Alert;
-use Exception;
 use Illuminate\Http\Request;
 use Kris\LaravelFormBuilder\Facades\FormBuilder;
 
@@ -70,16 +69,9 @@ class PostsController extends AdminBaseController
      */
     public function store(StorePostRequest $request)
     {
-        try {
-            $data = $request->all();
+        $data = $request->all();
 
-            $item = $this->posts->createPost($data);
-
-        } catch (Exception $e) {
-            Alert::error(trans('admin.posts.elements.Creating post failed'));
-
-            return back()->withInput();
-        }
+        $item = $this->posts->createPost($data);
 
         Alert::success(trans('admin.posts.elements.Post created successfully'));
 
@@ -119,18 +111,11 @@ class PostsController extends AdminBaseController
      */
     public function update(UpdatePostRequest $request, $id)
     {
-        try {
-            $item = $this->posts->findOrFail($id);
+        $item = $this->posts->findOrFail($id);
 
-            $data = $request->all();
+        $data = $request->all();
 
-            $item = $this->posts->updatePost($item, $data);
-
-        } catch (Exception $e) {
-            Alert::error(trans('admin.posts.elements.Updating post failed'));
-
-            return back()->withInput();
-        }
+        $item = $this->posts->updatePost($item, $data);
 
         Alert::success(trans('admin.posts.elements.Post updated successfully'));
 

@@ -12,7 +12,6 @@ use App\Modules\Admin\Users\Requests\StoreUserRequest;
 use App\Modules\Admin\Users\Requests\UpdateUserRequest;
 use App\Repositories\Users\UserRepository;
 use App\Services\Alert\Facade\Alert;
-use Exception;
 use Illuminate\Http\Request;
 use Kris\LaravelFormBuilder\Facades\FormBuilder;
 
@@ -72,18 +71,11 @@ class UsersController extends AdminBaseController
      */
     public function store(StoreUserRequest $request)
     {
-        try {
-            $data = $request->all();
+        $data = $request->all();
 
-            $item = $this->users->createUser($data);
+        $item = $this->users->createUser($data);
 
-            event(new UserCreated($item));
-
-        } catch (Exception $e) {
-            Alert::error(trans('admin.users.elements.Creating user failed'));
-
-            return back()->withInput();
-        }
+        event(new UserCreated($item));
 
         Alert::success(trans('admin.users.elements.User created successfully'));
 
@@ -123,20 +115,13 @@ class UsersController extends AdminBaseController
      */
     public function update(UpdateUserRequest $request, $id)
     {
-        try {
-            $item = $this->users->findOrFail($id);
+        $item = $this->users->findOrFail($id);
 
-            $data = $request->all();
+        $data = $request->all();
 
-            $item = $this->users->updateUser($item, $data);
+        $item = $this->users->updateUser($item, $data);
 
-            event(new UserUpdated($item));
-
-        } catch (Exception $e) {
-            Alert::error(trans('admin.users.elements.Updating user failed'));
-
-            return back()->withInput();
-        }
+        event(new UserUpdated($item));
 
         Alert::success(trans('admin.users.elements.User updated successfully'));
 

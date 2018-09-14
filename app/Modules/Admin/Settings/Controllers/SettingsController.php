@@ -58,16 +58,9 @@ class SettingsController extends AdminBaseController
 
     public function update(UpdateSettingsRequest $request, $type)
     {
-        try {
-            $handler = 'prepare' . ucfirst($type) . "Fields";
+        $handler = 'prepare' . ucfirst($type) . "Fields";
 
-            $this->settings->update($this->$handler($request));
-
-        } catch (Exception $e) {
-            Alert::error(trans('admin.settings.elements.Updating user failed'));
-
-            return back()->withInput();
-        }
+        $this->settings->update($this->$handler($request));
 
         Alert::success(trans('admin.settings.elements.Settings updated successfully'));
 
