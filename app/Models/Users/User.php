@@ -9,13 +9,14 @@ use App\Notifications\Accounts\Auth\ResetPassword as ResetPasswordNotification;
 use App\Services\Acl\Traits\CanAuthorize;
 use App\Services\Acl\Traits\HasPermission;
 use App\Services\Acl\Traits\HasRole;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use Notifiable, HasApiTokens,
+    use Notifiable, HasApiTokens, SoftDeletes,
         HasRole, HasPermission, CanAuthorize,
         UserRelationships, UserScopes, UserModifiers,
         HasState, HasJalaliTimestamps;
