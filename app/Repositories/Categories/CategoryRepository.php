@@ -8,6 +8,7 @@ use App\Repositories\Repository;
 use App\Types\General\Category as CategoryType;
 use App\Types\State;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CategoryRepository extends Repository
 {
@@ -18,18 +19,19 @@ class CategoryRepository extends Repository
 
     public function getAdminDatatable()
     {
-        $query = $this->query()
-            ->with(['parent']);
+        $query = $this->query()->with(['parent']);
 
         return $query;
     }
 
-    public function createRootCategory($type)
+    public function createRootCategory($typeId)
     {
+        $type = new CategoryType($typeId);
+
         return $this->forceCreate([
-            'name' => 'root',
-            'title' => 'Root',
-            'slug' => 'root',
+            'name' => 'root_' . $type->getKey(),
+            'title' => 'Root ' . $type->getKey(),
+            'slug' => 'root_' . $type->getKey(),
             'type' => $type,
             'state' => State::ENABLED,
         ]);
@@ -49,7 +51,9 @@ class CategoryRepository extends Repository
 
     public function createCategory($data, $type)
     {
-        $parent = $this->getParentCategory(array_get($data, 'parent_id', null), $type);
+        DB::beginTransaction();
+
+        $parent = $this->getParentCategory(array_get($data, 'parent_id', null), (int)$type);
 
         $auth = Auth::user();
 
@@ -67,12 +71,16 @@ class CategoryRepository extends Repository
 
         $item->makeChildOf($parent);
 
+        DB::commit();
+
         return $item;
     }
 
     public function updateCategory($item, $data)
     {
-        $parent = $this->getParentCategory(array_get($data, 'parent_id', $item->parent_id), $item->type);
+        DB::beginTransaction();
+
+        $parent = $this->getParentCategory(array_get($data, 'parent_id', $item->parent_id), (int)$item->type);
 
         $auth = Auth::user();
 
@@ -87,6 +95,8 @@ class CategoryRepository extends Repository
         ]);
 
         $item->makeChildOf($parent);
+
+        DB::commit();
 
         return $item;
     }
