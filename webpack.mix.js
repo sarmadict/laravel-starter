@@ -11,11 +11,8 @@ let mix = require('laravel-mix');
  |
  */
 
-
-mix.js('resources/assets/auth/js/vendor.js', 'public/assets/auth/js')
-    .js('resources/assets/auth/js/app.js', 'public/assets/auth/js')
-    .sass('resources/assets/auth/sass/vendor.scss', 'public/assets/auth/css')
-    .sass('resources/assets/auth/sass/app.scss', 'public/assets/auth/css')
+mix.js('resources/assets/auth/js/app.js', 'public/assets/auth/js')
+    .sass('resources/assets/auth/scss/app.scss', 'public/assets/auth/css')
     .options({
         fileLoaderDirs: {
             images: 'assets/auth/images',

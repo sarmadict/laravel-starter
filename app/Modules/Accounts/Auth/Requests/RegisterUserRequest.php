@@ -43,7 +43,7 @@ class RegisterUserRequest extends AdminBaseRequest
             // 'birth_year' => ['required', 'numeric', 'between:1200,' . verta()->year],
             // 'birth_month' => ['required', 'numeric', 'between:1,12'],
             // 'birth_day' => ['required', 'numeric', 'between:1,31'],
-            'gender' => ['required', Rule::in(Gender::values())],
+            // 'gender' => ['required', Rule::in(Gender::values())],
             'terms' => ['accepted'],
         ];
     }

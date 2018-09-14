@@ -61,12 +61,12 @@ class ForgotPasswordController extends AccountsBaseController
     {
         Alert::success(
             new AlertMessage(
-                trans('accounts.auth.' . $response),
-                trans('accounts.auth.passwords.Success'),
+                trans('auth.' . $response),
+                trans('auth.passwords.Success'),
                 'error',
                 'sweet-alert',
                 [
-                    'confirmButtonText' => trans('accounts.auth.passwords.Confirm'),
+                    'confirmButtonText' => trans('auth.passwords.Confirm'),
                     'confirmButtonColor' => '#DD6B55',
                 ]
             ),

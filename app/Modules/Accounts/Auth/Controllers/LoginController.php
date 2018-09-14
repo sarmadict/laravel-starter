@@ -28,13 +28,6 @@ class LoginController extends AccountsBaseController
     use RedirectsUsers, ThrottlesLogins;
 
     /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/';
-
-    /**
      * Form associated property which indicates the username
      *
      * @var string
@@ -147,8 +140,6 @@ class LoginController extends AccountsBaseController
         if(!$this->guard()->user()->isApproved()){
             $this->guard()->logout();
 
-            $this->setInactivateAccountAlert();
-
             return $this->sendInactiveAccountResponse($request);
         }
 
@@ -238,7 +229,7 @@ class LoginController extends AccountsBaseController
 
         return redirect()->back(423)
             ->withInput($request->only($this->username(), 'remember'))
-            ->withErrors([$this->username() => $message], 'login');
+            ->withErrors([$this->username() => $message]);
     }
 
     /**
@@ -253,28 +244,16 @@ class LoginController extends AccountsBaseController
 
         return redirect()->back()
             ->withInput($request->only($this->username(), 'remember'))
-            ->withErrors([$this->username() => $message], 'login');
+            ->withErrors([$this->username() => $message]);
     }
 
     /**
-     * Set Account is not activated Alert
+     * Redirect after login completed
      *
-     * @return void
+     * @return string
      */
-    public function setInactivateAccountAlert()
+    protected function redirectTo()
     {
-        Alert::error(
-            new AlertMessage(
-                trans('accounts.auth.login.Your account is not activated'),
-                trans('accounts.auth.login.Login Failed'),
-                'error',
-                'sweet-alert',
-                [
-                    'confirmButtonText' => trans('elements.auth.login.Confirm'),
-                    'confirmButtonColor' => '#DD6B55',
-                ]
-            ),
-            'sweetAlert'
-        );
+        return route('site.index');
     }
 }

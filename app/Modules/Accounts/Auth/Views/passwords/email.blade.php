@@ -1,92 +1,48 @@
 @extends('auth.layouts.main')
 
-{{--  Start : Page Contetnts --}}
-@section('page-contents')
-    @include('auth.partials.alerts')
+@section('contents')
 
-    <!-- start: FORGOT -->
-    <div class="row{{ $errors->isEmpty() ? ' animated fadeInRightBig' : '' }}" id="main-box">
-        <div class="main-login col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
-            <div class="logo margin-top-30">
-                <img src="assets/images/logo.png" alt="Clip-Two"/>
-            </div>
-            <!-- start: FORGOT BOX -->
-            <div class="box-forgot">
-                <form class="form-forgot" method="post" action="{{ route('accounts.auth.password.email') }}">
-                    @csrf
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<div class="panel panel-default">
+					<div class="panel-heading">@lang('auth.password_email.elements.Recover Password')</div>
 
-                    <fieldset>
-                        <legend>@lang('accounts.auth.password_email.Forget Password')</legend>
+					<div class="panel-body">
+						<form class="form-horizontal" method="POST" action="{{ route('auth.password.request') }}">
+							{{ csrf_field() }}
 
-                        <p>@lang('accounts.auth.password_email.Enter your e-mail address below to reset your password')</p>
+							<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+								<label for="email" class="col-md-4 control-label">@lang('auth.password_email.elements.Email')</label>
 
-                        <div class="form-group @if($errors->has('email')) has-error @endif">
-                            <span class="input-icon">
-                                <input type="email" class="form-control" name="email" placeholder="@lang('accounts.auth.password_email.Email address')" value="{{ old('email', '') }}">
-                                <i class="fa fa-envelope-o"></i>
-                            </span>
-                            @if($errors->has('email'))
-                                <span class="help-block">
-                                    {{ $errors->first('email') }}
-                                </span>
-                            @endif
-                        </div>
+								<div class="col-md-6">
+									<input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
 
-                        <div class="form-actions">
-                            <button type="submit" class="btn btn-primary pull-left">
-                                @lang('accounts.auth.password_email.Submit')
-                                <i class="fa fa-arrow-circle-left"></i>
-                            </button>
-                        </div>
+									@if ($errors->has('email'))
+										<span class="help-block">
+	                                        <strong>{{ $errors->first('email') }}</strong>
+	                                    </span>
+									@endif
+								</div>
+							</div>
 
-                        <div class="form-actions">
-                            <a class="btn btn-primary btn-o" href="{{ route('accounts.auth.login.show') }}">
-                                <i class="fa fa-chevron-circle-right"></i> @lang('accounts.auth.password_email.Log In')
-                            </a>
-                        </div>
-                    </fieldset>
-                </form>
-                <!-- start: COPYRIGHT -->
-                <div class="copyright">
-                    @lang('accounts.auth.password_email.Copyright')
-                </div>
-                <!-- end: COPYRIGHT -->
-            </div>
-            <!-- end: FORGOT BOX -->
-        </div>
-    </div>
-    <!-- end: FORGOT -->
+							<div class="form-group">
+								<div class="col-md-6 col-md-offset-4">
+									<button type="submit" class="btn btn-primary">
+										@lang('accounts.auth.password_email.Submit')
+									</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 @endsection
-{{-- End : Page Contetnts --}}
 
 
-{{-- Start : Page Title --}}
 @section('page-title')
-    @lang('accounts.auth.password_email.page title')
+    @lang('auth.password_email.elements.page_title')
 @endsection
-{{-- End : Page Title --}}
 
-
-@section('body-class', 'login')
-
-
-{{-- Start : Specific header assets for this page --}}
-@section('page-styles')
-    @stack('styles')
-@endsection
-{{-- End : Specific header assets for this page --}}
-
-
-{{-- Start : Specific footer assets for this page --}}
-@section('page-before-scripts')
-
-@endsection
-{{-- End : Specific footer assets for this page --}}
-
-
-{{-- Start : Specific footer assets for this page --}}
-@section('page-after-scripts')
-    @stack('scripts')
-
-@endsection
-{{-- End : Specific footer assets for this page --}}

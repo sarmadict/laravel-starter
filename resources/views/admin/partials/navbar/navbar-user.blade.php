@@ -26,7 +26,7 @@
             </a>
         </li>
         <li>
-            <a href="{{ route('accounts.auth.logout') }}">
+            <a href="{{ route('auth.logout.logout') }}">
                 @lang('admin.default.elements.logout')
             </a>
         </li>

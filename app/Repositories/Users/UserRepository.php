@@ -31,7 +31,6 @@ class UserRepository extends Repository
             'display_name' => $data['first_name'] . " " . $data['last_name'],
             'email' => $data['email'],
             'username' => $data['username'],
-            'gender' => $data['gender'],
             'state' => State::ENABLED,
             'password' => bcrypt($data['password'])
         ]);

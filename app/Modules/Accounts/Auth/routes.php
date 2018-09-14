@@ -2,9 +2,8 @@
 
 Route::namespace('App\Modules\Accounts\Auth\Controllers')
     ->middleware(['web'])
-    ->domain(domain('accounts'))
     ->prefix('auth')
-    ->name('accounts.auth.')
+    ->name('auth.')
     ->group(function () {
         Route::get('/login', 'LoginController@showLoginForm')
             ->name('login.show');
@@ -19,13 +18,13 @@ Route::namespace('App\Modules\Accounts\Auth\Controllers')
             ->name('register.register');
 
         Route::any('/logout', 'LoginController@logout')
-            ->name('logout');
+            ->name('logout.logout');
 
         Route::get('password/forget', 'ForgotPasswordController@showLinkRequestForm')
             ->name('password.forget');
 
-        Route::post('password/email', 'ForgotPasswordController@sendResetLinkEmail')
-            ->name('password.email');
+        Route::post('password/request', 'ForgotPasswordController@sendResetLinkEmail')
+            ->name('password.request');
 
         Route::get('password/reset/{token}', 'ResetPasswordController@showResetForm')
             ->name('password.recover');

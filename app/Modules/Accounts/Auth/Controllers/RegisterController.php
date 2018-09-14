@@ -100,10 +100,10 @@ class RegisterController extends AccountsBaseController
     /**
      * Redirect  after registration completed
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return string
      */
     protected function redirectTo()
     {
-        return redirect()->route('site.index');
+        return route('site.index');
     }
 }
