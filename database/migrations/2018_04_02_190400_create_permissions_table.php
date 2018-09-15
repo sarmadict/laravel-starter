@@ -13,9 +13,9 @@ class CreatePermissionsTable extends Migration
      */
     public function up()
     {
-        $tables = config('acl.tables');
+        $tables = config('tables');
 
-        Schema::create(array_get($tables, 'permissions', 'permissions'), function (Blueprint $table) {
+        Schema::create($tables['permissions'], function (Blueprint $table) use ($tables) {
             $table->increments('id');
             $table->string('name')->unique();
             $table->string('title');
@@ -31,16 +31,16 @@ class CreatePermissionsTable extends Migration
 
             $table->foreign('created_by')
                 ->references('id')
-                ->on('users')
+                ->on($tables['users'])
                 ->onDelete('SET NULL');
 
             $table->foreign('updated_by')
                 ->references('id')
-                ->on('users')
+                ->on($tables['users'])
                 ->onDelete('SET NULL');
         });
 
-        Schema::create(array_get($tables, 'permissible', 'permissible'), function (Blueprint $table) use ($tables) {
+        Schema::create($tables['permissible'], function (Blueprint $table) use ($tables) {
             $table->unsignedInteger('permission_id');
             $table->morphs('permissible');
             $table->unsignedInteger('assigned_by')->nullable();
@@ -48,12 +48,12 @@ class CreatePermissionsTable extends Migration
 
             $table->foreign('permission_id')
                 ->references('id')
-                ->on(array_get($tables, 'permissions', 'permissions'))
+                ->on($tables['permissions'])
                 ->onDelete('cascade');
 
             $table->foreign('assigned_by')
                 ->references('id')
-                ->on('users')
+                ->on($tables['users'])
                 ->onDelete('SET NULL');
         });
     }
@@ -65,13 +65,13 @@ class CreatePermissionsTable extends Migration
      */
     public function down()
     {
-        $tables = config('acl.tables');
+        $tables = config('tables');
 
         Schema::disableForeignKeyConstraints();
 
-        Schema::dropIfExists(array_get($tables, 'permissions', 'permissions'));
+        Schema::dropIfExists($tables['permissions']);
 
-        Schema::dropIfExists(array_get($tables, 'permissible', 'permissible'));
+        Schema::dropIfExists($tables['permissible']);
 
         Schema::enableForeignKeyConstraints();
     }

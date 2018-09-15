@@ -41,7 +41,7 @@ class Role extends BaseModel
     {
         parent::__construct($attributes);
 
-        $this->setTable(config('acl.tables.roles'));
+        $this->setTable(config('tables.roles'));
     }
 
     public function hasPermissionTo($ability)

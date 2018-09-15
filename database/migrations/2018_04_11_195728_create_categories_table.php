@@ -13,13 +13,13 @@ class CreateCategoriesTable extends Migration
      */
     public function up()
     {
-        $categories = config('tables.categories');
+        $tables = config('tables');
 
         $categorizables = config('tables.categorizables');
 
         $users = config('tables.users');
 
-        Schema::create($categories, function (Blueprint $table) use($users){
+        Schema::create($tables['categories'], function (Blueprint $table) use ($tables) {
             $table->increments('id');
             $table->string('name')->unique();
             $table->string('title');
@@ -43,16 +43,16 @@ class CreateCategoriesTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('created_by')->references('id')->on($users)->onDelete('SET NULL');
-            $table->foreign('updated_by')->references('id')->on($users)->onDelete('SET NULL');
+            $table->foreign('created_by')->references('id')->on($tables['users'])->onDelete('SET NULL');
+            $table->foreign('updated_by')->references('id')->on($tables['users'])->onDelete('SET NULL');
         });
 
-        Schema::create($categorizables, function (Blueprint $table) use($categories){
+        Schema::create($tables['categorizables'], function (Blueprint $table) use ($tables) {
             $table->increments('id');
             $table->unsignedInteger('category_id');
             $table->morphs('categorizable');
 
-            $table->foreign('category_id')->references('id')->on($categories)->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on($tables['categories'])->onDelete('cascade');
         });
     }
 
@@ -63,12 +63,11 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
-        $categories = config('tables.categories');
-        $categorizables = config('tables.categorizables');
+        $tables = config('tables');
 
         Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists($categories);
-        Schema::dropIfExists($categorizables);
+        Schema::dropIfExists($tables['categories']);
+        Schema::dropIfExists($tables['categorizables']);
         Schema::enableForeignKeyConstraints();
     }
 }

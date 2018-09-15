@@ -13,9 +13,9 @@ class CreateRolesTable extends Migration
      */
     public function up()
     {
-        $tables = config('acl.tables');
+        $tables = config('tables');
 
-        Schema::create(array_get($tables, 'roles', 'roles'), function (Blueprint $table) {
+        Schema::create($tables['roles'], function (Blueprint $table) use ($tables) {
             $table->increments('id');
             $table->string('name')->unique();
             $table->string('title');
@@ -29,25 +29,27 @@ class CreateRolesTable extends Migration
 
             $table->foreign('created_by')
                 ->references('id')
-                ->on('users');
+                ->on($tables['users'])
+                ->onDelete('SET NULL');
 
             $table->foreign('updated_by')
                 ->references('id')
-                ->on('users');
+                ->on($tables['users'])
+                ->onDelete('SET NULL');
         });
 
-        Schema::create(array_get($tables, 'role_user', 'role_user'), function (Blueprint $table) use ($tables) {
+        Schema::create($tables['role_user'], function (Blueprint $table) use ($tables) {
             $table->unsignedInteger('role_id');
             $table->unsignedInteger('user_id');
 
             $table->foreign('role_id')
                 ->references('id')
-                ->on(array_get($tables, 'roles', 'roles'))
+                ->on($tables['roles'])
                 ->onDelete('cascade');
 
             $table->foreign('user_id')
                 ->references('id')
-                ->on('users')
+                ->on($tables['users'])
                 ->onDelete('cascade');
         });
     }
@@ -59,13 +61,13 @@ class CreateRolesTable extends Migration
      */
     public function down()
     {
-        $tables = config('acl.tables');
+        $tables = config('tables');
 
         Schema::disableForeignKeyConstraints();
 
-        Schema::dropIfExists(array_get($tables, 'roles', 'roles'));
+        Schema::dropIfExists($tables['roles']);
 
-        Schema::dropIfExists(array_get($tables, 'role_user', 'role_user'));
+        Schema::dropIfExists($tables['role_user']);
 
         Schema::enableForeignKeyConstraints();
     }

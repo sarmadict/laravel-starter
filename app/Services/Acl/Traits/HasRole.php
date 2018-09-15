@@ -15,6 +15,6 @@ trait HasRole
      */
     public function roles(): BelongsToMany
     {
-        return $this->belongsToMany(Role::class, config('acl.tables.role_user'), 'user_id', 'role_id', 'id', 'id', 'roles');
+        return $this->belongsToMany(Role::class, config('tables.role_user'), 'user_id', 'role_id');
     }
 }

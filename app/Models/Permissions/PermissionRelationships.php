@@ -16,7 +16,7 @@ trait PermissionRelationships
      */
     public function roles(): MorphToMany
     {
-        return $this->morphedByMany(Role::class, 'permissible', config('acl.tables.permissible'))
+        return $this->morphedByMany(Role::class, 'permissible', config('tables.permissible'))
             ->withPivot(['assigned_by', 'assigned_at']);
     }
 
@@ -27,7 +27,7 @@ trait PermissionRelationships
      */
     public function users(): MorphToMany
     {
-        return $this->morphedByMany(User::class, 'permissible', config('acl.tables.permissible'))
+        return $this->morphedByMany(User::class, 'permissible', config('tables.permissible'))
             ->withPivot(['assigned_by', 'assigned_at']);
     }
 }

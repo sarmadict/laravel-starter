@@ -30,7 +30,7 @@ trait HasPermission
      */
     public function permissions(): MorphToMany
     {
-        return $this->morphToMany(Permission::class, 'permissible', config('acl.tables.permissible'));
+        return $this->morphToMany(Permission::class, 'permissible', config('tables.permissible'));
     }
 
     /**

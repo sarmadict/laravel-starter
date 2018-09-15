@@ -7,18 +7,6 @@ return [
         'role' => 'Role',
     ],
 
-
-    'tables' => [
-        'roles' => 'roles',
-
-        'permissions' => 'permissions',
-
-        'permissible' => 'permissible',
-
-        'role_user' => 'role_user',
-
-    ],
-
     'cache' => [
         'users' => [
             'expiration_time' => 60,

@@ -40,6 +40,6 @@ class Permission extends BaseModel
     {
         parent::__construct($attributes);
 
-        $this->setTable(config('acl.tables.permissions'));
+        $this->setTable(config('tables.permissions'));
     }
 }

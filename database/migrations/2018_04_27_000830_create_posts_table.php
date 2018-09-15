@@ -13,12 +13,9 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
-        $posts = config('tables.posts');
+        $tables = config('tables');
 
-        $users = config('tables.users');
-        $categories = config('tables.categories');
-
-        Schema::create($posts, function (Blueprint $table) use ($users, $categories) {
+        Schema::create($tables['posts'], function (Blueprint $table) use ($tables) {
             $table->increments('id');
             $table->string('title');
             $table->string('slug')->unique();
@@ -44,10 +41,10 @@ class CreatePostsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('category_id')->references('id')->on($categories)->onDelete('SET NULL');
-            $table->foreign('user_id')->references('id')->on($users)->onDelete('SET NULL');
-            $table->foreign('created_by')->references('id')->on($users)->onDelete('SET NULL');
-            $table->foreign('updated_by')->references('id')->on($users)->onDelete('SET NULL');
+            $table->foreign('category_id')->references('id')->on($tables['categories'])->onDelete('SET NULL');
+            $table->foreign('user_id')->references('id')->on($tables['users'])->onDelete('SET NULL');
+            $table->foreign('created_by')->references('id')->on($tables['users'])->onDelete('SET NULL');
+            $table->foreign('updated_by')->references('id')->on($tables['users'])->onDelete('SET NULL');
         });
     }
 
@@ -58,10 +55,10 @@ class CreatePostsTable extends Migration
      */
     public function down()
     {
-        $posts = config('tables.posts');
+        $tables = config('tables');
 
         Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists($posts);
+        Schema::dropIfExists($tables['posts']);
         Schema::enableForeignKeyConstraints();
     }
 }
