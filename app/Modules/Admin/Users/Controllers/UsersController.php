@@ -39,7 +39,7 @@ class UsersController extends AdminBaseController
     {
         $this->authorize('adminUsersIndex', User::class);
 
-        return view('AdminUsers::index');
+        return view('admin.users.index');
     }
 
     /**
@@ -60,7 +60,7 @@ class UsersController extends AdminBaseController
             ]
         ]);
 
-        return view('AdminUsers::form', compact('form'));
+        return view('admin.users.form', compact('form'));
     }
 
     /**
@@ -103,7 +103,7 @@ class UsersController extends AdminBaseController
             ]
         ]);
 
-        return view('AdminUsers::form', compact('form', 'item'));
+        return view('admin.users.form', compact('form', 'item'));
     }
 
     /**

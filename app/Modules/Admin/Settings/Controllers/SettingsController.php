@@ -53,7 +53,7 @@ class SettingsController extends AdminBaseController
 
     public function getViewForm($type)
     {
-        return "AdminSettings::" . $type . "-form";
+        return "admin.settings." . $type . "-form";
     }
 
     public function update(UpdateSettingsRequest $request, $type)

@@ -1,4 +1,4 @@
-@extends("AdminSettings::form")
+@extends("admin.settings.form")
 
 @section("form-contents")
     <div class="row">

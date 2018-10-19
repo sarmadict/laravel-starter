@@ -37,7 +37,7 @@ class PostsController extends AdminBaseController
     {
         $this->authorize('adminPostsIndex', Post::class);
 
-        return view('AdminPosts::index');
+        return view('admin.posts.index');
     }
 
     /**
@@ -58,7 +58,7 @@ class PostsController extends AdminBaseController
             ]
         ]);
 
-        return view('AdminPosts::form', compact('form'));
+        return view('admin.posts.form', compact('form'));
     }
 
     /**
@@ -99,7 +99,7 @@ class PostsController extends AdminBaseController
             ]
         ]);
 
-        return view('AdminPosts::form', compact('form', 'item'));
+        return view('admin.posts.form', compact('form', 'item'));
     }
 
     /**

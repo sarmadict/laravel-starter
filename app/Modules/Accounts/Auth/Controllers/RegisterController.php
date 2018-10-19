@@ -58,7 +58,7 @@ class RegisterController extends AccountsBaseController
      */
     public function showRegistrationForm()
     {
-        return view('AccountsAuth::register');
+        return view('auth.register');
     }
 
     /**

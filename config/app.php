@@ -168,20 +168,6 @@ return [
         App\Providers\ComposerServiceProvider::class,
         App\Services\Acl\AclServiceProvider::class,
         App\Services\Settings\SettingsServiceProvider::class,
-
-        /*
-         * Module Service Providers...
-         */
-        App\Modules\Accounts\Auth\ServiceProvider::class,
-
-        App\Modules\Admin\Core\ServiceProvider::class,
-        App\Modules\Admin\Dashboard\ServiceProvider::class,
-        App\Modules\Admin\Categories\ServiceProvider::class,
-        App\Modules\Admin\Posts\ServiceProvider::class,
-        App\Modules\Admin\Users\ServiceProvider::class,
-        App\Modules\Admin\Roles\ServiceProvider::class,
-        App\Modules\Admin\Settings\ServiceProvider::class,
-
     ],
 
     /*

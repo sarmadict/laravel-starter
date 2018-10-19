@@ -39,7 +39,7 @@ class RolesController extends AdminBaseController
     {
         $this->authorize('adminRolesIndex', Role::class);
 
-        return view('AdminRoles::index');
+        return view('admin.roles.index');
     }
 
     /**
@@ -60,7 +60,7 @@ class RolesController extends AdminBaseController
             ]
         ]);
 
-        return view('AdminRoles::form', compact('form'));
+        return view('admin.roles.form', compact('form'));
     }
 
     /**
@@ -103,7 +103,7 @@ class RolesController extends AdminBaseController
             ]
         ]);
 
-        return view('AdminRoles::form', compact('form', 'item'));
+        return view('admin.roles.form', compact('form', 'item'));
     }
 
     /**

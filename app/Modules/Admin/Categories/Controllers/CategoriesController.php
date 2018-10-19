@@ -39,7 +39,7 @@ class CategoriesController extends AdminBaseController
     {
         $this->authorize('adminCategoriesIndex', Category::class);
 
-        return view('AdminCategories::index');
+        return view('admin.categories.index');
     }
 
     /**
@@ -69,7 +69,7 @@ class CategoriesController extends AdminBaseController
             ]
         ]);
 
-        return view('AdminCategories::form', compact('form', 'type'));
+        return view('admin.categories.form', compact('form', 'type'));
     }
 
     /**
@@ -112,7 +112,7 @@ class CategoriesController extends AdminBaseController
             ]
         ]);
 
-        return view('AdminCategories::form', compact('form', 'item'));
+        return view('admin.categories.form', compact('form', 'item'));
     }
 
     /**

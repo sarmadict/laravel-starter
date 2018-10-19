@@ -58,7 +58,7 @@ class LoginController extends AccountsBaseController
      */
     public function showLoginForm()
     {
-        return view('AccountsAuth::login');
+        return view('auth.login');
     }
 
     /**
