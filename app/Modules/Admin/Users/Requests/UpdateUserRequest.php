@@ -4,10 +4,8 @@ namespace App\Modules\Admin\Users\Requests;
 
 
 use App\Http\Requests\Admin\AdminBaseRequest;
-use App\Models\Users\User;
 use App\Rules\MobileNumber;
 use App\Types\Accounts\Gender;
-use App\Types\Blog\UserStatus;
 use App\Types\State;
 use Illuminate\Validation\Rule;
 
@@ -20,9 +18,7 @@ class UpdateUserRequest extends AdminBaseRequest
      */
     public function authorize()
     {
-        $item = User::query()->findOrFail($this->route('user'));
-
-        return $this->user()->can('adminUsersEdit', $item);
+        return $this->user()->can('adminUsersEdit', $this->route('user'));
     }
 
     /**
@@ -32,7 +28,7 @@ class UpdateUserRequest extends AdminBaseRequest
      */
     public function rules()
     {
-        $id = $this->route('user');
+        $item = $this->route('user');
 
         return [
             'state' => [Rule::in(State::values()),],
@@ -43,9 +39,9 @@ class UpdateUserRequest extends AdminBaseRequest
 
             'display_name' => ['nullable', 'max: 255'],
 
-            'username' => ['required', 'unique:users,username,' . $id, 'alpha_dash'],
+            'username' => ['required', 'unique:users,username,' . $item->id, 'alpha_dash'],
 
-            'email' => ['required', 'email', 'unique:users,email,' . $id],
+            'email' => ['required', 'email', 'unique:users,email,' . $item->id],
 
             'mobile_number' => ['nullable', new MobileNumber()],
 

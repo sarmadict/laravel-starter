@@ -73,58 +73,54 @@ class UsersController extends AdminBaseController
     {
         $data = $request->all();
 
-        $item = $this->users->createUser($data);
+        $user = $this->users->createUser($data);
 
-        event(new UserCreated($item));
+        event(new UserCreated($user));
 
         Alert::success(trans('admin.users.elements.User created successfully'));
 
-        return redirect()->route('admin.users.edit', $item);
+        return redirect()->route('admin.users.edit', $user);
     }
 
     /**
      * Show User edit form
      *
-     * @param $id
+     * @param User $user
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        $item = $this->users->findOrFail($id);
-
-        $this->authorize('adminUsersEdit', $item);
+        $this->authorize('adminUsersEdit', $user);
 
         $form = FormBuilder::create(UserForm::class, [
             'method' => 'PUT',
-            'url' => route('admin.users.update', $item),
-            'model' => $item,
+            'url' => route('admin.users.update', $user),
+            'model' => $user,
             'data' => [
                 //
             ]
         ]);
 
-        return view('admin.users.form', compact('form', 'item'));
+        return view('admin.users.form', compact('form', 'user'));
     }
 
     /**
      * Update a User item
      *
      * @param UpdateUserRequest $request
-     * @param $id
+     * @param User $user
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(UpdateUserRequest $request, $id)
+    public function update(UpdateUserRequest $request, User $user)
     {
-        $item = $this->users->findOrFail($id);
-
         $data = $request->all();
 
-        $item = $this->users->updateUser($item, $data);
+        $user = $this->users->updateUser($user, $data);
 
-        event(new UserUpdated($item));
+        event(new UserUpdated($user));
 
         Alert::success(trans('admin.users.elements.User updated successfully'));
 
-        return redirect()->route('admin.users.edit', $item);
+        return redirect()->route('admin.users.edit', $user);
     }
 }

@@ -97,7 +97,7 @@
                                         </div>
                                     </div>
 
-                                    @if(isset($item))
+                                    @if(isset($user))
                                         <div class="panel panel-white" id="panel-info">
                                             <div class="panel-heading">
                                                 <h4 class="panel-title text-primary">@lang('admin.users.elements.panel_info')</h4>

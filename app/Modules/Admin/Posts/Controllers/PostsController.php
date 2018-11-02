@@ -71,54 +71,50 @@ class PostsController extends AdminBaseController
     {
         $data = $request->all();
 
-        $item = $this->posts->createPost($data);
+        $post = $this->posts->createPost($data);
 
         Alert::success(trans('admin.posts.elements.Post created successfully'));
 
-        return redirect()->route('admin.posts.edit', $item);
+        return redirect()->route('admin.posts.edit', $post);
     }
 
     /**
      * Show Category edit form
      *
-     * @param $id
+     * @param Post $post
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        $item = $this->posts->findOrFail($id);
-
-        $this->authorize('adminPostsEdit', $item);
+        $this->authorize('adminPostsEdit', $post);
 
         $form = FormBuilder::create(PostForm::class, [
             'method' => 'PUT',
-            'url' => route('admin.posts.update', $item),
-            'model' => $item,
+            'url' => route('admin.posts.update', $post),
+            'model' => $post,
             'data' => [
                 //
             ]
         ]);
 
-        return view('admin.posts.form', compact('form', 'item'));
+        return view('admin.posts.form', compact('form', 'post'));
     }
 
     /**
-     * Update a category item
+     * Update a Post item
      *
      * @param UpdatePostRequest $request
-     * @param $id
+     * @param Post $post
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(UpdatePostRequest $request, $id)
+    public function update(UpdatePostRequest $request, Post $post)
     {
-        $item = $this->posts->findOrFail($id);
-
         $data = $request->all();
 
-        $item = $this->posts->updatePost($item, $data);
+        $post = $this->posts->updatePost($post, $data);
 
         Alert::success(trans('admin.posts.elements.Post updated successfully'));
 
-        return redirect()->route('admin.posts.edit', $item);
+        return redirect()->route('admin.posts.edit', $post);
     }
 }

@@ -73,58 +73,54 @@ class RolesController extends AdminBaseController
     {
         $data = $request->all();
 
-        $item = $this->roles->createRole($data);
+        $role = $this->roles->createRole($data);
 
-        event(new RoleCreated($item));
+        event(new RoleCreated($role));
 
         Alert::success(trans('admin.roles.elements.Role created successfully'));
 
-        return redirect()->route('admin.roles.edit', $item);
+        return redirect()->route('admin.roles.edit', $role);
     }
 
     /**
-     * Show Category edit form
+     * Show Role edit form
      *
-     * @param $id
+     * @param Role $role
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit($id)
+    public function edit(Role $role)
     {
-        $item = $this->roles->findOrFail($id);
-
-        $this->authorize('adminRolesEdit', $item);
+        $this->authorize('adminRolesEdit', $role);
 
         $form = FormBuilder::create(RoleForm::class, [
             'method' => 'PUT',
-            'url' => route('admin.roles.update', $item),
-            'model' => $item,
+            'url' => route('admin.roles.update', $role),
+            'model' => $role,
             'data' => [
                 //
             ]
         ]);
 
-        return view('admin.roles.form', compact('form', 'item'));
+        return view('admin.roles.form', compact('form', 'role'));
     }
 
     /**
-     * Update a category item
+     * Update a Role item
      *
      * @param UpdateRoleRequest $request
-     * @param $id
+     * @param Role $role
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(UpdateRoleRequest $request, $id)
+    public function update(UpdateRoleRequest $request, Role $role)
     {
-        $item = $this->roles->findOrFail($id);
-
         $data = $request->all();
 
-        $item = $this->roles->updateRole($item, $data);
+        $role = $this->roles->updateRole($role, $data);
 
-        event(new RoleUpdated($item));
+        event(new RoleUpdated($role));
 
         Alert::success(trans('admin.roles.elements.Role updated successfully'));
 
-        return redirect()->route('admin.roles.edit', $item);
+        return redirect()->route('admin.roles.edit', $role);
     }
 }

@@ -4,7 +4,6 @@ namespace App\Modules\Admin\Posts\Requests;
 
 
 use App\Http\Requests\Admin\AdminBaseRequest;
-use App\Models\Posts\Post;
 use App\Types\Blog\PostStatus;
 use App\Types\State;
 use Illuminate\Validation\Rule;
@@ -18,9 +17,7 @@ class UpdatePostRequest extends AdminBaseRequest
      */
     public function authorize()
     {
-        $item = Post::query()->findOrFail($this->route('post'));
-
-        return $this->user()->can('adminPostsEdit', $item);
+        return $this->user()->can('adminPostsEdit', $this->route('post'));
     }
 
     /**
@@ -30,7 +27,7 @@ class UpdatePostRequest extends AdminBaseRequest
      */
     public function rules()
     {
-        $id = $this->route('post');
+        $item = $this->route('post');
 
         return [
             'state' => [Rule::in(State::values()),],
@@ -41,7 +38,7 @@ class UpdatePostRequest extends AdminBaseRequest
 
             'content' => ['required', 'between:1, 819000'],
 
-            'slug' => ['required', 'alpha_dash', 'unique:posts,slug,' . $id, 'between:1, 255'],
+            'slug' => ['required', 'alpha_dash', 'unique:posts,slug,' . $item->id, 'between:1, 255'],
 
             'category_id' => ['nullable', Rule::exists('categories', 'id')],
 

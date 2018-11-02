@@ -80,7 +80,7 @@ class CategoryRepository extends Repository
     {
         DB::beginTransaction();
 
-        $parent = $this->getParentCategory(array_get($data, 'parent_id', $item->parent_id), (int)$item->type);
+        $parent = $this->getParentCategory(array_get($data, 'parent_id', $item->parent_id), $item->type->getValue());
 
         $auth = Auth::user();
 

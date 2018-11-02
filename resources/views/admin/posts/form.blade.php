@@ -90,7 +90,7 @@
                                         </div>
                                     </div>
 
-                                    @if(isset($item))
+                                    @if(isset($post))
                                         <div class="panel panel-white" id="panel-info">
                                             <div class="panel-heading">
                                                 <h4 class="panel-title text-primary">@lang('admin.posts.elements.panel_info')</h4>

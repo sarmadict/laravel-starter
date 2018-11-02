@@ -82,56 +82,52 @@ class CategoriesController extends AdminBaseController
     {
         $data = $request->all();
 
-        $item = $this->categories->createCategory($data, $request->input('type'));
+        $category = $this->categories->createCategory($data, $request->input('type'));
 
         Alert::success(trans('admin.categories.elements.Category created successfully'));
 
-        return redirect()->route('admin.categories.edit', $item);
+        return redirect()->route('admin.categories.edit', $category);
     }
 
     /**
      * Show Category edit form
      *
-     * @param $id
+     * @param Category $category
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit($id)
+    public function edit(Category $category)
     {
-        $item = $this->categories->findOrFail($id);
+        $this->authorize('adminCategoriesEdit', $category);
 
-        $this->authorize('adminCategoriesEdit', $item);
-
-        $type = $item->type;
+        $type = $category->type;
 
         $form = FormBuilder::create(CategoryForm::class, [
             'method' => 'PUT',
-            'url' => route('admin.categories.update', $item),
-            'model' => $item,
+            'url' => route('admin.categories.update', $category),
+            'model' => $category,
             'data' => [
                 'type' => $type,
             ]
         ]);
 
-        return view('admin.categories.form', compact('form', 'item'));
+        return view('admin.categories.form', compact('form', 'category'));
     }
 
     /**
      * Update a category item
      *
      * @param UpdateCategoryRequest $request
-     * @param $id
+     * @param Category $category
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(UpdateCategoryRequest $request, $id)
+    public function update(UpdateCategoryRequest $request, Category $category)
     {
-        $item = $this->categories->findOrFail($id);
-
         $data = $request->all();
 
-        $item = $this->categories->updateCategory($item, $data);
+        $category = $this->categories->updateCategory($category, $data);
 
         Alert::success(trans('admin.categories.elements.Category updated successfully'));
 
-        return redirect()->route('admin.categories.edit', $item);
+        return redirect()->route('admin.categories.edit', $category);
     }
 }

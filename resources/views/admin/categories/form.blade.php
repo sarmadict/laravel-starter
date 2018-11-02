@@ -24,7 +24,7 @@
         <div class="row">
             {!! form_start($form) !!}
 
-            @if(!isset($item))
+            @if(!isset($category))
                 <input type="hidden" name="type" value="{{ $type }}">
             @endif
 
@@ -38,8 +38,8 @@
                         <i class="fa fa-times"></i> @lang('admin.default.actions.Cancel')
                     </a>
 
-                    {{--@if(isset($item) )
-                        <a href="{{ route('admin.categories.destroy', $item) }}" class="btn btn-red">
+                    {{--@if(isset($category) )
+                        <a href="{{ route('admin.categories.destroy', $category) }}" class="btn btn-red">
                             <i class="fa fa-trash"></i> @lang('admin.default.actions.Destroy')
                         </a>
                     @endif--}}

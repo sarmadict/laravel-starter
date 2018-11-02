@@ -69,7 +69,7 @@
                                 </div>
 
                                 <div class="col-sm-3">
-                                    @if(isset($item))
+                                    @if(isset($role))
                                         <div class="panel panel-white" id="panel-info">
                                             <div class="panel-heading">
                                                 <h4 class="panel-title text-primary">@lang('admin.roles.elements.panel_info')</h4>

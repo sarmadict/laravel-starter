@@ -4,7 +4,6 @@ namespace App\Modules\Admin\Roles\Requests;
 
 
 use App\Http\Requests\Admin\AdminBaseRequest;
-use App\Models\Roles\Role;
 use App\Types\State;
 use Illuminate\Validation\Rule;
 
@@ -17,9 +16,7 @@ class UpdateRoleRequest extends AdminBaseRequest
      */
     public function authorize()
     {
-        $item = Role::query()->findOrFail($this->route('role'));
-
-        return $this->user()->can('adminRolesEdit', $item);
+        return $this->user()->can('adminRolesEdit', $this->route('role'));
     }
 
     /**
@@ -29,12 +26,12 @@ class UpdateRoleRequest extends AdminBaseRequest
      */
     public function rules()
     {
-        $id = $this->route('role');
+        $item = $this->route('role');
 
         return [
             'state' => [Rule::in(State::values()),],
 
-            'name' => ['required', 'unique:roles,name,' . $id, 'between:1, 255'],
+            'name' => ['required', 'unique:roles,name,' . $item->id, 'between:1, 255'],
 
             'title' => ['required', 'between:1, 255'],
 
